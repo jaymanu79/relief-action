@@ -1565,7 +1565,7 @@ const G = root.ReliefGeom;
 
 const VS_FACE = `
 attribute vec3 aPos; attribute vec3 aNrm; attribute float aTone;
-uniform mat4 uMVP; uniform vec3 uEye;
+uniform mat4 uMVP;
 varying vec3 vPos; varying vec3 vNrm; varying float vTone;
 void main(){ vPos = aPos; vNrm = aNrm; vTone = aTone; gl_Position = uMVP * vec4(aPos, 1.0); }`;
 const FS_FACE = `
