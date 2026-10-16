@@ -410,14 +410,15 @@ body.touch #subs { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
         <li>La démo et l'épilogue restent accessibles depuis le même menu.</li>
       </ul>
       <div class="links">
-        <a class="btn" href="relief-action-fr-en.dsk" download>Télécharger la disquette (.dsk)</a>
-        <a class="btn" href="relief-action-plans.pdf" target="_blank" rel="noopener">Plans des 3 ponts (PDF)</a>
+        <a class="btn" href="relief-action-fr-en.dsk" download data-goatcounter-click="telechargement-dsk" data-goatcounter-title="Téléchargement disquette">Télécharger la disquette (.dsk)</a>
+        <a class="btn" href="relief-action-plans.pdf" target="_blank" rel="noopener" data-goatcounter-click="plans-pdf" data-goatcounter-title="Plans PDF">Plans des 3 ponts (PDF)</a>
         <a class="btn" href="https://www.cpc-power.com/index.php?page=detail&amp;num=1783" target="_blank" rel="noopener">Fiche du jeu sur CPC-Power ↗</a>
       </div>
     </section>
   </div>
 </div>
 
+<script data-goatcounter="https://reliefaction.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 // Z80 CPU core (documented + usual undocumented behaviour). Usable in browser and Node.
 // mem: {read(a), write(a,v), inp(port), out(port,v)}
@@ -3282,7 +3283,7 @@ $('#f-import').onchange = e => {
 };
 // start screen: continue the most recent save
 function latestSlot() { let best = -1, t = 0; for (let n = 0; n < 4; n++) { const s = readSlot(n); if (s && s.t > t) { t = s.t; best = n; } } return best; }
-{ const n = latestSlot(); const b = $('#b-continue'); if (n >= 0) { b.hidden = false; b.textContent = T('Continuer · {0}', (readSlot(n).meta || {}).room || T(SLOT_NAMES[n])); b.onclick = () => loadSlot(latestSlot()); } }
+{ const n = latestSlot(); const b = $('#b-continue'); if (n >= 0) { b.hidden = false; b.textContent = T('Continuer · {0}', (readSlot(n).meta || {}).room || T(SLOT_NAMES[n])); b.onclick = () => { track('partie-reprise', 'Partie reprise'); loadSlot(latestSlot()); }; } }
 $('#b-restart2').onclick = () => { if (confirm(T('Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n\'est pas sauvegardée.'))) $('#b-restart').onclick(); };
 $('#b-restart').onclick = () => { g.reset(); g.setMonster(prefs.monster); sceneSig = ''; sceneRoom = -1; camInit = false; shownRoom = -1; closeOverlays(); say(T('Nouvelle partie.'), 'sys'); };
 
@@ -3366,7 +3367,10 @@ window.addEventListener('resize', () => { if (!$('#start').hidden && $('#start h
 
 // ---------- start ----------
 let running = false;
-function startGame() { $('#start').hidden = true; running = true; say(T('Vous sortez d\'hibernation…'), 'sys'); }
+// audience counter (GoatCounter, no cookies): page loads are counted by its script, games and endings as events
+const track = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path, title, event: true }); } catch (e) {} };
+let endTracked = false;
+function startGame() { track('partie-nouvelle', 'Nouvelle partie'); $('#start').hidden = true; running = true; say(T('Vous sortez d\'hibernation…'), 'sys'); }
 $('#b-start').onclick = startGame;
 $('#start-monster').checked = prefs.monster;
 $('#start-time').checked = prefs.infTime;
@@ -3382,7 +3386,7 @@ function frame(t) {
     const t0 = performance.now();
     pumpTyping();
     g.run(dt);
-    if (!g.epilogue) pumpDetector();
+    if (!g.epilogue) pumpDetector(); else if (running && !endTracked) { endTracked = true; track('partie-finie', 'Fin de partie atteinte (épilogue)'); }
     const cost = performance.now() - t0;
     $('#perf').textContent = cost > 30 ? T('émulation lente') : '';
     trackLook();
