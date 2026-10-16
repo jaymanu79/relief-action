@@ -31,21 +31,21 @@ body.panel-hidden #app { grid-template-columns: 1fr 0; }
 
 /* top bar over the view */
 #topbar { position: absolute; left: 0; right: 0; top: 0; padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px; display: flex; gap: 10px; align-items: flex-start; pointer-events: none; }
-#loc { pointer-events: auto; padding: 8px 14px 9px; background: color-mix(in srgb, var(--hull) 78%, transparent); border-left: 3px solid var(--cpc); backdrop-filter: blur(6px); min-width: 0; }
+#loc { pointer-events: auto; padding: 8px 14px 9px; background: color-mix(in srgb, var(--hull) 78%, transparent); border-left: 3px solid var(--cpc); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); min-width: 0; }
 #loc-deck { font: 600 11px/1.2 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
 #loc-name { font: 700 20px/1.15 var(--f-display); letter-spacing: .02em; text-wrap: balance; }
 #loc.flash #loc-name { animation: locin .9s ease-out; }
 @keyframes locin { from { opacity: 0; transform: translateY(-6px); letter-spacing: .25em; } to { opacity: 1; transform: none; } }
 #tools { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; pointer-events: auto; }
-.tool { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 11px; border: 1px solid var(--line); background: color-mix(in srgb, var(--hull) 82%, transparent); backdrop-filter: blur(6px); cursor: pointer; font: 600 12px/1 var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: var(--mist); }
+.tool { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 11px; border: 1px solid var(--line); background: color-mix(in srgb, var(--hull) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); cursor: pointer; font: 600 12px/1 var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: var(--mist); }
 .tool:hover { color: var(--ice); border-color: var(--mist); }
 .tool.on { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 60%, var(--line)); }
 .tool.off { color: var(--alert); border-color: color-mix(in srgb, var(--alert) 50%, var(--line)); }
 .tool svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
 /* map */
-#mapbox { position: absolute; left: 14px; top: calc(78px + env(safe-area-inset-top, 0px)); width: min(250px, 40vw); aspect-ratio: 1 / 1; max-width: 100%; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px); display: flex; flex-direction: column; }
-#detbox { position: absolute; right: 14px; top: calc(56px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px); pointer-events: none; }
+#mapbox { position: absolute; left: 14px; top: calc(78px + env(safe-area-inset-top, 0px)); width: min(250px, 40vw); aspect-ratio: 1 / 1; max-width: 100%; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); display: flex; flex-direction: column; }
+#detbox { position: absolute; right: 14px; top: calc(56px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
 #detbox img { width: 72px; height: 72px; image-rendering: pixelated; }
 #detbox span { font: 600 10px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
 #detbox.ping { border-color: #ff6a6a; box-shadow: 0 0 18px rgba(255, 80, 80, .55); }
@@ -3197,7 +3197,8 @@ $('#b-cpc').onclick = () => toggle('cpc');
 $('#b-monster').onclick = () => { toggle('monster'); say(T(prefs.monster ? 'Monstre activé.' : 'Monstre désactivé : il ne bouge plus et ne tue plus.'), 'sys'); };
 $('#b-set').onclick = () => openSettings();
 $('#b-help').onclick = () => openHelp();
-$('#b-full').onclick = () => { const d = document.documentElement; if (!document.fullscreenElement) (d.requestFullscreen || d.webkitRequestFullscreen || (() => {})).call(d); else document.exitFullscreen(); };
+$('#b-full').onclick = () => { const d = document.documentElement, D = document;   // Safari still uses the webkit-prefixed names
+  if (!(D.fullscreenElement || D.webkitFullscreenElement)) (d.requestFullscreen || d.webkitRequestFullscreen || (() => {})).call(d); else (D.exitFullscreen || D.webkitExitFullscreen).call(D); };
 $$('#settings input[data-pref]').forEach(i => i.addEventListener('change', () => { prefs[i.dataset.pref] = i.checked; applyPrefs(); savePrefs(); }));
 function openSettings() { $('#settings').hidden = false; }
 function openHelp() { $('#help').hidden = false; }
