@@ -1421,6 +1421,18 @@ function Relief(memImage, opts) {
     if (self.turbo) { cpc.cpu.b = 1; cpc.cpu.c = 1; }
   });
 
+  // game clock: the main loop (&80B5) decrements the event scheduler once per pass (&8116). With turbo the 3D render is
+  // instant, so while moving the loop runs ~6x faster than on a CPC and so would the monster (every 80 ticks), the
+  // self-destruct (10000), the hangar's delayed opening (300), the fire system after lighting the torch (150) and the
+  // shuttle launch sequence (30 / 50 / 100). Keep the CPC tempo while moving: at most one tick every 19 frames (2.6/s,
+  // measured without turbo). The menu already runs at the CPC rate (about one tick every 12 frames) and is left alone.
+  let lastTick = -1e9;
+  gameHook(0x8116, () => {
+    if (!self.turbo || !self.cpcTempo || self.ctx !== 'move') { lastTick = cpc.frames; return; }
+    if (cpc.frames - lastTick < 19) { cpc.cpu.pc = 0x8123; return true; }
+    lastTick = cpc.frames;
+  });
+
   // frame synchronisation (wait for VSYNC) used by text printing and menu animations
   gameHook(0x4A5F, () => { if (self.turbo) { cpc.cpu.pc = 0x4A6F; return true; } });
 
@@ -1537,7 +1549,7 @@ function Relief(memImage, opts) {
 
   // ---------- run ----------
   this.modern = true;
-  this.turbo = true;
+  this.turbo = true; this.cpcTempo = true;
   this.paused = false;
   this.run = function (ms) {
     if (this.paused) return;
