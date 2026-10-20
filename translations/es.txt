@@ -102,7 +102,7 @@ tr: Pulsar
 # CPC: max 8 letters (original: REGLER)
 fr: Régler
 en: Set
-tr: Activar
+tr: Ajustar
 
 @verb.07
 # CPC: max 8 letters (original: VERSER)
@@ -465,7 +465,7 @@ tr: Algunos cables se han fundido.
 @msg.068
 fr: Interface RS234 connectée.
 en: RS234 interface connected.
-tr: Interfaz RS234 conectado.
+tr: Interfaz RS234 conectada.
 
 @msg.069
 fr: Terminal hors service.
@@ -480,7 +480,7 @@ tr: Te sientas frente a la pantalla.
 @msg.071
 fr: Indicatifs standards
 en: Standard call signs
-tr: Llamadas estándar
+tr: Indicativos estándar
 
 @msg.072
 fr: Accès refusé.
@@ -550,7 +550,7 @@ tr: Placa calentadora apagada.
 @msg.085
 fr: … que les messages ont été réduits aux seuls indicatifs.
 en: … that messages have been reduced to call signs only.
-tr: … que los mensajes se reducen a solo llamadas.
+tr: … que los mensajes se reducen a solo indicativos.
 
 @msg.086
 fr: Introduisez votre carte d'accès pour identification.
@@ -587,7 +587,7 @@ tr: Esta caja metálica está construida de una sola pieza, no tiene paneles ato
 @msg.092
 fr: Avez-vous essayé avec un tournevis ?
 en: Have you tried a screwdriver?
-tr: Has probado con un atornillador?
+tr: ¿Has probado con un destornillador?
 
 @msg.093
 fr: Le coffre s'ouvre — il contenait une carte d'accès et un livre, maintenant carbonisés.
@@ -608,7 +608,7 @@ tr: La caja se abre
 @msg.096
 fr: Indicatif non répertorié.
 en: Unknown call sign.
-tr: Número desconocido
+tr: Indicativo desconocido
 
 @msg.097
 fr: La porte ne peut pas s'ouvrir quand la cage est ouverte.
@@ -669,7 +669,7 @@ tr: La lanzadera se despresuriza bruscamente.
 @msg.108
 fr: Le monstre est projeté dans l'espace !
 en: The monster is blown out into space!
-tr: El monstruo es lanzado al espacio!
+tr: ¡El monstruo es lanzado al espacio!
 
 @msg.109
 fr: Le monstre est dans la navette.
@@ -755,7 +755,7 @@ tr: La llama azul del soplete no es suficiente para eliminar la oscuridad.
 @msg.125
 fr: Comment allumez-vous votre chalumeau ?
 en: How do you light your blowtorch?
-tr: Cómo enciendes el soplete?
+tr: ¿Cómo enciendes el soplete?
 
 @msg.126
 fr: Le système anti-incendie du vaisseau se déclenche… votre chalumeau s'éteint et vous êtes trempé.
@@ -785,12 +785,12 @@ tr: Sistema de seguridad del ascensor desconectado.
 @msg.131
 fr: À quoi peut bien servir un tournevis dans cette situation ?
 en: What use could a screwdriver possibly be here?
-tr: De qué te sirve un atornillador en esta situación?
+tr: ¿De qué te sirve un destornillador en esta situación?
 
 @msg.132
 fr: Vous vous donnez un coup de clé anglaise sur la tête. Ça fait très mal !
 en: You hit yourself on the head with the spanner. That really hurts!
-tr: Te golpeas con la llave inglesa en la cabeza. Eso duele!
+tr: Te golpeas con la llave inglesa en la cabeza. ¡Eso duele!
 
 @msg.133
 fr: Les têtes de vis sont de l'autre côté.
@@ -850,7 +850,7 @@ tr: Te quitas las gafas.
 @msg.144
 fr: Que voulez-vous faire de ce combustible radioactif ?
 en: What do you want to do with this radioactive fuel?
-tr: Qué quieres hacer con el combustible radiactivo?
+tr: ¿Qué quieres hacer con el combustible radiactivo?
 
 @msg.145
 fr: Vous êtes mignonne avec cette épingle dans les cheveux.
@@ -870,7 +870,7 @@ tr: Te perfumas.
 @msg.148
 fr: Que voulez-vous boire ?
 en: What do you want to drink?
-tr: Qué quieres beber?
+tr: ¿Qué quieres beber?
 
 @msg.149
 fr: Vous buvez de l'eau fraîche.
@@ -890,12 +890,12 @@ tr: Sé más preciso.
 @msg.152
 fr: Que voulez-vous faire de ce bloc métallique ?
 en: What do you want to do with this metal block?
-tr: Qué quieres hacer con este bloque metálico?
+tr: ¿Qué quieres hacer con este bloque metálico?
 
 @msg.153
 fr: Que voulez-vous verser ?
 en: What do you want to pour?
-tr: Qué quieres verter?
+tr: ¿Qué quieres verter?
 
 @msg.154
 fr: Rien de comestible à portée de main.
@@ -905,12 +905,12 @@ tr: Nada comestible al alcance de la mano.
 @msg.155
 fr: Hum… c'est du bon whisky !
 en: Mmm… that's good whisky!
-tr: Mmm… es un buen whisky!
+tr: Mmm… ¡es whisky del bueno!
 
 @msg.156
 fr: Que voulez-vous faire de cette carte magnétique ?
 en: What do you want to do with this magnetic card?
-tr: Qué quieres hacer con la tarjeta magnética?
+tr: ¿Qué quieres hacer con la tarjeta magnética?
 
 @msg.157
 fr: Impossible avec le scaphandre.
@@ -940,7 +940,7 @@ tr: No hay ningún botón cerca.
 @msg.162
 fr: Pas de curseur à votre portée.
 en: No slider within reach.
-tr: No hay ningún dial cerca.
+tr: No hay ningún mando cerca.
 
 @msg.163
 # keep the code FTL (game data)
@@ -1071,7 +1071,7 @@ tr: Es peligroso exponerse al vacío sin escafandra.
 @msg.186
 fr: OK !
 en: OK!
-tr: OK!
+tr: ¡OK!
 
 @msg.187
 fr: Vous versez le contenu du flacon dans l'évier.
@@ -1082,7 +1082,7 @@ tr: Viertes el contenido del frasco en el sumidero.
 # question answered with the "yes" key defined in CPC MISC below
 fr: Voulez-vous rejouer ?
 en: Play again?
-tr: Otra partida?
+tr: ¿Otra partida?
 
 @msg.189
 fr: Accès autorisé.
@@ -1329,12 +1329,12 @@ tr: Te despiertas. Estás hambriento… No tienes comida. Si nadie te encuentra 
 @epi.hunger.p2
 fr: Vous vous rappelez subitement une phrase du commandant : <em>le plus proche vaisseau est à Éridan !</em> S'il vient vous chercher, ce ne sera pas avant au moins un mois.
 en: Suddenly you remember something the commander said: <em>the nearest ship is at Eridanus!</em> If it comes for you, it will not be for at least a month.
-tr: De repente, recuerdas algo que dijo el comandante: <em>la nave más cercana está en Éridan!</em> Si se acerca, no será menos de un mes.
+tr: De repente, recuerdas algo que dijo el comandante: <em>¡la nave más cercana está en Éridan!</em> Si se acerca, no será menos de un mes.
 
 @epi.hunger.p3
 fr: Vous n'avez aucune chance. Vous préférez mourir vite… Vous ouvrez le diaphragme sur le vide !!!
 en: You have no chance. You would rather die quickly… You open the iris onto the void!!!
-tr: No tienes elección. Preferirías morir rápidamente… Abres el diafragma al vacío!!!
+tr: No tienes elección. Preferirías morir rápidamente… ¡¡¡Abres el diafragma al vacío!!!
 
 @epi.alone.chapter
 # web only
@@ -1346,17 +1346,17 @@ tr: El despertar
 # CPC: the 5 paragraphs of this part must fit together in 24 lines of 38 characters (about 816 characters)
 fr: Au réveil, vous avez mangé un tiers de ration ! Il fallait que vos provisions suffisent pour attendre l'arrivée des secours !
 en: When you woke up you ate a third of a ration! Your food had to last until help arrived!
-tr: Cuando te despiertas, te comes un tercio de una ración! La comida tiene que durar hasta que la ayuda llegue!
+tr: Cuando te despiertas, ¡te comes un tercio de una ración! ¡La comida tiene que durar hasta que la ayuda llegue!
 
 @epi.alone.p2
 fr: Un doute horrible vous envahit. Quels secours attendiez-vous ? Qui savait que vous étiez perdu dans cette navette ? Qui savait même que votre vaisseau avait explosé ?
 en: A horrible doubt comes over you. What help were you waiting for? Who knew you were lost in this shuttle? Who even knew your ship had exploded?
-tr: Una horrible duda te embarga. Qué ayuda estás esperando? Quién sabe que estás perdido en esta lanzadera? Incluso quién sabe que tu nave ha explotado?
+tr: Una horrible duda te embarga. ¿Qué ayuda estás esperando? ¿Quién sabe que estás perdido en esta lanzadera? Incluso, ¿quién sabe que tu nave ha explotado?
 
 @epi.alone.p3
 fr: L'espoir qui restait encore en vous s'amenuisait d'heure en heure. Peut-être le commandant avait-il envoyé un SOS par l'ERTP avant de vous réveiller. Vous n'arriviez pas à vous en convaincre. Non, il ne l'avait sûrement pas fait !!!
 en: The hope still left in you dwindled hour by hour. Perhaps the commander had sent an SOS with the TPT before waking you. You could not convince yourself of it. No, he surely had not done it!!!
-tr: Tus esperanzas disminuyen con las horas. Quizá el comandante envió un SOS con el TPT antes de despertarte. No estás convencido de ello. No, seguro que no lo hizo!!!
+tr: Tus esperanzas disminuyen con las horas. Quizá el comandante envió un SOS con el TPT antes de despertarte. No estás convencido de ello. No, ¡¡¡seguro que no lo hizo!!!
 
 @epi.alone.p4
 fr: Un mois et demi plus tard, vos provisions épuisées depuis deux semaines déjà, à bout de force, vous en étiez enfin convaincu. Vous ne vouliez plus souffrir.
@@ -1366,7 +1366,7 @@ tr: Un mes y medio después, tus provisiones agotadas hace ya dos semanas, con t
 @epi.alone.p5
 fr: Un simple geste vous suffisait pour ouvrir la porte sur l'espace… Vous l'avez fait !!!
 en: A single gesture was enough to open the door onto space… You did it!!!
-tr: Un simple gesto es suficiente para abrir la escotilla al espacio… Lo has hecho!!!
+tr: Un simple gesto es suficiente para abrir la escotilla al espacio… ¡¡¡Lo has hecho!!!
 
 @epi.wait.chapter
 # web only
@@ -1378,12 +1378,12 @@ tr: El despertar
 # CPC: the 2 paragraphs of this part must fit together in 7 lines of 38 characters (about 238 characters)
 fr: Au réveil, vous mangez un tiers de ration ! Il faut que vos provisions suffisent pour attendre l'arrivée des secours !
 en: When you wake up you eat a third of a ration! Your food must last until help arrives!
-tr: Cuando te despiertas, te comes un tercio de una ración! La comida tiene que durar hasta que la ayuda llegue!
+tr: Cuando te despiertas, ¡te comes un tercio de una ración! ¡La comida tiene que durar hasta que la ayuda llegue!
 
 @epi.wait.p2
 fr: Le vaisseau le plus proche est dans le système d'Éridan ! Il lui faudra au moins un mois pour vous rejoindre…
 en: The nearest ship is in the Eridanus system! It will need at least a month to reach you…
-tr: La nave más cercana está en el sistema Éridan! Necesitará al menos un mes para alcanzarte…
+tr: ¡La nave más cercana está en el sistema Éridan! Necesitará al menos un mes para alcanzarte…
 
 @epi.silence.chapter
 # web only
@@ -1410,7 +1410,7 @@ tr: Marcaste uno de los indicativos estándar en vez del código de la nave, «N
 @epi.silence.p4
 fr: Vous préférez une mort rapide. Vous ouvrez la navette sur le vide !!!
 en: You would rather have a quick death. You open the shuttle onto the void!!!
-tr: Preferirías una muerte rápida. Abres la lanzadera al vacío!!!
+tr: Preferirías una muerte rápida. ¡¡¡Abres la lanzadera al vacío!!!
 
 @epi.rescue.chapter
 # web only
@@ -1454,7 +1454,7 @@ tr: La acusación no puede probar sus afirmaciones por falta de pruebas material
 @epi.prison.p4
 fr: Vous vous demandez encore comment vous auriez pu prouver votre innocence. Peut-être en ramenant le carnet de bord… Qui sait ?
 en: You still wonder how you could have proved your innocence. Perhaps by bringing back the logbook… Who knows?
-tr: Te preguntas cómo podrías probar tu inocencia. Quizá trayendo el cuaderno de bitácora. Quién sabe?
+tr: Te preguntas cómo podrías probar tu inocencia. Quizá trayendo el cuaderno de bitácora. ¿Quién sabe?
 
 @epi.prison.p5
 fr: La grille d'une porte de prison se referme sur vous… Des pas s'éloignent… Silence.
@@ -1810,12 +1810,12 @@ tr: Linterna
 @obj.15
 fr: Tournevis (jeu de 3)
 en: Screwdrivers (set of 3)
-tr: Atornilladores (juego de 3)
+tr: Destornilladores (juego de 3)
 
 @obj.16
 fr: Tournevis (jeu de 2)
 en: Screwdrivers (set of 2)
-tr: Atornilladores (juego de 2)
+tr: Destornilladores (juego de 2)
 
 @obj.17
 fr: Clé anglaise
@@ -1990,7 +1990,7 @@ tr: Puente inferior y hangar · cubierta 1
 @deck.ord.1
 fr: 1er étage
 en: deck 1
-tr: cubierta inferior
+tr: cubierta 1
 
 @deck.short.2
 fr: Plan · 2e étage
@@ -2255,7 +2255,7 @@ tr: Mostrar los puntos de interacción
 @ui.046
 fr: Boutons, serrures et curseurs de la pièce, en orange quand ils sont à portée.
 en: The room's buttons, locks and sliders, in orange when within reach.
-tr: Botones, cerraduras y diales naranjas cuando estén al alcance.
+tr: Botones, cerraduras y mandos naranjas cuando estén al alcance.
 
 @ui.047
 fr: Montrer le monstre sur le plan
@@ -2780,7 +2780,7 @@ tr: Sales de hibernación…
 @ui.153
 fr: Bravo ! Vous emportez une ration intacte : vous aurez de quoi manger en attendant les secours (lettre 2 du code : N).
 en: Well done! You are taking an untouched ration: you will have something to eat while waiting for help (code letter 2: N).
-tr: Bien hecho! Has cogido una ración intacta: tendrás algo que comer mientras esperas ayuda (letra 2 del código: N).
+tr: ¡Bien hecho! Has cogido una ración intacta: tendrás algo que comer mientras esperas ayuda (letra 2 del código: N).
 
 @ui.154
 fr: La ration n'est plus avec vous : vous n'auriez rien à manger (lettre 2 : E).
@@ -2790,7 +2790,7 @@ tr: La ración no va contigo; no tendrás nada que comer (letra 2: E).
 @ui.155
 fr: Bravo ! Vous avez la carte du commandant : son journal de bord prouvera votre innocence (lettre 3 : C).
 en: Well done! You have the commander's card: his logbook will prove your innocence (code letter 3: C).
-tr: Bien hecho! Tienes la tarjeta del comandante: su cuaderno de bitácora probará tu inocencia (letra 3: C).
+tr: ¡Bien hecho! Tienes la tarjeta del comandante: su cuaderno de bitácora probará tu inocencia (letra 3: C).
 
 @ui.156
 fr: La carte du commandant n'est plus avec vous (lettre 3 : M).
@@ -2800,12 +2800,12 @@ tr: La tarjeta del comandante no va contigo (letra 3: M).
 @ui.157
 fr: Bravo ! Message de détresse émis par l'ERTP (lettre 4 : C).
 en: Well done! Distress message sent with the TPT (code letter 4: C).
-tr: Bien hecho! Mensaje de auxilio enviado con el TPT (letra 4: C).
+tr: ¡Bien hecho! Mensaje de auxilio enviado con el TPT (letra 4: C).
 
 @ui.158
 fr: Bravo ! Le message porte l'indicatif du vaisseau, NMI : cette fois les secours viendront (lettre 6 : J).
 en: Well done! The message carries the ship's call sign, NMI: this time help will come (code letter 6: J).
-tr: Bien hecho! El mensaje lleva el indicativo de la nave. NMI: esta vez la ayuda acudirá (letra 6: J).
+tr: ¡Bien hecho! El mensaje lleva el indicativo de la nave. NMI: esta vez la ayuda acudirá (letra 6: J).
 
 @ui.159
 fr: R · assez d'oxygène dans la navette
@@ -2950,7 +2950,7 @@ tr: Monstruo desactivado: no se mueve ni te mata.
 @ui.187
 fr: Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n'est pas sauvegardée.
 en: Start a new game? The current game will be lost if it is not saved.
-tr: Iniciar una nueva partida? La partida en curso se perderá si no ha sido grabada.
+tr: ¿Iniciar una nueva partida? La partida en curso se perderá si no ha sido grabada.
 
 @ui.188
 fr: émulation lente
@@ -2980,24 +2980,24 @@ tr: Elige un objeto de la ubicación
 @ui.193
 fr: Jouer
 en: Play
-tr: 
+tr: Jugar
 
 @ui.194
 fr:  — cliquer ou glisser vers l'inventaire pour prendre
 en:  — click or drag to the inventory to take
-tr: 
+tr:  — click or arrastrar al inventario para coger
 
 @ui.195
 fr:  — glisser vers la pièce pour poser
 en:  — drag to the room to drop
-tr: 
+tr:  — arrastrar a la ubicación para dejar
 
 @ui.196
 fr: Glisser un objet
 en: Drag an item
-tr: 
+tr: Arrastrar un objeto
 
 @ui.197
 fr: De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.
 en: From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.
-tr: 
+tr: Desde el inventario a la ubicación (o a la vista 3D): lo deja. Desde la ubicación al inventario: lo coge. Con el ratón o un dedo.
