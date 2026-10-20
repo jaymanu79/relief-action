@@ -1753,6 +1753,9 @@ function Renderer(canvas) {
   this.theme = { face: [0.40, 0.43, 0.50], line: [0.85, 0.92, 1.0], wire: [0.92, 0.96, 1.0], door: [0.62, 0.42, 0.22], fog: [0.02, 0.026, 0.04], clear: [0.0, 0.0, 0.0] };
   let buffers = [];            // [{faceBuf, faceCount, lineBuf, lineCount, kind}]
   let portalBuf = null, portalN = 0;   // open doorways, drawn as dark openings
+  let recessBuf = null, recessN = 0; const RECESS = 18;   // depth of the doorway recess
+  this.portalStyle = 'recess';         // 'recess' or 'black' (flat dark opening, as before)
+  const roomBBox = scene => { const r = scene.models.find(m => m.kind === 'room'); return r ? bbox(r.verts.filter(Boolean)) : null; };
   this.cam = { x: 0, y: 28, z: 0, yaw: 0, pitch: 0, focal: 150 };
   this.anaglyph = false;
 
@@ -1852,6 +1855,29 @@ function Renderer(canvas) {
       for (let k = 1; k < V.length - 1; k++) for (const q of [V[0], V[k], V[k + 1]]) pv.push(q[0], q[1], q[2], 1);
     }
     if (pv.length) { portalBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, portalBuf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pv), gl.STATIC_DRAW); portalN = pv.length / 4; }
+    // open doorways read as doorways, not as holes: a short recess behind each opening (its jambs, lintel and threshold,
+    // lit near the room and fading into darkness), nothing of the next room
+    if (recessBuf) { gl.deleteBuffer(recessBuf); recessBuf = null; recessN = 0; }
+    const rbox = roomBBox(scene), rv = [];
+    if (rbox) for (const p of (scene.portals || [])) {
+      if (p.open !== 1 && p.open !== 3) continue;
+      const V = portalHull(p.pts); if (V.length < 3) continue;
+      const b = bbox(p.pts), ax = (b[3] - b[0]) < (b[5] - b[2]) ? 0 : 2;
+      const mid = (b[ax] + b[ax + 3]) / 2, cen = (rbox[ax] + rbox[ax + 3]) / 2, out = mid >= cen ? 1 : -1;
+      const back = V.map(v => { const q = v.slice(); q[ax] += out * RECESS; return q; });
+      const c = V.reduce((a, v) => [a[0] + v[0] / V.length, a[1] + v[1] / V.length, a[2] + v[2] / V.length], [0, 0, 0]);
+      for (let i = 0; i < V.length; i++) {
+        const a = V[i], b2 = V[(i + 1) % V.length], A = back[i], B = back[(i + 1) % V.length];
+        let n = G.newell([a, b2, B, A]); if (!n) continue;
+        const m = [(a[0] + b2[0]) / 2 - c[0], (a[1] + b2[1]) / 2 - c[1], (a[2] + b2[2]) / 2 - c[2]];   // normal towards the opening's axis
+        if (n[0] * m[0] + n[1] * m[1] + n[2] * m[2] > 0) n = n.map(x => -x);
+        const t0 = Math.abs(n[1]) > 0.7 ? (n[1] > 0 ? 0.62 : 0.8) : 0.82, t1 = 0.0;
+        for (const [q, t] of [[a, t0], [b2, t0], [B, t1], [a, t0], [B, t1], [A, t1]]) rv.push(q[0], q[1], q[2], n[0], n[1], n[2], t);
+      }
+      const nb = [0, 0, 0]; nb[ax] = -out;
+      for (let k = 1; k < back.length - 1; k++) for (const q of [back[0], back[k], back[k + 1]]) rv.push(q[0], q[1], q[2], nb[0], nb[1], nb[2], 0);
+    }
+    if (rv.length) { recessBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, recessBuf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(rv), gl.STATIC_DRAW); recessN = rv.length / 7; }
     scene.models.forEach((m, i) => {
       const isRoom = m.kind ? m.kind === 'room' : i === 0;
       const g = buildModel(m, isRoom);
@@ -1960,7 +1986,31 @@ function Renderer(canvas) {
         gl.drawArrays(gl.TRIANGLES, 0, b.nf);
       }
       gl.disableVertexAttribArray(pf.loc.aNrm); gl.disableVertexAttribArray(pf.loc.aTone);
-      if (portalN) {
+      if (portalN && this.portalStyle === 'recess' && recessN) {
+        // mark the visible part of each opening, reset the depth there, then draw the recess inside the mark only
+        gl.useProgram(pl.p);
+        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye); gl.uniform1f(pl.loc.uPull, 0);
+        gl.clearStencil(0); gl.clear(gl.STENCIL_BUFFER_BIT); gl.enable(gl.STENCIL_TEST);
+        gl.stencilFunc(gl.ALWAYS, 1, 0xFF); gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
+        gl.colorMask(false, false, false, false); gl.depthMask(false); gl.polygonOffset(-2, -10);
+        gl.bindBuffer(gl.ARRAY_BUFFER, portalBuf);
+        gl.enableVertexAttribArray(pl.loc.aPos); gl.vertexAttribPointer(pl.loc.aPos, 3, gl.FLOAT, false, 16, 0);
+        gl.enableVertexAttribArray(pl.loc.aTone); gl.vertexAttribPointer(pl.loc.aTone, 1, gl.FLOAT, false, 16, 12);
+        gl.drawArrays(gl.TRIANGLES, 0, portalN);
+        gl.stencilFunc(gl.EQUAL, 1, 0xFF); gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
+        gl.depthMask(true); gl.depthFunc(gl.ALWAYS); gl.depthRange(1, 1);
+        gl.drawArrays(gl.TRIANGLES, 0, portalN); gl.disableVertexAttribArray(pl.loc.aTone);
+        gl.depthRange(0, 1); gl.depthFunc(gl.LESS); gl.colorMask(this._mask[0], this._mask[1], this._mask[2], true);
+        gl.useProgram(pf.p); gl.polygonOffset(0, 0);
+        gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform3fv(pf.loc.uEye, vp.eye); gl.uniform3fv(pf.loc.uBase, th.face);
+        gl.bindBuffer(gl.ARRAY_BUFFER, recessBuf);
+        gl.enableVertexAttribArray(pf.loc.aPos); gl.vertexAttribPointer(pf.loc.aPos, 3, gl.FLOAT, false, 28, 0);
+        gl.enableVertexAttribArray(pf.loc.aNrm); gl.vertexAttribPointer(pf.loc.aNrm, 3, gl.FLOAT, false, 28, 12);
+        gl.enableVertexAttribArray(pf.loc.aTone); gl.vertexAttribPointer(pf.loc.aTone, 1, gl.FLOAT, false, 28, 24);
+        gl.drawArrays(gl.TRIANGLES, 0, recessN);
+        gl.disableVertexAttribArray(pf.loc.aNrm); gl.disableVertexAttribArray(pf.loc.aTone);
+        gl.disable(gl.STENCIL_TEST);
+      } else if (portalN) {
         gl.useProgram(pl.p);
         gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp);
         gl.uniform3fv(pl.loc.uEye, vp.eye);
@@ -2235,7 +2285,7 @@ const ui = {
   "« Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels": '"A great adventure game: real-time 3D animation, over 50 rooms, playable with a joystick, 3D option with glasses." — Loriciels demo text (translated)',
   'Langue : français': 'Language: French', 'Language: English': 'Language: English',
   // ---- dynamic strings (app.js) ----
-  "Vous n'avez pas la télécommande.": "You don't have the remote control.", 'Emplacement vide': 'Empty slot', ' — cliquer pour prendre': ' — click to take', " — cliquer ou glisser vers l'inventaire pour prendre": ' — click or drag to the inventory to take', ' — glisser vers la pièce pour poser': ' — drag to the room to drop',
+  "Vous n'avez pas la télécommande.": "You don't have the remote control.", 'Emplacement vide': 'Empty slot', " — cliquer ou glisser vers l'inventaire pour prendre": ' — click or drag to the inventory to take', ' — glisser vers la pièce pour poser': ' — drag to the room to drop',
   'Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)': 'Also in the room: {0} (take an item to reveal the next ones)',
   'Utiliser à nouveau pour tourner la page.': 'Use it again to turn the page.',
   'Sur un vrai Amstrad CPC': 'On a real Amstrad CPC',
