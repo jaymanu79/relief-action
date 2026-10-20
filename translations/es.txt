@@ -750,7 +750,7 @@ tr: Te quitas la escafandra.
 @msg.124
 fr: La flamme bleue du chalumeau ne suffit pas à chasser l'obscurité.
 en: The blue flame of the blowtorch is not enough to drive away the darkness.
-tr: La llama azul del soplete no es suficiente para moverse en la oscuridad.
+tr: La llama azul del soplete no es suficiente para eliminar la oscuridad.
 
 @msg.125
 fr: Comment allumez-vous votre chalumeau ?
