@@ -67,6 +67,7 @@ def main():
     # placeholders kept
     for k, e in E.items():
         if not e.get('tr'): continue
+        if re.findall(r'</?\w+>', e.get('fr', '')) != re.findall(r'</?\w+>', e['tr']): P(k, 'markup differs from the original: %s' % ' '.join(re.findall(r'</?\w+>', e.get('fr', ''))))
         for ph in set(re.findall(r'\{[A-Z0-9]+\}', e.get('en', ''))):
             if ph not in e['tr']: P(k, 'placeholder %s is missing' % ph)
         for code in set(re.findall(r'\b[A-Z]{3}\b', e.get('fr', ''))) & {'NMI', 'TPT', 'POL', 'ASS', 'DEC', 'DEP', 'INF', 'GOD', 'PRE', 'ARM', 'BUG', 'PST', 'HLP', 'LND'}:
