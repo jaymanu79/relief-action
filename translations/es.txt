@@ -1211,53 +1211,67 @@ tr: Cargando
 
 ##############################################################################
 ## CPC DEMO TITLES / TITRES DE LA DEMO
-## Title screens of the demo, CPC font (A-Z 0-9 ' - , ? ! :). Max 27 characters, centred automatically.
+## Title screens of the demo, CPC font (A-Z 0-9 ' - , ? ! :).
+## Each title can be at most as long as the French one: it is written inside the demo program itself.
 ##############################################################################
 
 @demo.01
+# max 8 characters (the length of the French title)
 fr: PRESENTE
 en: PRESENTS
 tr: PRESENTA
 
 @demo.02
+# max 11 characters (the length of the French title)
 fr: REALISE PAR
 en: CREATED BY
 tr: REALIZADO POR
+tr.cpc: CREADO POR
 
 @demo.03
+# max 27 characters (the length of the French title)
 fr: COPYRIGHT MARS 87 LORICIELS
 en: COPYRIGHT 1987 LORICIELS
 tr: COPYRIGHT 1987 LORICIELS
 
 @demo.04
+# max 23 characters (the length of the French title)
 fr: ANIMATION 3D TEMPS REEL
 en: REAL TIME 3D ANIMATION
 tr: ANIMACION 3D EN TIEMPO REAL
+tr.cpc: 3D EN TIEMPO REAL
 
 @demo.05
+# max 17 characters (the length of the French title)
 fr: PLUS DE 50 SALLES
 en: OVER 50 ROOMS
 tr: MAS DE 50 UBICACIONES
+tr.cpc: MAS DE 50 SALAS
 
 @demo.06
+# max 19 characters (the length of the French title)
 fr: JOUABLE AU JOYSTICK
 en: JOYSTICK CONTROL
 tr: ADMITE JOYSTICK
 
 @demo.07
+# max 13 characters (the length of the French title)
 fr: OPTION RELIEF
 en: RELIEF OPTION
 tr: OPCION RELIEF
 
 @demo.08
+# max 15 characters (the length of the French title)
 fr: -AVEC LUNETTES-
 en: -WITH GLASSES-
 tr: -CON GAFAS-
 
 @demo.09
+# max 24 characters (the length of the French title)
 fr: UN GRAND JEU D'AVENTURE:
 en: A GREAT ADVENTURE GAME:
 tr: UN GRAN JUEGO DE AVENTURA:
+tr.cpc: GRAN JUEGO DE AVENTURA:
 
 ##############################################################################
 ## EPILOGUE / ÉPILOGUE
@@ -2542,11 +2556,6 @@ fr: La disquette du jeu a aussi été enrichie. Son menu de lancement ajoute :
 en: The game disk has been extended too. Its launch menu adds:
 tr: El disco del juego también ha sido mejorado. El menú de inicio añade:
 
-@ui.106
-fr: Une traduction anglaise complète :
-en: A complete English translation:
-tr: Un completa traducción a inglés:
-
 @ui.107
 fr: messages du jeu, verbes, épilogue et démo. La langue se choisit au lancement (touche L), le français reste la version d'origine.
 en: game messages, verbs, epilogue and demo. The language is chosen at launch (L key); French remains the original version.
@@ -2601,11 +2610,6 @@ tr: Versiones modernizadas
 fr: jaymanu, avec Claude (Anthropic)
 en: jaymanu, with Claude (Anthropic)
 tr: jaymanu, con Claude (Anthropic)
-
-@ui.118
-fr: Version navigateur, traduction anglaise et disquette enrichie
-en: Browser version, English translation and extended disk
-tr: Versión navegador, traducción inglesa y disco mejorado
 
 @ui.119
 fr: Diffusé avec l'accord écrit de l'un des auteurs originaux.
@@ -2985,12 +2989,12 @@ tr: Jugar
 @ui.194
 fr:  — cliquer ou glisser vers l'inventaire pour prendre
 en:  — click or drag to the inventory to take
-tr:  — click or arrastrar al inventario para coger
+tr: — click or arrastrar al inventario para coger
 
 @ui.195
 fr:  — glisser vers la pièce pour poser
 en:  — drag to the room to drop
-tr:  — arrastrar a la ubicación para dejar
+tr: — arrastrar a la ubicación para dejar
 
 @ui.196
 fr: Glisser un objet
@@ -3001,3 +3005,18 @@ tr: Arrastrar un objeto
 fr: De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.
 en: From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.
 tr: Desde el inventario a la ubicación (o a la vista 3D): lo deja. Desde la ubicación al inventario: lo coge. Con el ratón o un dedo.
+
+@ui.198
+fr: Des traductions complètes, en anglais et en espagnol :
+en: Complete English and Spanish translations:
+tr: Traducciones completas al inglés y al español:
+
+@ui.199
+fr: Version navigateur, traductions et disquette enrichie
+en: Browser version, translations and extended disk
+tr: Versión para navegador, traducciones y disquete mejorado
+
+@ui.200
+fr: Traduction espagnole : MiguelSky
+en: Spanish translation: MiguelSky
+tr: Traducción al español: MiguelSky

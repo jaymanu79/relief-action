@@ -91,7 +91,7 @@ def main():
         t, raw = text(e, True); c = t if raw else cpc(t, colons=False)
         lim = {'cpc.monitor.title': 8, 'cpc.monitor.keys': 18, 'cpc.epilogue.prompt': 27, 'cpc.yes_key': 1, 'meta.name': 12}.get(k)
         if k.startswith('verb.'): lim = 8
-        if k.startswith('demo.'): lim = 27
+        if k.startswith('demo.'): lim = len(e.get('fr', '')) or 27     # written inside the demo program: no longer than the French title
         if k.startswith('menu.'): lim = int(re.search(r'max (\d+)', ' '.join(e['notes'])).group(1))
         if lim and len(c) > lim: P(k, 'CPC text "%s" is %d characters, max %d' % (c, len(c), lim))
         if k.startswith('verb.') and not re.fullmatch('[A-Z]+', c): P(k, 'CPC verb "%s" must be letters A-Z only' % c)

@@ -11,8 +11,8 @@ Fiche du jeu sur CPC-Power : **https://www.cpc-power.com/index.php?page=detail&n
 
 | Fichier | Contenu |
 |---|---|
-| `index.html` | Le jeu jouable dans le navigateur, en un seul fichier : le code original tourne dans un émulateur CPC, avec un rendu 3D modernisé (étoiles, transparences, plan, détecteur), en français ou en anglais. |
-| `relief-action-fr-en.dsk` | La disquette CPC enrichie : traduction anglaise complète (jeu, épilogue et démo, langue au choix au lancement), trainer (temps infini, monstre endormi), correctif de sauvegarde Multiface / instantané d'émulateur. |
+| `index.html` | Le jeu jouable dans le navigateur, en un seul fichier : le code original tourne dans un émulateur CPC, avec un rendu 3D modernisé (étoiles, transparences, plan, détecteur), en français, anglais ou espagnol. |
+| `relief-action.dsk` | La disquette CPC enrichie : jeu, épilogue et démo en français, anglais et espagnol (langue au choix au lancement), trainer (temps infini, monstre endormi), correctif de sauvegarde Multiface / instantané d'émulateur. |
 | `relief-action-plans.pdf` | Les plans vectoriels des trois ponts du vaisseau : salles, objets de départ, image du détecteur, départs du joueur et du monstre. |
 
 ## Traductions
@@ -23,6 +23,7 @@ Vous voulez traduire le jeu dans votre langue ? Tout est expliqué dans [transla
 
 - Jeu original : Loriciels, 1987 — voir la [fiche CPC-Power](https://www.cpc-power.com/index.php?page=detail&num=1783).
 - Versions modernisées : jaymanu, avec Claude (Anthropic).
+- Traduction espagnole : MiguelSky.
 - Diffusé avec l'accord écrit de l'un des auteurs originaux.
 
 ---
@@ -36,10 +37,10 @@ The game on CPC-Power: **https://www.cpc-power.com/index.php?page=detail&num=178
 
 > **Authorised distribution.** This repository is published with the written permission of one of the game's original authors.
 
-- `index.html` — the game, playable in the browser from a single file: the original code runs in a CPC emulator with a modernised 3D renderer (stars, windows, map, detector), in French or English.
-- `relief-action-fr-en.dsk` — the enhanced CPC disk: full English translation (game, epilogue and demo, language chosen at startup), trainer (infinite time, sleeping monster), Multiface / emulator snapshot save fix.
+- `index.html` — the game, playable in the browser from a single file: the original code runs in a CPC emulator with a modernised 3D renderer (stars, windows, map, detector), in French, English or Spanish.
+- `relief-action.dsk` — the enhanced CPC disk: game, epilogue and demo in French, English and Spanish (language chosen at startup), trainer (infinite time, sleeping monster), Multiface / emulator snapshot save fix.
 - `relief-action-plans.pdf` — vector maps of the ship's three decks.
 
 Want to translate the game into your language? See [translations/](translations/README.md): one text file to fill in, then a pull request.
 
-Credits: original game by Loriciels (1987); modernised versions by jaymanu, with Claude (Anthropic); distributed with the written permission of one of the original authors.
+Credits: original game by Loriciels (1987); modernised versions by jaymanu, with Claude (Anthropic); Spanish translation by MiguelSky; distributed with the written permission of one of the original authors.
