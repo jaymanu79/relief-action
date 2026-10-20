@@ -1,0 +1,3003 @@
+# Relief Action (Loriciels, 1987) — translation file / fichier de traduction
+#
+# HOW TO TRANSLATE
+#   Every text has its own block:   @id            stable name of the text, do not change it
+#                                    # ...          notes and limits, do not change them
+#                                    fr: ...        French original (reference, do not change)
+#                                    en: ...        English version (reference, do not change)
+#                                    tr: ...        YOUR TRANSLATION, on this single line
+#   Optional, only when the automatic CPC version is not good enough:
+#                                    tr.cpc: ...    the text as the CPC must show it (see "CPC text" below)
+#   Leave tr: empty if you are unsure: the English text is used instead, nothing breaks.
+#   Save the file as UTF-8. One text = one line (long lines are fine, never press Enter inside a text).
+#
+# CPC TEXT
+#   The CPC game has a tiny font: capital letters A-Z, digits 0-9 and  ' - , ? ! :  only.
+#   No accents, no full stop, no lowercase. The build makes the CPC text from your tr: line automatically
+#   (capitals, accents removed: É -> E, ß -> SS, Ä -> AE..., "..." kept as the game's ellipsis, "." dropped).
+#   If that gives something wrong, add a tr.cpc: line under tr: with the exact CPC text.
+#   The epilogue program has another font: A-Z  ' - , ? . " :  (no "!" and no digit 0).
+#
+# SPACE ON THE CPC
+#   All game messages share one memory zone of 3940 bytes (compressed: frequent words are stored once).
+#   English fits; a longer language may need some shorter messages. The build tells you how much is left.
+#
+# PLACEHOLDERS
+#   {0}, {1}, {CODE} are replaced by the program: keep them, you may move them in the sentence.
+#   Three-letter codes (NMI, TPT, POL, ASS, ARM...) and key names in brackets (V), (M)... are game data:
+#   keep them as they are.
+#
+# ----------------------------------------------------------------------------------------------------------
+# COMMENT TRADUIRE (résumé en français)
+#   Remplissez la ligne « tr: » de chaque bloc, sur une seule ligne, sans toucher au reste. Laissez vide en
+#   cas de doute (l'anglais sera utilisé). Le CPC n'a ni accents ni minuscules : la version CPC est fabriquée
+#   automatiquement, ajoutez « tr.cpc: » seulement si elle ne convient pas. Gardez {0}, {CODE} et les codes
+#   de trois lettres (NMI, TPT…).
+
+##############################################################################
+## LANGUAGE
+## Name of your language, written in your language (shown in the CPC menu and on the web page).
+##############################################################################
+
+@meta.name
+# max 12 letters on the CPC menu
+fr: Français
+en: English
+tr: Castellano
+
+@meta.code
+# ISO 639-1 code of your language: de, es, it, nl, pt...
+fr: fr
+en: en
+tr: es
+
+@meta.translator
+# your name or nickname, for the credits
+fr: 
+en: 
+tr: MiguelSky
+
+##############################################################################
+## VERBS / VERBES
+## The action menu. CPC: 8 letters maximum, A-Z only. "Relief" is the name of the 3D-glasses mode.
+##############################################################################
+
+@verb.10
+# CPC: max 8 letters (original: MANGER)
+fr: Manger
+en: Eat
+tr: Comer
+
+@verb.11
+# CPC: max 8 letters (original: BOIRE)
+fr: Boire
+en: Drink
+tr: Beber
+
+@verb.01
+# CPC: max 8 letters (original: POSER)
+fr: Poser
+en: Drop
+tr: Dejar
+
+@verb.02
+# CPC: max 8 letters (original: PRENDRE)
+fr: Prendre
+en: Take
+tr: Coger
+
+@verb.04
+# CPC: max 8 letters (original: UTILISER)
+fr: Utiliser
+en: Use
+tr: Usar
+
+@verb.05
+# CPC: max 8 letters (original: APPUYER)
+fr: Appuyer
+en: Push
+tr: Pulsar
+
+@verb.06
+# CPC: max 8 letters (original: REGLER)
+fr: Régler
+en: Set
+tr: Activar
+
+@verb.07
+# CPC: max 8 letters (original: VERSER)
+fr: Verser
+en: Pour
+tr: Verter
+
+@verb.08
+# CPC: max 8 letters (original: RELIEF)
+fr: Relief
+en: Relief
+tr: Relief
+
+@verb.09
+# CPC: max 8 letters (original: DORMIR)
+fr: Dormir
+en: Sleep
+tr: Dormir
+
+##############################################################################
+## GAME MESSAGES / MESSAGES DU JEU
+## Shown in the message bar, on the CPC and in the browser. 1-33 are mostly room names.
+##############################################################################
+
+@msg.001
+fr: Chambre d'hibernation
+en: Hibernation chamber
+tr: Cámara de hibernación
+
+@msg.002
+fr: Laboratoire
+en: Laboratory
+tr: Laboratorio
+
+@msg.003
+fr: Compresseur
+en: Compressor
+tr: Compresor
+
+@msg.004
+fr: Atelier
+en: Workshop
+tr: Taller
+
+@msg.005
+fr: Contrôle du hangar
+en: Hangar control
+tr: Control de hangar
+
+@msg.006
+fr: Sas tournant
+en: Rotating airlock
+tr: Esclusa giratoria
+
+@msg.007
+fr: Ces bouteilles contiennent de l'oxygène sous forte pression, destiné aux véhicules autonomes d'exploration.
+en: These bottles hold high-pressure oxygen, meant for autonomous exploration vehicles.
+tr: Estas botellas contienen oxígeno a alta presión, destinado a vehículos autónomos de exploración.
+
+@msg.008
+fr: Bouteilles vides
+en: Empty bottles
+tr: Botellas vacías
+
+@msg.009
+fr: Disjoncteurs
+en: Circuit breakers
+tr: Automáticos
+
+@msg.010
+fr: Trappe de maintenance
+en: Maintenance hatch
+tr: Trampilla de mantenimiento
+
+@msg.011
+fr: Bouteilles pleines
+en: Full bottles
+tr: Botellas llenas
+
+@msg.012
+fr: Hall
+en: Hall
+tr: Sala
+
+@msg.013
+fr: Émetteur-récepteur trans-photonique
+en: Trans-photonic transceiver
+tr: Transmisor trans-fotónico
+
+@msg.014
+fr: Salle des ordinateurs
+en: Computer room
+tr: Sala de ordenadores
+
+@msg.015
+fr: Salle des transmissions
+en: Transmission room
+tr: Sala de comunicaciones
+
+@msg.016
+fr: Salle d'astrogation
+en: Astrogation room
+tr: Sala de astronavegación
+
+@msg.017
+fr: Le sas se dépressurise.
+en: The airlock is depressurising.
+tr: La esclusa se despresuriza.
+
+@msg.018
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@msg.019
+fr: Cuisine
+en: Kitchen
+tr: Cocina
+
+@msg.020
+fr: Office
+en: Pantry
+tr: Despacho
+
+@msg.021
+fr: Ascenseur
+en: Lift
+tr: Ascensor
+
+@msg.022
+fr: Disjoncteurs
+en: Circuit breakers
+tr: Automáticos
+
+@msg.023
+fr: Contrôle
+en: Control
+tr: Control
+
+@msg.024
+fr: Chambre du commandant
+en: Commander's cabin
+tr: Dormitorio del comandante
+
+@msg.025
+fr: Contrôle du carré
+en: Wardroom control
+tr: Control de sala de oficiales
+
+@msg.026
+fr: Carré des officiers
+en: Officers' wardroom
+tr: Sala de oficiales
+
+@msg.027
+fr: Réfectoire
+en: Mess hall
+tr: Comedor
+
+@msg.028
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@msg.029
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@msg.030
+fr: Salle de méditation
+en: Meditation room
+tr: Sala de meditación
+
+@msg.031
+fr: Eurêka
+en: Eureka
+tr: Eureka
+
+@msg.032
+fr: Chambre des réacteurs
+en: Reactor room
+tr: Sala de reactores
+
+@msg.033
+fr: Trappe de maintenance
+en: Maintenance hatch
+tr: Trampilla de mantenimiento
+
+@msg.034
+fr: Vous êtes projeté dans l'espace.
+en: You are thrown out into space.
+tr: Eres lanzado al espacio.
+
+@msg.035
+fr: Le hangar est brusquement dépressurisé.
+en: The hangar suddenly depressurises.
+tr: El hangar se despresuriza bruscamente.
+
+@msg.036
+fr: Le mécanicien peut déconnecter le système de sécurité de l'ascenseur grâce à sa carte.
+en: The mechanic can disconnect the lift's safety system with his card.
+tr: El mecánico puede desconectar el sistema de seguridad del ascensor con su tarjeta.
+
+@msg.037
+fr: Hangar de la navette
+en: Shuttle hangar
+tr: Hangar de la lanzadera
+
+@msg.038
+fr: Cabine de pilotage de la navette
+en: Shuttle cockpit
+tr: Cabina de la lanzadera
+
+@msg.039
+fr: Navette
+en: Shuttle
+tr: Lanzadera
+
+@msg.040
+fr: Chambre des réacteurs de la navette
+en: Shuttle reactor room
+tr: Sala del reactor de la lanzadera
+
+@msg.041
+fr: Pas de courant.
+en: No power.
+tr: No tiene corriente.
+
+@msg.042
+fr: La cage est ouverte.
+en: The cage is open.
+tr: La jaula está abierta.
+
+@msg.043
+fr: Barreaux hors tension.
+en: Bars switched off.
+tr: Barrera sin tensión.
+
+@msg.044
+fr: Barreaux sous tension.
+en: Bars live.
+tr: Barrera con tensión.
+
+@msg.045
+fr: Barreaux sous haute tension.
+en: Bars at high voltage.
+tr: Barrera con alta tensión.
+
+@msg.046
+fr: Les plombs sautent.
+en: The fuses blow.
+tr: Saltan los plomos.
+
+@msg.047
+fr: Cellule cryogénique vide.
+en: Empty cryogenic cell.
+tr: Cápsula criogénica vacía.
+
+@msg.048
+fr: Impossible sans lumière.
+en: Impossible without light.
+tr: Imposible sin luz.
+
+@msg.049
+fr: La bouteille d'oxygène se remplit.
+en: The oxygen bottle is filling up.
+tr: La botella de oxígeno se recarga.
+
+@msg.050
+fr: Chargement de la dernière procédure en cours…
+en: Loading the last procedure…
+tr: Cargando el último procedimiento…
+
+@msg.051
+fr: Grade insuffisant.
+en: Insufficient rank.
+tr: Rango insuficiente.
+
+@msg.052
+fr: Zzz… zzzz… zzz… zzzz…
+en: Zzz… zzzz… zzz… zzzz…
+tr: Zzz… zzzz… zzz… zzzz…
+
+@msg.053
+fr: Ouverture manuelle.
+en: Manual opening.
+tr: Apertura manual.
+
+@msg.054
+fr: Ouverture retardée.
+en: Delayed opening.
+tr: Apertura retardada.
+
+@msg.055
+fr: Ouverture automatique.
+en: Automatic opening.
+tr: Apertura automática.
+
+@msg.056
+fr: Porte extérieure ouverte.
+en: Outer door open.
+tr: Escotilla exterior abierta.
+
+@msg.057
+fr: Porte extérieure fermée.
+en: Outer door closed.
+tr: Escotilla exterior cerrada.
+
+@msg.058
+fr: Déclenchement de la procédure d'ouverture retardée.
+en: Delayed opening sequence started.
+tr: Iniciado proceso de apertura retardada.
+
+@msg.059
+fr: Le plancher vibre.
+en: The floor is shaking.
+tr: El suelo vibra.
+
+@msg.060
+fr: La trappe est ouverte.
+en: The hatch is open.
+tr: La trampilla está abierta.
+
+@msg.061
+fr: Vous enclenchez le disjoncteur du circuit d'éclairage.
+en: You switch on the lighting circuit breaker.
+tr: Activas el automático del circuito de iluminación.
+
+@msg.062
+fr: Vous enclenchez le disjoncteur du circuit de puissance.
+en: You switch on the power circuit breaker.
+tr: Activas el automático del circuito de potencia.
+
+@msg.063
+fr: Vous enclenchez les deux disjoncteurs.
+en: You switch on both circuit breakers.
+tr: Activas ambos automáticos.
+
+@msg.064
+fr: Le disjoncteur du circuit d'éclairage saute.
+en: The lighting circuit breaker trips.
+tr: El automático del circuito de iluminación salta.
+
+@msg.065
+fr: Le disjoncteur du circuit de puissance saute.
+en: The power circuit breaker trips.
+tr: El automático del circuito de potencia salta.
+
+@msg.066
+fr: Les deux disjoncteurs sautent.
+en: Both circuit breakers trip.
+tr: Ambos automáticos saltan.
+
+@msg.067
+fr: Des fils électriques ont fondu.
+en: Some electric wires have melted.
+tr: Algunos cables se han fundido.
+
+@msg.068
+fr: Interface RS234 connectée.
+en: RS234 interface connected.
+tr: Interfaz RS234 conectado.
+
+@msg.069
+fr: Terminal hors service.
+en: Terminal out of order.
+tr: Terminal fuera de servicio.
+
+@msg.070
+fr: Vous vous asseyez face à l'écran.
+en: You sit down in front of the screen.
+tr: Te sientas frente a la pantalla.
+
+@msg.071
+fr: Indicatifs standards
+en: Standard call signs
+tr: Llamadas estándar
+
+@msg.072
+fr: Accès refusé.
+en: Access denied.
+tr: Acceso denegado.
+
+@msg.073
+fr: Attention… un des circuits émetteurs est déconnecté.
+en: Warning… one of the transmitter circuits is disconnected.
+tr: Atención… uno de los circuitos de transmisión está desconectado.
+
+@msg.074
+fr: Message émis sur la fréquence d'urgence.
+en: Message sent on the emergency frequency.
+tr: Mensaje emitido en la frecuencia de emergencia.
+
+@msg.075
+fr: Composez l'indicatif de votre message.
+en: Dial the call sign of your message.
+tr: Marca el indicativo de tu mensaje.
+
+@msg.076
+fr: Composez les coordonnées galactiques de votre destination.
+en: Dial the galactic coordinates of your destination.
+tr: Marca las coordenadas galácticas de tu destino.
+
+@msg.077
+fr: Calcul de la nouvelle trajectoire — en cours.
+en: Computing the new trajectory — in progress.
+tr: Cálculo del nuevo trayecto — en curso.
+
+@msg.078
+fr: Modification de trajectoire enregistrée.
+en: Course change recorded.
+tr: Modificación de trayecto registrada.
+
+@msg.079
+fr: Identification rétinienne en cours.
+en: Retinal identification in progress.
+tr: Identificación de retina en curso.
+
+@msg.080
+fr: Le commandant n'est pas dans sa chambre.
+en: The commander is not in his cabin.
+tr: El comandante no está en su dormitorio.
+
+@msg.081
+fr: La puissance nécessaire pour émettre dans le sub-espace est telle…
+en: The power needed to transmit through subspace is so great…
+tr: La potencia necesaria para emitir en el sub-espacio es tan grande…
+
+@msg.082
+fr: Destinataire non répertorié.
+en: Unknown recipient.
+tr: Destinatario desconocido.
+
+@msg.083
+fr: Plaque chauffante allumée.
+en: Hot plate on.
+tr: Placa calentadora encendida.
+
+@msg.084
+fr: Plaque chauffante éteinte.
+en: Hot plate off.
+tr: Placa calentadora apagada.
+
+@msg.085
+fr: … que les messages ont été réduits aux seuls indicatifs.
+en: … that messages have been reduced to call signs only.
+tr: … que los mensajes se reducen a solo llamadas.
+
+@msg.086
+fr: Introduisez votre carte d'accès pour identification.
+en: Insert your access card for identification.
+tr: Introduzca su tarjeta de acceso para identificación.
+
+@msg.087
+fr: Votre grade est insuffisant pour accéder au carré des officiers.
+en: Your rank is too low to enter the officers' wardroom.
+tr: Su rango es insuficiente para acceder a la sala de oficiales.
+
+@msg.088
+fr: L'ERTP n'est utilisé qu'en cas d'extrême urgence.
+en: The TPT is only to be used in extreme emergencies.
+tr: El TPT solo se usará en urgencias extremas.
+
+@msg.089
+# keep the code BUG (game data)
+fr: BUG — ordinateur en panne
+en: BUG — computer failure
+tr: BUG — ordenador averiado
+
+@msg.090
+# keep the code PST (game data)
+fr: PST — épidémie à bord
+en: PST — epidemic on board
+tr: PST — epidemia a bordo
+
+@msg.091
+fr: Ce coffre est construit d'un seul bloc métallique, et non pas en contreplaqué vissé.
+en: This safe is made from a single block of metal, not screwed-together plywood.
+tr: Esta caja metálica está construida de una sola pieza, no tiene paneles atornillados.
+
+@msg.092
+fr: Avez-vous essayé avec un tournevis ?
+en: Have you tried a screwdriver?
+tr: Has probado con un atornillador?
+
+@msg.093
+fr: Le coffre s'ouvre — il contenait une carte d'accès et un livre, maintenant carbonisés.
+en: The safe opens — it held an access card and a book, now burnt to a crisp.
+tr: La caja se abre — contiene una tarjeta de acceso y un libro, ahora carbonizados.
+
+@msg.094
+# keep the code HLP (game data)
+fr: HLP — vaisseau en panne
+en: HLP — ship broken down
+tr: HLP — nave averiada
+
+@msg.095
+fr: Le coffre s'ouvre.
+en: The safe opens.
+tr: La caja se abre
+
+@msg.096
+fr: Indicatif non répertorié.
+en: Unknown call sign.
+tr: Número desconocido
+
+@msg.097
+fr: La porte ne peut pas s'ouvrir quand la cage est ouverte.
+en: The door cannot open while the cage is open.
+tr: La puerta no puede abrirse mientras la jaula esté abierta.
+
+@msg.098
+# keep the code LND (game data)
+fr: LND — abandon du vaisseau sur surface planétaire
+en: LND — ship abandoned on a planetary surface
+tr: LND — nave abandonada en superficie planetaria
+
+@msg.099
+fr: Vous n'êtes pas qualifié pour manipuler du combustible radioactif.
+en: You are not qualified to handle radioactive fuel.
+tr: No estás cualificado para manipular combustible radiactivo.
+
+@msg.100
+fr: L'autodestruction du vaisseau n'est admise qu'en cas de danger pour l'espèce.
+en: Self-destruction of the ship is only allowed if the species is in danger.
+tr: La autodestrucción de la nave solo se admite en caso de peligro para la especie.
+
+@msg.101
+fr: La salle se dépressurise.
+en: The room is depressurising.
+tr: La sala se despresuriza.
+
+@msg.102
+fr: La cage ne peut pas s'ouvrir quand la porte est ouverte.
+en: The cage cannot open while the door is open.
+tr: La jaula no puede abrirse mientras la puerta esté abierta.
+
+@msg.103
+fr: Machine-outil en attente d'une procédure.
+en: Machine tool waiting for a procedure.
+tr: Máquina esperando un procedimiento.
+
+@msg.104
+fr: Hangar pressurisé.
+en: Hangar pressurised.
+tr: Hangar presurizado.
+
+@msg.105
+fr: Puissance disponible insuffisante.
+en: Not enough power available.
+tr: Potencia disponible insuficiente.
+
+@msg.106
+fr: Navette pressurisée.
+en: Shuttle pressurised.
+tr: Lanzadera presurizada.
+
+@msg.107
+fr: La navette est brutalement dépressurisée.
+en: The shuttle is violently depressurised.
+tr: La lanzadera se despresuriza bruscamente.
+
+@msg.108
+fr: Le monstre est projeté dans l'espace !
+en: The monster is blown out into space!
+tr: El monstruo es lanzado al espacio!
+
+@msg.109
+fr: Le monstre est dans la navette.
+en: The monster is in the shuttle.
+tr: El monstruo está en la lanzadera.
+
+@msg.110
+fr: Dans ce cas, aucun secours ne sera envoyé.
+en: In that case, no help will be sent.
+tr: En ese caso, ninguna ayuda será enviada.
+
+@msg.111
+fr: La navette s'élance dans l'espace.
+en: The shuttle shoots off into space.
+tr: La lanzadera es lanzada al espacio.
+
+@msg.112
+fr: Pression insuffisante pour respirer.
+en: Not enough pressure to breathe.
+tr: Presión insuficiente para respirar.
+
+@msg.113
+fr: Vous avez bu des produits toxiques qui vous ont empoisonné.
+en: You drank toxic chemicals and poisoned yourself.
+tr: Has bebido productos tóxicos y te has envenenado.
+
+@msg.114
+fr: Fermeture du diaphragme.
+en: Closing the iris.
+tr: Cierre del diafragma.
+
+@msg.115
+fr: Ouverture du diaphragme.
+en: Opening the iris.
+tr: Apertura del diafragma.
+
+@msg.116
+fr: Impossible de repressuriser.
+en: Unable to repressurise.
+tr: Imposible represurizar.
+
+@msg.117
+fr: Vous n'avez pas de réserves d'oxygène.
+en: You have no oxygen reserves.
+tr: No tienes reservas de oxígeno.
+
+@msg.118
+fr: Pas de puissance.
+en: No power.
+tr: No hay potencia.
+
+@msg.119
+fr: Les réacteurs se mettent en route.
+en: The reactors start up.
+tr: Los reactores se activan.
+
+@msg.120
+fr: … sauf si le message émis est l'indicatif du vaisseau.
+en: … unless the message sent is the ship's call sign.
+tr: … solo si el mensaje emitido es el indicativo de la nave.
+
+@msg.121
+# keep the code NMI (game data)
+fr: Le vaisseau d'exploration NMI vient d'exploser.
+en: The exploration ship NMI has just exploded.
+tr: La nave de exploración NMI ha explotado.
+
+@msg.122
+fr: Vous enfilez votre scaphandre.
+en: You put on your spacesuit.
+tr: Te pones la escafandra.
+
+@msg.123
+fr: Vous enlevez votre scaphandre.
+en: You take off your spacesuit.
+tr: Te quitas la escafandra.
+
+@msg.124
+fr: La flamme bleue du chalumeau ne suffit pas à chasser l'obscurité.
+en: The blue flame of the blowtorch is not enough to drive away the darkness.
+tr: La llama azul del soplete no es suficiente para moverse en la oscuridad.
+
+@msg.125
+fr: Comment allumez-vous votre chalumeau ?
+en: How do you light your blowtorch?
+tr: Cómo enciendes el soplete?
+
+@msg.126
+fr: Le système anti-incendie du vaisseau se déclenche… votre chalumeau s'éteint et vous êtes trempé.
+en: The ship's fire system goes off… your blowtorch goes out and you are soaked.
+tr: El sistema anti-incendios de la nave se activa… tu soplete se apaga y terminas empapado.
+
+@msg.127
+fr: Vous enfilez vos bottes.
+en: You put on your boots.
+tr: Te pones las botas.
+
+@msg.128
+fr: Vous enlevez vos bottes.
+en: You take off your boots.
+tr: Te quitas las botas.
+
+@msg.129
+fr: L'ascenseur n'est pas à l'étage… vous tombez dans la cage de l'ascenseur.
+en: The lift is not on this floor… you fall down the lift shaft.
+tr: El ascensor no está en esta planta… caes por el hueco del ascensor.
+
+@msg.130
+fr: Système de sécurité de l'ascenseur déconnecté.
+en: Lift safety system disconnected.
+tr: Sistema de seguridad del ascensor desconectado.
+
+@msg.131
+fr: À quoi peut bien servir un tournevis dans cette situation ?
+en: What use could a screwdriver possibly be here?
+tr: De qué te sirve un atornillador en esta situación?
+
+@msg.132
+fr: Vous vous donnez un coup de clé anglaise sur la tête. Ça fait très mal !
+en: You hit yourself on the head with the spanner. That really hurts!
+tr: Te golpeas con la llave inglesa en la cabeza. Eso duele!
+
+@msg.133
+fr: Les têtes de vis sont de l'autre côté.
+en: The screw heads are on the other side.
+tr: Las cabezas de los tornillos están en el otro lado.
+
+@msg.134
+fr: Ascenseur bloqué.
+en: Lift jammed.
+tr: Ascensor bloqueado.
+
+@msg.135
+fr: L'acide n'attaque pas le revêtement du sol.
+en: The acid does not eat into the floor covering.
+tr: El ácido no ataca el revestimiento del suelo.
+
+@msg.136
+fr: Ce solvant n'attaque pas le revêtement du sol.
+en: This solvent does not eat into the floor covering.
+tr: Este disolvente no ataca el revestimiento del suelo.
+
+@msg.137
+fr: Ce liquide vous brûle horriblement la gorge.
+en: This liquid burns your throat horribly.
+tr: Este líquido te abrasa horriblemente la garganta.
+
+@msg.138
+fr: Monstre détecté.
+en: Monster detected.
+tr: Monstruo detectado.
+
+@msg.139
+fr: Écho du monstre fort et clair.
+en: Monster echo loud and clear.
+tr: Eco de monstruo fuerte y claro.
+
+@msg.140
+fr: Monstre non détecté.
+en: Monster not detected.
+tr: Monstruo no detectado.
+
+@msg.141
+fr: Le radar n'est plus connecté à l'ordinateur central.
+en: The radar is no longer connected to the main computer.
+tr: El radar ya no está conectado al ordenador central.
+
+@msg.142
+fr: Vous enfilez vos lunettes.
+en: You put on your glasses.
+tr: Te pones las gafas.
+
+@msg.143
+fr: Vous enlevez vos lunettes.
+en: You take off your glasses.
+tr: Te quitas las gafas.
+
+@msg.144
+fr: Que voulez-vous faire de ce combustible radioactif ?
+en: What do you want to do with this radioactive fuel?
+tr: Qué quieres hacer con el combustible radiactivo?
+
+@msg.145
+fr: Vous êtes mignonne avec cette épingle dans les cheveux.
+en: You look cute with that pin in your hair.
+tr: Te ves muy mono con esa horquilla en el cabello.
+
+@msg.146
+fr: Pas de serrure à proximité.
+en: No lock within reach.
+tr: No hay ninguna cerradura cerca.
+
+@msg.147
+fr: Vous vous parfumez.
+en: You put on some perfume.
+tr: Te perfumas.
+
+@msg.148
+fr: Que voulez-vous boire ?
+en: What do you want to drink?
+tr: Qué quieres beber?
+
+@msg.149
+fr: Vous buvez de l'eau fraîche.
+en: You drink some fresh water.
+tr: Echas un trago de agua fresca.
+
+@msg.150
+fr: La salle se remplit d'une odeur forte.
+en: The room fills with a strong smell.
+tr: La sala se inunda con un fuerte olor.
+
+@msg.151
+fr: Soyez plus précis.
+en: Be more specific.
+tr: Sé más preciso.
+
+@msg.152
+fr: Que voulez-vous faire de ce bloc métallique ?
+en: What do you want to do with this metal block?
+tr: Qué quieres hacer con este bloque metálico?
+
+@msg.153
+fr: Que voulez-vous verser ?
+en: What do you want to pour?
+tr: Qué quieres verter?
+
+@msg.154
+fr: Rien de comestible à portée de main.
+en: Nothing edible within reach.
+tr: Nada comestible al alcance de la mano.
+
+@msg.155
+fr: Hum… c'est du bon whisky !
+en: Mmm… that's good whisky!
+tr: Mmm… es un buen whisky!
+
+@msg.156
+fr: Que voulez-vous faire de cette carte magnétique ?
+en: What do you want to do with this magnetic card?
+tr: Qué quieres hacer con la tarjeta magnética?
+
+@msg.157
+fr: Impossible avec le scaphandre.
+en: Impossible with the spacesuit on.
+tr: Imposible con la escafandra.
+
+@msg.158
+fr: La trappe s'ouvre.
+en: The hatch opens.
+tr: La trampilla se abre.
+
+@msg.159
+fr: L'acide n'est pas suffisamment concentré pour attaquer ce coffre.
+en: The acid is not strong enough to eat through this safe.
+tr: El ácido no tiene suficiente concentración para atacar la caja.
+
+@msg.160
+fr: Une fumée noire et opaque envahit la pièce.
+en: Thick black smoke fills the room.
+tr: Un humo negro llena la habitación.
+
+@msg.161
+fr: Pas de bouton à votre portée.
+en: No button within reach.
+tr: No hay ningún botón cerca.
+
+@msg.162
+fr: Pas de curseur à votre portée.
+en: No slider within reach.
+tr: No hay ningún dial cerca.
+
+@msg.163
+# keep the code FTL (game data)
+fr: Navigation FTL — tome 1
+en: FTL navigation — volume 1
+tr: Navegación FTL — tomo 1
+
+@msg.164
+# keep the code FTL (game data)
+fr: Navigation FTL — tome 2
+en: FTL navigation — volume 2
+tr: Navegación FTL — tomo 2
+
+@msg.165
+# keep the code FTL (game data)
+fr: Navigation FTL — tome 3
+en: FTL navigation — volume 3
+tr: Navegación FTL — tomo 3
+
+@msg.166
+fr: Votre niveau en mathématiques multidimensionnelles ne vous permet pas de comprendre.
+en: Your level in multidimensional mathematics is not good enough to understand it.
+tr: Tu nivel en matemáticas multidimensionales no te permite entenderlo.
+
+@msg.167
+fr: Maintenance de l'ascenseur
+en: Lift maintenance
+tr: Mantenimiento del ascensor
+
+@msg.168
+fr: Mathématiques appliquées à la cybernétique — traitement de l'information en logique floue
+en: Mathematics applied to cybernetics — fuzzy-logic information processing
+tr: Matemáticas aplicadas a la cibernética — tratamiento de la información en lógica difusa
+
+@msg.169
+fr: C'est un vieux roman de SF…
+en: It's an old sci-fi novel…
+tr: Es una vieja novela de ciencia-ficción…
+
+@msg.170
+fr: … dans la collection « Les chefs-d'œuvre oubliés » — Mémoires d'un alien
+en: … in the “Forgotten Masterpieces” collection — Memoirs of an Alien
+tr: … en la colección «Obras Maestras Olvidadas» — Memorias de un Alienígena
+
+@msg.171
+fr: Index alphabétique des services galactiques
+en: Alphabetical index of galactic services
+tr: Indice alfabético de servicios galácticos
+
+@msg.172
+fr: Vous vous attardez sur les fréquences et codes d'urgence :
+en: You linger over the emergency frequencies and codes:
+tr: Te concentras en las frecuencias y códigos de emergencia:
+
+@msg.173
+# keep the code POL (game data)
+fr: #POL — Police-secours intergalactique
+en: #POL — Intergalactic police emergency
+tr: #POL — Emergencia Policía Intergaláctica
+
+@msg.174
+# keep the code ASS (game data)
+fr: #ASS — Spatiale assistance
+en: #ASS — Space assistance
+tr: #ASS — Asistencia espacial
+
+@msg.175
+# keep the code DEC (game data)
+fr: #DEC — Service de décontamination
+en: #DEC — Decontamination service
+tr: #DEC — Servicio de descontaminación
+
+@msg.176
+# keep the code DEP (game data)
+fr: #DEP — Dépannages mécaniques
+en: #DEP — Mechanical breakdown service
+tr: #DEP — Averías mecánicas
+
+@msg.177
+# keep the code INF (game data)
+fr: #INF — Assistance debugging
+en: #INF — Debugging assistance
+tr: #INF — Asistencia en depuración
+
+@msg.178
+# keep the code GOD (game data)
+fr: #GOD — Aide morale
+en: #GOD — Moral support
+tr: #GOD — Ayuda moral
+
+@msg.179
+# keep the code PRE (game data)
+fr: #PRE — Services de presse
+en: #PRE — Press services
+tr: #PRE — Servicios de prensa
+
+@msg.180
+# keep the code ARM (game data)
+fr: #ARM — Patrouille galactique
+en: #ARM — Galactic patrol
+tr: #ARM — Patrulla galáctica
+
+@msg.181
+fr: Il vaut mieux arrêter maintenant la partie…
+en: You had better stop the game now…
+tr: Mejor deja de jugar ahora…
+
+@msg.182
+fr: … à la scène suivante, vous auriez été horriblement déchiqueté par le monstre.
+en: … in the next scene, you would have been horribly torn to pieces by the monster.
+tr: … en la escena siguiente, serías horriblemente despedazado por el monstruo.
+
+@msg.183
+fr: Le flacon est vide.
+en: The flask is empty.
+tr: El frasco está vacío.
+
+@msg.184
+fr: Vous avez absorbé une dose de radiation mortelle en manipulant sans précaution du combustible radioactif.
+en: You absorbed a lethal dose of radiation by handling radioactive fuel without precautions.
+tr: Absorbes una dosis letal de radiación manipulando sin precaución el combustible radiactivo.
+
+@msg.185
+fr: Il est dangereux de s'exposer au vide sans scaphandre.
+en: It is dangerous to expose yourself to vacuum without a spacesuit.
+tr: Es peligroso exponerse al vacío sin escafandra.
+
+@msg.186
+fr: OK !
+en: OK!
+tr: OK!
+
+@msg.187
+fr: Vous versez le contenu du flacon dans l'évier.
+en: You pour the contents of the flask into the sink.
+tr: Viertes el contenido del frasco en el sumidero.
+
+@msg.188
+# question answered with the "yes" key defined in CPC MISC below
+fr: Voulez-vous rejouer ?
+en: Play again?
+tr: Otra partida?
+
+@msg.189
+fr: Accès autorisé.
+en: Access granted.
+tr: Acceso autorizado.
+
+@msg.190
+fr: Cette carte d'identification n'est pas la vôtre.
+en: This identification card is not yours.
+tr: Esta tarjeta de identificación no es tuya.
+
+@msg.191
+# keep {CODE}: the program writes the 6-letter end-of-game code there
+fr: Le code de votre partie est {CODE}. Vous pouvez charger le programme Épilogue.
+en: Your game code is {CODE}. You can now load the Epilogue program.
+tr: El código de tu partida es {CODE}. Puedes cargar el programa Epílogo.
+
+@msg.192
+fr: Pouah… quel goût horrible… vous recrachez immédiatement.
+en: Yuck… what a horrible taste… you spit it out at once.
+tr: Puaj… sabe horrible… lo escupes inmediatamente.
+
+@msg.193
+fr: Le verre est vide.
+en: The glass is empty.
+tr: El vaso está vacío.
+
+@msg.194
+# web only (fragment of a book page)
+fr: Ouvre…
+en: Open…
+tr: Abrir…
+
+@msg.195
+# web only (fragment of a book page)
+fr: …ement sous…
+en: …ly under…
+tr: …mente bajo…
+
+##############################################################################
+## CPC MISC / DIVERS CPC
+##############################################################################
+
+@cpc.yes_key
+# the key that answers "yes" to "play again?" (one letter A-Z)
+fr: O
+en: Y
+tr: S
+
+@cpc.monitor.title
+# computer room memory monitor, title: max 8 letters
+fr: MONITEUR
+en: MONITOR
+tr: MONITOR
+
+@cpc.monitor.keys
+# max 18 characters; S and Z are the keys, keep them
+fr: S:SORTIE Z:ADRESSE
+en: S:EXIT   Z:ADDRESS
+tr: S:SALIR  Z:DIRECC.
+
+@cpc.epilogue.prompt
+# epilogue program, max 27 characters
+fr: SPACE POUR PAGE SUIVANTE
+en: SPACE BAR FOR NEXT PAGE
+tr: ESPACIO - PAGINA SIGUIENTE
+
+##############################################################################
+## CPC DISK MENU / MENU DE LA DISQUETTE
+## The BASIC menu of the disk. Plain ASCII, no accents. The keys (L J D E T M) stay the same.
+##############################################################################
+
+@menu.language
+# max 10 characters
+fr: Langue
+en: Language
+tr: Idioma
+
+@menu.game
+# max 10 characters
+fr: Jeu
+en: Game
+tr: Jugar
+
+@menu.demo
+# max 10 characters
+fr: Demo
+en: Demo
+tr: Demo
+
+@menu.epilogue
+# max 10 characters
+fr: Epilogue
+en: Epilogue
+tr: Epílogo
+
+@menu.inftime
+# max 16 characters
+fr: Temps infini
+en: Infinite time
+tr: Tiempo infinito
+
+@menu.sleeping
+# max 16 characters
+fr: Monstre endormi
+en: Sleeping monster
+tr: Monstruo dormido
+
+@menu.yes
+# max 3 characters
+fr: OUI
+en: YES
+tr: SI
+
+@menu.no
+# max 3 characters
+fr: NON
+en: NO
+tr: NO
+
+@menu.loading
+# max 20 characters
+fr: Chargement
+en: Loading
+tr: Cargando
+
+##############################################################################
+## CPC DEMO TITLES / TITRES DE LA DEMO
+## Title screens of the demo, CPC font (A-Z 0-9 ' - , ? ! :). Max 27 characters, centred automatically.
+##############################################################################
+
+@demo.01
+fr: PRESENTE
+en: PRESENTS
+tr: PRESENTA
+
+@demo.02
+fr: REALISE PAR
+en: CREATED BY
+tr: REALIZADO POR
+
+@demo.03
+fr: COPYRIGHT MARS 87 LORICIELS
+en: COPYRIGHT 1987 LORICIELS
+tr: COPYRIGHT 1987 LORICIELS
+
+@demo.04
+fr: ANIMATION 3D TEMPS REEL
+en: REAL TIME 3D ANIMATION
+tr: ANIMACION 3D EN TIEMPO REAL
+
+@demo.05
+fr: PLUS DE 50 SALLES
+en: OVER 50 ROOMS
+tr: MAS DE 50 UBICACIONES
+
+@demo.06
+fr: JOUABLE AU JOYSTICK
+en: JOYSTICK CONTROL
+tr: ADMITE JOYSTICK
+
+@demo.07
+fr: OPTION RELIEF
+en: RELIEF OPTION
+tr: OPCION RELIEF
+
+@demo.08
+fr: -AVEC LUNETTES-
+en: -WITH GLASSES-
+tr: -CON GAFAS-
+
+@demo.09
+fr: UN GRAND JEU D'AVENTURE:
+en: A GREAT ADVENTURE GAME:
+tr: UN GRAN JUEGO DE AVENTURA:
+
+##############################################################################
+## EPILOGUE / ÉPILOGUE
+## The story told after the shuttle leaves. Each part is a few paragraphs; on the CPC the paragraphs of a part are
+## joined and must fit on a fixed number of 38-character lines (given in the notes). The chapter title is web only.
+##############################################################################
+
+@epi.oxy.chapter
+# web only
+fr: Dans la navette
+en: In the shuttle
+tr: En la lanzadera
+
+@epi.oxy.p1
+# CPC: the 4 paragraphs of this part must fit together in 17 lines of 38 characters (about 578 characters)
+fr: L'oxygène se raréfie rapidement. Vous essayez de respirer moins fort, pour gâcher le moins d'air possible.
+en: The oxygen is running out fast. You try to breathe more gently, to waste as little air as possible.
+tr: El oxígeno se agota rápidamente. Intentas respirar más suave, para desperdiciar el menor aire posible.
+
+@epi.oxy.p2
+fr: Vous vous sentez si seul. Le seul homme à des années-lumière à la ronde. Peut-être la solution du commandant était-elle la meilleure ; peut-être aurait-il dû vous laisser mourir sans jamais savoir.
+en: You feel so alone. The only man for light years around. Perhaps the commander's way out was the best one; perhaps he should have let you die without ever knowing.
+tr: Te sientes solo. El único humano en años luz a la redonda. Quizá la solución del comandante era la mejor; quizá debería haberte dejado morir sin saber.
+
+@epi.oxy.p3
+fr: L'air est de plus en plus lourd. Vous sentez déjà que vous vous affaiblissez. Non, vous ne regrettez rien. Il est dans la nature de l'homme de lutter, jusqu'au bout.
+en: The air grows heavier and heavier. You can already feel yourself weakening. No, you regret nothing. It is in man's nature to fight, to the very end.
+tr: El aire se vuelve cada vez más pesado. Te sientes más débil. No, no te arrepientes de nada. Es el instinto humano de supervivencia, hasta el final.
+
+@epi.oxy.p4
+fr: Vous avez commis une erreur. Mais si c'était à refaire, l'oxygène ne serait sûrement plus un problème…
+en: You made a mistake. But if you had it to do again, oxygen would surely no longer be a problem…
+tr: Cometiste un error. Pero si tuvieras que volverlo a hacer, el oxígeno ya no sería un problema…
+
+@epi.escape.chapter
+# web only
+fr: Loin du vaisseau
+en: Far from the ship
+tr: Lejos de la nave
+
+@epi.escape.p1
+# CPC: the 3 paragraphs of this part must fit together in 11 lines of 38 characters (about 374 characters)
+fr: Tout danger est enfin écarté. Il est mort. Le vaisseau, lui aussi, est détruit : il a explosé peu après votre départ.
+en: The danger is over at last. It is dead. The ship is destroyed too: it exploded shortly after you left.
+tr: El peligro ha terminado. Está muerto. La nave, también destruida: estalló apenas la abandonaste.
+
+@epi.escape.p2
+fr: Étrange, cette explosion. Une lueur vous a ébloui, puis vous avez été frappé de plein fouet par une forte bouffée de chaleur. Tout cela dans le silence le plus absolu. Une scène un peu irréelle.
+en: A strange explosion. A glare dazzled you, then you were struck full on by a strong blast of heat. All of it in the most absolute silence. A slightly unreal scene.
+tr: Extraña explosión. Un destello cegador y te ves envuelto en una bestial oleada de calor. Todo queda en el más absoluto silencio. Una escena algo surrealista.
+
+@epi.escape.p3
+fr: Puis vous vous êtes endormi d'un sommeil agité…
+en: Then you fell into a restless sleep…
+tr: Entonces te duermes en un sueño agitado…
+
+@epi.hunger.chapter
+# web only
+fr: Le réveil
+en: Waking up
+tr: El despertar
+
+@epi.hunger.p1
+# CPC: the 3 paragraphs of this part must fit together in 12 lines of 38 characters (about 408 characters)
+fr: Vous vous réveillez. Vous avez faim… Vous n'avez pas de provisions. Si on ne vous retrouve pas très vite, vous allez mourir de faim. Quelle dérision, après tant d'épreuves.
+en: You wake up. You are hungry… You have no food. If nobody finds you very soon, you will starve to death. What a mockery, after so many ordeals.
+tr: Te despiertas. Estás hambriento… No tienes comida. Si nadie te encuentra pronto, morirás de hambre. Que ironía, después de tanto sufrimiento.
+
+@epi.hunger.p2
+fr: Vous vous rappelez subitement une phrase du commandant : <em>le plus proche vaisseau est à Éridan !</em> S'il vient vous chercher, ce ne sera pas avant au moins un mois.
+en: Suddenly you remember something the commander said: <em>the nearest ship is at Eridanus!</em> If it comes for you, it will not be for at least a month.
+tr: De repente, recuerdas algo que dijo el comandante: <em>la nave más cercana está en Éridan!</em> Si se acerca, no será menos de un mes.
+
+@epi.hunger.p3
+fr: Vous n'avez aucune chance. Vous préférez mourir vite… Vous ouvrez le diaphragme sur le vide !!!
+en: You have no chance. You would rather die quickly… You open the iris onto the void!!!
+tr: No tienes elección. Preferirías morir rápidamente… Abres el diafragma al vacío!!!
+
+@epi.alone.chapter
+# web only
+fr: Le réveil
+en: Waking up
+tr: El despertar
+
+@epi.alone.p1
+# CPC: the 5 paragraphs of this part must fit together in 24 lines of 38 characters (about 816 characters)
+fr: Au réveil, vous avez mangé un tiers de ration ! Il fallait que vos provisions suffisent pour attendre l'arrivée des secours !
+en: When you woke up you ate a third of a ration! Your food had to last until help arrived!
+tr: Cuando te despiertas, te comes un tercio de una ración! La comida tiene que durar hasta que la ayuda llegue!
+
+@epi.alone.p2
+fr: Un doute horrible vous envahit. Quels secours attendiez-vous ? Qui savait que vous étiez perdu dans cette navette ? Qui savait même que votre vaisseau avait explosé ?
+en: A horrible doubt comes over you. What help were you waiting for? Who knew you were lost in this shuttle? Who even knew your ship had exploded?
+tr: Una horrible duda te embarga. Qué ayuda estás esperando? Quién sabe que estás perdido en esta lanzadera? Incluso quién sabe que tu nave ha explotado?
+
+@epi.alone.p3
+fr: L'espoir qui restait encore en vous s'amenuisait d'heure en heure. Peut-être le commandant avait-il envoyé un SOS par l'ERTP avant de vous réveiller. Vous n'arriviez pas à vous en convaincre. Non, il ne l'avait sûrement pas fait !!!
+en: The hope still left in you dwindled hour by hour. Perhaps the commander had sent an SOS with the TPT before waking you. You could not convince yourself of it. No, he surely had not done it!!!
+tr: Tus esperanzas disminuyen con las horas. Quizá el comandante envió un SOS con el TPT antes de despertarte. No estás convencido de ello. No, seguro que no lo hizo!!!
+
+@epi.alone.p4
+fr: Un mois et demi plus tard, vos provisions épuisées depuis deux semaines déjà, à bout de force, vous en étiez enfin convaincu. Vous ne vouliez plus souffrir.
+en: A month and a half later, your food gone for two weeks already, at the end of your strength, you were finally convinced. You did not want to suffer any more.
+tr: Un mes y medio después, tus provisiones agotadas hace ya dos semanas, con tus últimas fuerzas, te convences finalmente. No quieres sufrir más.
+
+@epi.alone.p5
+fr: Un simple geste vous suffisait pour ouvrir la porte sur l'espace… Vous l'avez fait !!!
+en: A single gesture was enough to open the door onto space… You did it!!!
+tr: Un simple gesto es suficiente para abrir la escotilla al espacio… Lo has hecho!!!
+
+@epi.wait.chapter
+# web only
+fr: Le réveil
+en: Waking up
+tr: El despertar
+
+@epi.wait.p1
+# CPC: the 2 paragraphs of this part must fit together in 7 lines of 38 characters (about 238 characters)
+fr: Au réveil, vous mangez un tiers de ration ! Il faut que vos provisions suffisent pour attendre l'arrivée des secours !
+en: When you wake up you eat a third of a ration! Your food must last until help arrives!
+tr: Cuando te despiertas, te comes un tercio de una ración! La comida tiene que durar hasta que la ayuda llegue!
+
+@epi.wait.p2
+fr: Le vaisseau le plus proche est dans le système d'Éridan ! Il lui faudra au moins un mois pour vous rejoindre…
+en: The nearest ship is in the Eridanus system! It will need at least a month to reach you…
+tr: La nave más cercana está en el sistema Éridan! Necesitará al menos un mes para alcanzarte…
+
+@epi.silence.chapter
+# web only
+fr: Trente jours plus tard
+en: Thirty days later
+tr: Treinta días después
+
+@epi.silence.p1
+# CPC: the 4 paragraphs of this part must fit together in 14 lines of 38 characters (about 476 characters)
+fr: Trente jours se sont écoulés. Aucun vaisseau n'est venu vous secourir. L'inquiétude vous gagne peu à peu.
+en: Thirty days have gone by. No ship has come to rescue you. Worry slowly takes hold of you.
+tr: Han pasado treinta días. Ninguna nave ha venido en tu ayuda. La preocupación crece poco a poco
+
+@epi.silence.p2
+fr: Vous vous souvenez d'une phrase que vous avez lue quelque part : <em>« … aucun secours ne sera envoyé, sauf si la demande est confirmée par l'indicatif du vaisseau. »</em>
+en: You remember a sentence you read somewhere: <em>"… no help will be sent, unless the request is confirmed by the ship's call sign."</em>
+tr: Recuerdas una frase que leíste en algún sitio: <em>«… ninguna ayuda será enviada salvo que la petición se confirme con el indicativo de la nave.»</em>
+
+@epi.silence.p3
+fr: Vous avez composé un des indicatifs standards au lieu du code du vaisseau, « NMI ». Personne ne viendra, maintenant vous en êtes sûr.
+en: You dialled one of the standard call signs instead of the ship's code, "NMI". Nobody will come; now you are sure of it.
+tr: Marcaste uno de los indicativos estándar en vez del código de la nave, «NMI». Nadie vendrá, ahora ya estás seguro.
+
+@epi.silence.p4
+fr: Vous préférez une mort rapide. Vous ouvrez la navette sur le vide !!!
+en: You would rather have a quick death. You open the shuttle onto the void!!!
+tr: Preferirías una muerte rápida. Abres la lanzadera al vacío!!!
+
+@epi.rescue.chapter
+# web only
+fr: Trente-troisième jour
+en: Day thirty-three
+tr: Día treinta y tres
+
+@epi.rescue.p1
+# CPC: the 2 paragraphs of this part must fit together in 7 lines of 38 characters (about 238 characters)
+fr: Trente-troisième jour de solitude dans cette navette. Une voix vous parle à travers le communicateur.
+en: Thirty-third day alone in this shuttle. A voice speaks to you through the communicator.
+tr: Treinta y tres días solo en esta lanzadera. Una voz te habla a través del intercomunicador.
+
+@epi.rescue.p2
+fr: Un vaisseau doit se trouver à seulement quelques minutes-lumière. Enfin, vous avez échappé à tous les pièges de l'espace.
+en: A ship must be only a few light minutes away. At last you have escaped every trap space could set.
+tr: Una nave debe estar a solo algunos minutos-luz. Al final, has escapado de todas las trampas del espacio.
+
+@epi.prison.chapter
+# web only
+fr: Sur Terre
+en: On Earth
+tr: En La Tierra
+
+@epi.prison.p1
+# CPC: the 5 paragraphs of this part must fit together in 18 lines of 38 characters (about 612 characters)
+fr: En arrivant sur Terre, vous êtes accueilli par un tribunal militaire. On vous accuse de mutinerie. Votre histoire est déclarée ridicule.
+en: When you reach Earth, a court martial is waiting for you. You are accused of mutiny. Your story is called ridiculous.
+tr: Cuando llegas a La Tierra, eres recibido por un tribunal militar. Te acusan de insubordinación. Tu historia se declara ridícula.
+
+@epi.prison.p2
+fr: Tout le monde semble penser que vous n'êtes qu'un tueur sanguinaire qui a détruit le vaisseau pour cacher ses crimes.
+en: Everyone seems to think you are nothing but a bloodthirsty killer who destroyed the ship to hide his crimes.
+tr: Todo el mundo parece pensar que no eres más que un asesino sanguinario que ha destruido la nave para ocultar sus crímenes.
+
+@epi.prison.p3
+fr: L'accusation ne peut pas prouver ses affirmations, faute de preuves matérielles. Vous êtes seulement condamné au bagne à perpétuité.
+en: The prosecution cannot prove its claims for lack of material evidence. You are "only" sentenced to hard labour for life.
+tr: La acusación no puede probar sus afirmaciones por falta de pruebas materiales. Eres condenado solamente a trabajos forzados de por vida.
+
+@epi.prison.p4
+fr: Vous vous demandez encore comment vous auriez pu prouver votre innocence. Peut-être en ramenant le carnet de bord… Qui sait ?
+en: You still wonder how you could have proved your innocence. Perhaps by bringing back the logbook… Who knows?
+tr: Te preguntas cómo podrías probar tu inocencia. Quizá trayendo el cuaderno de bitácora. Quién sabe?
+
+@epi.prison.p5
+fr: La grille d'une porte de prison se referme sur vous… Des pas s'éloignent… Silence.
+en: The bars of a prison door close behind you… Footsteps fade away… Silence.
+tr: Los barrotes de una puerta de prisión se cierran tras de ti… Pasos que se alejan… Silencio.
+
+@epi.hero.chapter
+# web only
+fr: Sur Terre
+en: On Earth
+tr: En La Tierra
+
+@epi.hero.p1
+# CPC: the 6 paragraphs of this part must fit together in 23 lines of 38 characters (about 782 characters)
+fr: Vous revenez enfin sur Terre. Après tant d'épreuves, vous n'espériez plus la revoir.
+en: You are back on Earth at last. After so many ordeals, you no longer hoped to see it again.
+tr: Estás al fin de vuelta en La Tierra. Tras tantas peripecias, no esperabas volverla a ver.
+
+@epi.hero.p2
+fr: D'abord, vous avez eu du mal à convaincre les autorités de la véracité de votre histoire. Mais le journal de bord du capitaine, enregistré en code sur sa carte magnétique, confirme votre version des faits.
+en: At first you struggled to convince the authorities that your story was true. But the captain's logbook, recorded in code on his magnetic card, confirms your account of the facts.
+tr: Al principio, te costó convencer a las autoridades de la veracidad de tu historia. Pero el cuaderno de bitácora del comandante, codificado en su tarjeta magnética, confirma tu relato de los actos.
+
+@epi.hero.p3
+fr: Le Conseil militaire galactique décide de prendre des mesures contre les monstres. L'homme n'a pas encore gagné, mais il est prêt à lutter.
+en: The Galactic Military Council decides to take measures against the monsters. Mankind has not won yet, but it is ready to fight.
+tr: El Consejo Militar Galáctico decide emprender medidas contra los monstruos. La humanidad no ha ganado aún, pero está lista para luchar.
+
+@epi.hero.p4
+fr: On vous accorde une forte prime de risque qui pourrait vous permettre de vivre aisément jusqu'à la fin de vos jours.
+en: You are granted a large danger bonus that could let you live comfortably for the rest of your days.
+tr: Te conceden una gran prima de riesgo que te permitirá vivir confortablemente el resto de tus días.
+
+@epi.hero.p5
+fr: Mais en vous-même, vous savez que vous ne pourrez avoir de véritable repos tant que tous les monstres ne seront pas exterminés…
+en: But deep inside you know you will never truly rest until every monster has been wiped out…
+tr: Pero en tu interior, sabes que no descansarás bien hasta que todos los monstruos hayan sido exterminados…
+
+@epi.hero.p6
+fr: Car le temps de la colère est venu, et l'homme devra prouver qu'il est bien l'espèce la plus teigneuse et la plus coriace de la galaxie.
+en: For the time of wrath has come, and mankind will have to prove that it really is the most stubborn and toughest species in the galaxy.
+tr: Porque el tiempo de la ira ha llegado, y la humanidad deberá demostrar que es la especie más pertinaz y más dura de la galaxia.
+
+##############################################################################
+## ENDINGS (web) / FINS (web)
+## The six endings, shown in the browser after the epilogue.
+##############################################################################
+
+@end.oxy.title
+fr: Asphyxie
+en: Suffocation
+tr: Asfixia
+
+@end.oxy.line
+fr: L'air de la navette ne suffisait pas.
+en: The shuttle did not have enough air.
+tr: El aire de la lanzadera no era suficiente.
+
+@end.oxy.hint
+fr: Il fallait installer les bouteilles d'oxygène pleines dans la navette.
+en: You had to install the full oxygen bottles in the shuttle.
+tr: Había que instalar las botellas de oxígeno llenas en la lanzadera.
+
+@end.hunger.title
+fr: Famine
+en: Starvation
+tr: Hambre
+
+@end.hunger.line
+fr: Rien à manger, et personne pour venir.
+en: Nothing to eat, and nobody coming.
+tr: Nada que comer y nadie vendrá.
+
+@end.hunger.hint
+fr: Il fallait emporter une ration intacte.
+en: You had to take an untouched ration with you.
+tr: Tenías que traer una ración de comida intacta.
+
+@end.alone.title
+fr: Oubli
+en: Forgotten
+tr: Olvidado
+
+@end.alone.line
+fr: Personne ne savait.
+en: Nobody knew.
+tr: Nadie avisado.
+
+@end.alone.hint
+fr: Il fallait émettre un message de détresse avec l'ERTP avant de partir.
+en: You had to send a distress message with the TPT before leaving.
+tr: Tenías que enviar un mensaje de auxilio con el TPT antes de partir.
+
+@end.silence.title
+fr: Silence radio
+en: Radio silence
+tr: Silencio de radio
+
+@end.silence.line
+fr: Le message ne portait pas le bon indicatif.
+en: The message did not carry the right call sign.
+tr: El mensaje no llevaba el indicativo correcto.
+
+@end.silence.hint
+fr: Le message devait porter l'indicatif du vaisseau : NMI.
+en: The message had to carry the ship's call sign: NMI.
+tr: El mensaje debía llevar el indicativo de la nave: NMI
+
+@end.prison.title
+fr: Le bagne
+en: Hard labour
+tr: Trabajos forzados
+
+@end.prison.line
+fr: Sauvé, mais condamné.
+en: Saved, but convicted.
+tr: A salvo, pero condenado.
+
+@end.prison.hint
+fr: Il fallait ramener la carte du commandant : elle contient le journal de bord.
+en: You had to bring back the commander's card: it holds the logbook.
+tr: Tenías que traer la tarjeta del comandante: contenía el cuaderno de bitácora.
+
+@end.hero.title
+fr: Le temps de la colère
+en: The time of wrath
+tr: El tiempo de la ira
+
+@end.hero.line
+fr: La meilleure fin : vous êtes rentré, et cru.
+en: The best ending: you came home, and you were believed.
+tr: El mejor final: vuelves a casa y te creen.
+
+##############################################################################
+## WEB: ROOMS, OBJECTS, DECKS / WEB : SALLES, OBJETS, PONTS
+##############################################################################
+
+@room.00
+fr: Chambre d'hibernation
+en: Hibernation chamber
+tr: Cámara de hibernación
+
+@room.01
+fr: Laboratoire
+en: Laboratory
+tr: Laboratorio
+
+@room.02
+fr: Compresseur
+en: Compressor
+tr: Compresor
+
+@room.03
+fr: Atelier
+en: Workshop
+tr: Taller
+
+@room.04
+fr: Contrôle du hangar
+en: Hangar control
+tr: Control de hangar
+
+@room.05
+fr: Sas tournant
+en: Rotating airlock
+tr: Esclusa giratoria
+
+@room.06
+fr: Conduit (bas)
+en: Duct (lower)
+tr: Conducto (inferior)
+
+@room.07
+fr: Cage d'ascenseur
+en: Lift shaft
+tr: Jaula del ascensor
+
+@room.08
+fr: Disjoncteurs (bas)
+en: Circuit breakers (lower)
+tr: Automáticos (inferiores)
+
+@room.09
+fr: Trappe de maintenance (bas)
+en: Maintenance hatch (lower)
+tr: Trampilla de mantenimiento (inferior)
+
+@room.0A
+fr: Laboratoire
+en: Laboratory
+tr: Laboratorio
+
+@room.0B
+fr: Hall
+en: Hall
+tr: Sala
+
+@room.0C
+fr: Émetteur-récepteur trans-photonique
+en: Trans-photonic transceiver
+tr: Transmisor trans-fotónico
+
+@room.0D
+fr: Salle des ordinateurs
+en: Computer room
+tr: Sala de ordenadores
+
+@room.0E
+fr: Salle des transmissions
+en: Transmission room
+tr: Sala de comunicaciones
+
+@room.0F
+fr: Salle d'astrogation
+en: Astrogation room
+tr: Sala de astronavegación
+
+@room.10
+fr: Salle &10
+en: Room &10
+tr: Sala &10
+
+@room.11
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@room.12
+fr: Cuisine
+en: Kitchen
+tr: Cocina
+
+@room.13
+fr: Office
+en: Pantry
+tr: Despacho
+
+@room.14
+fr: Ascenseur
+en: Lift
+tr: Ascensor
+
+@room.15
+fr: Disjoncteurs (haut)
+en: Circuit breakers (upper)
+tr: Automáticos (superiores)
+
+@room.16
+fr: Contrôle
+en: Control
+tr: Control
+
+@room.17
+fr: Chambre du commandant
+en: Commander's cabin
+tr: Dormitorio del comandante
+
+@room.18
+fr: Contrôle du carré
+en: Wardroom control
+tr: Control de sala de oficiales
+
+@room.19
+fr: Carré des officiers
+en: Officers' wardroom
+tr: Sala de oficiales
+
+@room.1A
+fr: Réfectoire
+en: Mess hall
+tr: Comedor
+
+@room.1B
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@room.1C
+fr: Chambre
+en: Cabin
+tr: Dormitorio
+
+@room.1D
+fr: Salle de méditation
+en: Meditation room
+tr: Sala de meditación
+
+@room.1E
+fr: Eureka
+en: Eureka
+tr: Eureka
+
+@room.1F
+fr: Chambre des réacteurs
+en: Reactor room
+tr: Sala del reactor
+
+@room.20
+fr: Trappe de maintenance (haut)
+en: Maintenance hatch (upper)
+tr: Trampilla de mantenimiento (superior)
+
+@room.21
+fr: Conduit (haut)
+en: Duct (upper)
+tr: Conducto (superior)
+
+@room.24
+fr: Hangar de la navette
+en: Shuttle hangar
+tr: Hangar de la lanzadera
+
+@room.25
+fr: Cabine de pilotage
+en: Cockpit
+tr: Cabina
+
+@room.26
+fr: Navette
+en: Shuttle
+tr: Lanzadera
+
+@room.27
+fr: Chambre des réacteurs (navette)
+en: Reactor room (shuttle)
+tr: Sala del reactor (lanzadera)
+
+@obj.10
+fr: Chalumeau
+en: Blowtorch
+tr: Soplete
+
+@obj.11
+fr: Bottes
+en: Boots
+tr: Botas
+
+@obj.12
+fr: Détecteur de monstre
+en: Monster detector
+tr: Detector de monstruo
+
+@obj.13
+fr: Lampe et pile
+en: Lamp and battery
+tr: Linterna y batería
+
+@obj.14
+fr: Lampe
+en: Lamp
+tr: Linterna
+
+@obj.15
+fr: Tournevis (jeu de 3)
+en: Screwdrivers (set of 3)
+tr: Atornilladores (juego de 3)
+
+@obj.16
+fr: Tournevis (jeu de 2)
+en: Screwdrivers (set of 2)
+tr: Atornilladores (juego de 2)
+
+@obj.17
+fr: Clé anglaise
+en: Spanner
+tr: Llave inglesa
+
+@obj.18
+fr: Votre carte
+en: Your card
+tr: Tu tarjeta
+
+@obj.19
+fr: Carte Officier
+en: Officer card
+tr: Tarjeta del oficial
+
+@obj.20
+fr: Briquet
+en: Lighter
+tr: Mechero
+
+@obj.21
+fr: Lunettes
+en: Glasses
+tr: Gafas
+
+@obj.22
+fr: Livre « N »
+en: Book "N"
+tr: Libro «N»
+
+@obj.23
+fr: Livre « M »
+en: Book "M"
+tr: Libro «M»
+
+@obj.24
+fr: Livre « I »
+en: Book "I"
+tr: Libro «I»
+
+@obj.25
+fr: Épingle à cheveux
+en: Hairpin
+tr: Horquilla
+
+@obj.26
+fr: Clé
+en: Key
+tr: Llave
+
+@obj.27
+fr: Bloc métallique
+en: Metal block
+tr: Bloque metálico
+
+@obj.01
+fr: Flacon de parfum
+en: Perfume bottle
+tr: Frasco de perfume
+
+@obj.02
+fr: Flacon de parfum (vide)
+en: Perfume bottle (empty)
+tr: Frasco de perfume (vacío)
+
+@obj.03
+fr: Flacon chimique n° 1
+en: Chemical flask no. 1
+tr: Frasco químico n° 1
+
+@obj.04
+fr: Flacon chimique n° 1 (ouvert)
+en: Chemical flask no. 1 (open)
+tr: Frasco químico n° 1 (abierto)
+
+@obj.05
+fr: Flacon chimique n° 2
+en: Chemical flask no. 2
+tr: Frasco químico n° 2
+
+@obj.06
+fr: Flacon chimique n° 2 (ouvert)
+en: Chemical flask no. 2 (open)
+tr: Frasco químico n° 2 (abierto)
+
+@obj.07
+fr: Flacon chimique n° 3
+en: Chemical flask no. 3
+tr: Frasco químico n° 3
+
+@obj.08
+fr: Flacon chimique n° 3 (ouvert)
+en: Chemical flask no. 3 (open)
+tr: Frasco químico n° 3 (abierto)
+
+@obj.09
+fr: Télécommande des portes
+en: Door remote control
+tr: Control remoto de puertas
+
+@obj.0A
+fr: Scaphandre
+en: Spacesuit
+tr: Escafandra
+
+@obj.0B
+fr: Bouteilles d'oxygène pleines
+en: Full oxygen bottles
+tr: Botellas de oxígeno llenas
+
+@obj.0C
+fr: Bouteilles d'oxygène vides
+en: Empty oxygen bottles
+tr: Botellas de oxígeno vacías
+
+@obj.0D
+fr: Ration
+en: Ration
+tr: Ración
+
+@obj.0E
+fr: Ration (mangée)
+en: Ration (eaten)
+tr: Ración (empezada)
+
+@obj.0F
+fr: Chalumeau allumé
+en: Lit blowtorch
+tr: Soplete encendido
+
+@obj.1A
+fr: Carte Commandant
+en: Commander card
+tr: Tarjeta del comandante
+
+@obj.1B
+fr: Carte Mécanicien
+en: Mechanic card
+tr: Tarjeta del mecánico
+
+@obj.1C
+fr: Carte Opérateur
+en: Operator card
+tr: Tarjeta del operador
+
+@obj.1D
+fr: Carte Navigateur
+en: Navigator card
+tr: Tarjeta del navegante
+
+@obj.1E
+fr: Combustible radioactif
+en: Radioactive fuel
+tr: Combustible radiactivo
+
+@obj.1F
+fr: Briquet allumé
+en: Lit lighter
+tr: Mechero encendido
+
+@deck.short.1
+fr: Plan · 1er étage
+en: Map · deck 1
+tr: Mapa · cubierta 1
+
+@deck.name.1
+fr: Pont inférieur et hangar · 1er étage
+en: Lower deck and hangar · deck 1
+tr: Puente inferior y hangar · cubierta 1
+
+@deck.ord.1
+fr: 1er étage
+en: deck 1
+tr: cubierta inferior
+
+@deck.short.2
+fr: Plan · 2e étage
+en: Map · deck 2
+tr: Mapa · cubierta 2
+
+@deck.name.2
+fr: Pont intermédiaire · 2e étage
+en: Middle deck · deck 2
+tr: Puente intermedio · cubierta 2
+
+@deck.ord.2
+fr: 2e étage
+en: deck 2
+tr: cubierta 2
+
+@deck.short.3
+fr: Plan · 3e étage
+en: Map · deck 3
+tr: Mapa · cubierta 3
+
+@deck.name.3
+fr: Pont supérieur · 3e étage
+en: Upper deck · deck 3
+tr: Puente superior · cubierta 3
+
+@deck.ord.3
+fr: 3e étage
+en: deck 3
+tr: cubierta 3
+
+##############################################################################
+## WEB INTERFACE / INTERFACE WEB
+## Buttons, help, settings and messages of the browser version. Keep {0} {1} and keys in brackets.
+##############################################################################
+
+@ui.001
+fr: Vue 3D
+en: 3D view
+tr: Vista 3D
+
+@ui.002
+fr: Animation vectorielle
+en: Vector animation
+tr: Animación vectorial
+
+@ui.003
+fr: Vue 3D indisponible dans ce navigateur
+en: 3D view unavailable in this browser
+tr: Vista 3d no disponible en este navegador
+
+@ui.004
+fr: Ce navigateur n'a pas pu démarrer WebGL, nécessaire à la vue 3D. Ouvrez cette page dans un autre navigateur : Chrome ou Firefox (ordinateur, Android), Safari (iPhone, iPad, Mac).
+en: This browser could not start WebGL, which the 3D view needs. Open this page in another browser: Chrome or Firefox (computer, Android), Safari (iPhone, iPad, Mac).
+tr: Este navegador no puede iniciar WebGL, necesario para la vista 3D. Abre esta página en otro navegador: Chrome o Firefox (PC, Android), Safari (iPhone, iPad, Mac).
+
+@ui.005
+fr: En attendant, le jeu reste jouable sur l'écran d'origine (bouton CPC).
+en: Meanwhile, the game stays playable on the original screen (CPC button).
+tr: Entretanto, el juego es jugable en la pantalla original (botón CPC)
+
+@ui.006
+fr: Vous utilisez {0} : sur téléphone, installez ou ouvrez plutôt Chrome ou Firefox.
+en: You are using {0}: on a phone, install or open Chrome or Firefox instead.
+tr: Estás usando {0}: en un teléfono, instala o abre Chrome o Firefox
+
+@ui.007
+fr: Plan de l'étage (M)
+en: Deck map (M)
+tr: Mapa de la cubierta (M)
+
+@ui.008
+fr: Plan
+en: Map
+tr: Mapa
+
+@ui.009
+fr: Fil de fer ou faces pleines (V)
+en: Wireframe or solid faces (V)
+tr: Vectorial o superficies sólidas (V)
+
+@ui.010
+fr: Vue
+en: View
+tr: Vista
+
+@ui.011
+fr: Activer ou désactiver le monstre
+en: Turn the monster on or off
+tr: Activar o desactivar monstruo
+
+@ui.012
+fr: Monstre
+en: Monster
+tr: Monstruo
+
+@ui.013
+fr: Écran d'origine du CPC (C)
+en: Original CPC screen (C)
+tr: Pantalla original de CPC (C)
+
+@ui.014
+fr: Sauvegarder ou charger (F5 / F9)
+en: Save or load (F5 / F9)
+tr: Guardar o cargar (F5 / F9)
+
+@ui.015
+fr: Partie
+en: Game
+tr: Partida
+
+@ui.016
+fr: Options
+en: Options
+tr: Opciones
+
+@ui.017
+fr: Commandes (H)
+en: Controls (H)
+tr: Controles (H)
+
+@ui.018
+fr: Aide
+en: Help
+tr: Ayuda
+
+@ui.019
+fr: Plein écran
+en: Full screen
+tr: Pantalla completa
+
+@ui.020
+fr: Détecteur
+en: Detector
+tr: Detector
+
+@ui.021
+fr: Lancer l'épilogue
+en: Play the epilogue
+tr: Reproducir el epílogo
+
+@ui.022
+fr: Code de fin ·
+en: End code ·
+tr: Código de Final ·
+
+@ui.023
+fr: Déplacement
+en: Movement
+tr: Movimiento
+
+@ui.024
+fr: Écran d'origine
+en: Original screen
+tr: Pantalla original
+
+@ui.025
+fr: Quitter le moniteur (S)
+en: Leave the monitor (S)
+tr: Quitar el monitor (S)
+
+@ui.026
+fr: Oui, rejouer
+en: Yes, play again
+tr: Sí, jugar otra vez
+
+@ui.027
+fr: Quitter l'épilogue · nouvelle partie
+en: Leave the epilogue · new game
+tr: Salir del epílogo · nueva partida
+
+@ui.028
+fr: Afficher ou masquer la console
+en: Show or hide the console
+tr: Mostrar u ocultar la consola
+
+@ui.029
+fr: Dans la pièce
+en: In the room
+tr: En la ubicación
+
+@ui.030
+fr: Inventaire
+en: Inventory
+tr: Inventario
+
+@ui.031
+fr: Actions
+en: Actions
+tr: Acciones
+
+@ui.032
+fr: Espace
+en: Space
+tr: Espacio
+
+@ui.033
+fr: Télécommande des portes
+en: Door remote control
+tr: Control remoto de puertas
+
+@ui.034
+fr: L'action porte sur l'objet sélectionné de l'inventaire. Pour prendre, cliquez l'objet dans la pièce. Déplacement
+en: Actions apply to the selected inventory item. To take something, click it in the room. Move with
+tr: La acción se aplica al objeto seleccionado en el inventario. Para coger, haz click sobre el objeto en la ubicación
+
+@ui.035
+fr: ou flèches, regard à la souris. Télécommande des portes :
+en: or the arrows, look with the mouse. Door remote:
+tr: Desplazamiento con las flechas del cursor, mirar con el ratón. Control de puertas:
+
+@ui.036
+fr: . Sauvegarde rapide
+en: . Quick save
+tr: . Guardado rápido
+
+@ui.037
+fr: , chargement
+en: , load
+tr: , carga
+
+@ui.038
+fr: Fermer
+en: Close
+tr: Cerrar
+
+@ui.039
+fr: Monstre actif
+en: Monster on
+tr: Monstruo activo
+
+@ui.040
+fr: Décoché, le monstre reste où il est et ne peut plus vous tuer.
+en: Unticked, the monster stays where it is and can no longer kill you.
+tr: Desmarcado, el monstruo permanece donde esté y no puede matarte.
+
+@ui.041
+fr: Temps infini
+en: Unlimited time
+tr: Tiempo infinito
+
+@ui.042
+fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).
+en: Turns off the ship's self-destruct countdown ("The exploration ship NMI has just exploded").
+tr: Desactiva la cuenta atrás de autodestrucción de la nave (« Le vaisseau NMI vient d'exploser »).
+
+@ui.043
+fr: Accélérer les attentes du jeu
+en: Speed up the game's waits
+tr: Acelerar las pausas del juego
+
+@ui.044
+fr: Calcul 3D, défilement des menus et des messages instantanés. Le rythme du monstre ne change pas.
+en: Instant 3D drawing, menu and message scrolling. The monster's pace does not change.
+tr: Cálculos 3D, despliegue de menús y de mensajes instantáneos. La velocidad del monstruo no cambia.
+
+@ui.045
+fr: Montrer les points d'interaction
+en: Show interaction points
+tr: Mostrar los puntos de interacción
+
+@ui.046
+fr: Boutons, serrures et curseurs de la pièce, en orange quand ils sont à portée.
+en: The room's buttons, locks and sliders, in orange when within reach.
+tr: Botones, cerraduras y diales naranjas cuando estén al alcance.
+
+@ui.047
+fr: Montrer le monstre sur le plan
+en: Show the monster on the map
+tr: Mostrar el monstruo en el mapa
+
+@ui.048
+fr: Sa salle clignote en rouge ; s'il est à un autre étage, le plan l'indique.
+en: Its room flashes red; if it is on another deck, the map says so.
+tr: Su ubicación flashea en rojo; si está en otra cubierta, el mapa lo indica.
+
+@ui.049
+fr: Inverser le regard vertical
+en: Invert vertical look
+tr: Invertir la vista vertical
+
+@ui.050
+fr: Sauvegardes…
+en: Saves…
+tr: Guardados…
+
+@ui.051
+fr: Recommencer
+en: Restart
+tr: Reiniciar
+
+@ui.052
+fr: Sauvegardes
+en: Saves
+tr: Guardados
+
+@ui.053
+fr: Recommencer la partie
+en: Restart the game
+tr: Reiniciar el juego
+
+@ui.054
+fr: Fichier
+en: File
+tr: Archivo
+
+@ui.055
+fr: Exporter la partie
+en: Export the game
+tr: Exportar la partida
+
+@ui.056
+fr: Importer un fichier
+en: Import a file
+tr: Importar un archivo
+
+@ui.057
+fr: F5 : sauvegarde rapide · F9 : chargement rapide. Les emplacements restent dans ce navigateur ; exportez un fichier pour changer d'appareil ou garder une copie.
+en: F5: quick save · F9: quick load. Slots stay in this browser; export a file to move to another device or keep a copy.
+tr: F5: guardado rápido · F9: carga rápida. Las posiciones se mantienen en este navegador; exporta a un archivo para cambiar a otro dispositivo o guardar una copia.
+
+@ui.058
+fr: Commandes
+en: Controls
+tr: Controles
+
+@ui.059
+fr: Z Q S D / flèches
+en: W A S D / arrows
+tr: W A S D / flechas
+
+@ui.060
+fr: Avancer, pas de côté, reculer. Les flèches gauche/droite tournent.
+en: Forward, sidestep, back. Left/right arrows turn.
+tr: Avanzar, paso lateral, retroceder. Flechas izquierda/derecha giran.
+
+@ui.061
+fr: Souris (glisser)
+en: Mouse (drag)
+tr: Ratón (arrastrar)
+
+@ui.062
+fr: Tourner et lever ou baisser les yeux. Molette : regard vertical.
+en: Turn and look up or down. Wheel: vertical look.
+tr: Girar y mirar arriba o abajo. Rueda: vista vertical.
+
+@ui.063
+fr: Actions : Poser, Prendre, Utiliser, Appuyer, Régler, Verser, Relief, Dormir, Manger, Boire.
+en: Actions: Drop, Take, Use, Push, Set, Pour, Relief, Sleep, Eat, Drink.
+tr: Actiones: Dejar, Coger, Usar, Pulsar, Activar, Verter, Relief, Dormir, Comer, Beber
+
+@ui.064
+fr: ou Tab
+en: or Tab
+tr: o Tab
+
+@ui.065
+fr: Changer l'objet sélectionné dans l'inventaire.
+en: Change the selected inventory item.
+tr: Cambiar el objeto seleccionado en el inventario
+
+@ui.066
+fr: Prendre / Utiliser.
+en: Take / Use.
+tr: Coger / Usar.
+
+@ui.067
+fr: Télécommande : ouvre les portes télécommandées en vue (il faut l'avoir dans l'inventaire). Manette : LB.
+en: Remote: opens the remote-controlled doors in view (it must be in your inventory). Gamepad: LB.
+tr: Control remoto: abre las puertas comandadas remotamente a la vista (debes tenerlo en tu inventario). Gamepad: LB
+
+@ui.068
+fr: Entrée
+en: Enter
+tr: Entrar
+
+@ui.069
+fr: Refaire l'action en surbrillance.
+en: Repeat the highlighted action.
+tr: Repetir la acción seleccionada.
+
+@ui.070
+fr: Épilogue
+en: Epilogue
+tr: Epílogo
+
+@ui.071
+fr: En fin de partie le jeu donne un code : le bouton « Lancer l'épilogue » le tape pour vous. Depuis l'accueil, le bouton Épilogue permet de saisir un code à la main.
+en: At the end of a game you get a code: the "Play the epilogue" button types it for you. From the home screen, the Epilogue button lets you enter a code by hand.
+tr: Al final del juego conseguirás un código: el botón «Reproducir Epílogo» lo escribirá por ti. En la pantalla de inicio, el botón Epílogo te deja introducir el código a mano.
+
+@ui.072
+fr: Sauvegarde rapide · chargement rapide. Bouton Partie : 4 emplacements, export et import de fichier.
+en: Quick save · quick load. Game button: 4 slots, file export and import.
+tr: Guardado rápido · carga rápida. Botón partida: 4 posiciones, exportar e importar archivos.
+
+@ui.073
+fr: Plan · fil de fer ou faces · écran d'origine.
+en: Map · wireframe or faces · original screen.
+tr: Mapa · vectorial o sólido · pantalla original.
+
+@ui.074
+fr: Échap
+en: Esc
+tr: Escape
+
+@ui.075
+fr: Annuler un choix d'objet, fermer.
+en: Cancel an item choice, close.
+tr: Anular selección de objeto, cerrar.
+
+@ui.076
+fr: Tactile
+en: Touch
+tr: Táctil
+
+@ui.077
+fr: Joystick à gauche pour marcher, glisser ailleurs sur la vue pour regarder.
+en: Joystick on the left to walk, drag anywhere else on the view to look.
+tr: Joystick izquierdo para caminar, arrastrar en cualquier otro lado para mirar.
+
+@ui.078
+fr: Manette
+en: Gamepad
+tr: Gamepad
+
+@ui.079
+fr: Stick gauche : marcher. Stick droit : regarder. Croix + A : menus d'origine. X : prendre. LB : télécommande. Y : plan. Select : vue. B : annuler.
+en: Left stick: walk. Right stick: look. D-pad + A: original menus. X: take. LB: remote. Y: map. Select: view. B: cancel.
+tr: Palanca izquierda: caminar. Palanca derecha: mirar. D-pad + A: menús originales. X: coger. LB: control remoto. Y: mapa. Select: vista. B: anular.
+
+@ui.080
+fr: Pour appuyer sur un bouton ou utiliser une serrure, approchez-vous et regardez-la avant de choisir l'action, comme dans le jeu d'origine. Les codes et terminaux affichent l'écran du CPC : tapez au clavier ou sur les touches à l'écran.
+en: To push a button or use a lock, walk up to it and look at it before choosing the action, as in the original game. Codes and terminals show the CPC screen: type on your keyboard or on the on-screen keys.
+tr: Para pulsar un botón o usar una cerradura, aproxímate y mira antes de elegir la acción, como en el juego original. Códigos y terminales muestran la pantalla del CPC: escribe en tu teclado o en las teclas en pantalla.
+
+@ui.081
+fr: Relief Action · Épilogue
+en: Relief Action · Epilogue
+tr: Relief Action · Epílogo
+
+@ui.082
+fr: Lancer le programme Épilogue d'origine sur l'Amstrad émulé
+en: Run the original Epilogue program on the emulated Amstrad
+tr: Ejecutar el programa Epílogo original en Amstrad emulado
+
+@ui.083
+fr: Écran CPC d'origine
+en: Original CPC screen
+tr: Pantalla original de CPC
+
+@ui.084
+fr: Fermer (Échap)
+en: Close (Esc)
+tr: Cerrar (Esc)
+
+@ui.085
+fr: Clic, Espace ou Entrée pour continuer
+en: Click, Space or Enter to continue
+tr: Click, Espacio o Enter para continuar
+
+@ui.086
+fr: Vous vous réveillez seul dans la chambre d'hibernation d'un vaisseau à la dérive. Quelque chose rôde dans les coursives. Le jeu d'origine tourne ici tel quel, sur un Amstrad émulé ; seuls l'image, les messages et les commandes ont été modernisés.
+en: You wake up alone in the hibernation chamber of a drifting ship. Something prowls the corridors. The original game runs here as it was, on an emulated Amstrad; only the picture, the messages and the controls have been modernised.
+tr: Despiertas solo en la cápsula de hibernación de una nave a la deriva. Algo ronda los pasillos. El juego original se ejecuta como tal, en un Amstrad emulado; solamente los gráficos, los mensajes y los controles han sido modernizados.
+
+@ui.087
+fr: Pas d'autodestruction du vaisseau au bout du temps imparti.
+en: No self-destruction of the ship when time runs out.
+tr: No autodestrucción de la nave cuando el tiempo expire.
+
+@ui.088
+fr: Décochez pour explorer le vaisseau sans danger.
+en: Untick to explore the ship safely.
+tr: Desactiva para explorar la nave de forma segura.
+
+@ui.090
+fr: Continuer
+en: Continue
+tr: Continuar
+
+@ui.091
+fr: Entrée pour commencer · H pour l'aide
+en: Enter to start · H for help
+tr: Enter para empezar · H para ayuda
+
+@ui.092
+fr: Le jeu original
+en: The original game
+tr: El juego original
+
+@ui.093
+fr: Réalisé par
+en: Made by
+tr: Realizado por
+
+@ui.094
+fr: Copyright mars 1987
+en: Copyright March 1987
+tr: Copyright Marzo 1987
+
+@ui.095
+fr: Disquette : jeu, démo et Épilogue (qui demande le code obtenu en jouant)
+en: Disk: game, demo and Epilogue (which asks for the code you earn by playing)
+tr: Disco: juego, demo y Epílogo (que pedirá el código obtenido jugando)
+
+@ui.096
+fr: « Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels
+en: "A great adventure game: real-time 3D animation, over 50 rooms, playable with a joystick, 3D option with glasses." — Loriciels demo text (translated)
+tr: «Un gran juego de aventura: animación 3D en tiempo real, más de 50 ubicaciones, admite joystick, opción 3d con gafas.» — texto de la demo de Loriciels
+
+@ui.097
+fr: Langue : français
+en: Language: French
+tr: Idioma: francés
+
+@ui.098
+fr: Language: English
+en: Language: English
+tr: Idioma: inglés
+
+@ui.099
+fr: Vous n'avez pas la télécommande.
+en: You don't have the remote control.
+tr: No tienes el control remoto.
+
+@ui.100
+fr: Emplacement vide
+en: Empty slot
+tr: Espacio vacío
+
+@ui.102
+fr: Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)
+en: Also in the room: {0} (take an item to reveal the next ones)
+tr: También en la ubicación: {0} (coge un objeto para revelar los siguientes)
+
+@ui.103
+fr: Utiliser à nouveau pour tourner la page.
+en: Use it again to turn the page.
+tr: Úsalo otra vez para pasar la página.
+
+@ui.104
+fr: Sur un vrai Amstrad CPC
+en: On a real Amstrad CPC
+tr: En un Amstrad CPC real
+
+@ui.105
+fr: La disquette du jeu a aussi été enrichie. Son menu de lancement ajoute :
+en: The game disk has been extended too. Its launch menu adds:
+tr: El disco del juego también ha sido mejorado. El menú de inicio añade:
+
+@ui.106
+fr: Une traduction anglaise complète :
+en: A complete English translation:
+tr: Un completa traducción a inglés:
+
+@ui.107
+fr: messages du jeu, verbes, épilogue et démo. La langue se choisit au lancement (touche L), le français reste la version d'origine.
+en: game messages, verbs, epilogue and demo. The language is chosen at launch (L key); French remains the original version.
+tr: mensajes del juego, verbos, epílogo y demo. El idioma se elige al inicio (tecla L); el francés mantiene la versión original.
+
+@ui.108
+fr: Un trainer :
+en: A trainer:
+tr: Trucos:
+
+@ui.109
+fr: temps infini (pas d'autodestruction du vaisseau) et monstre endormi, chacun activable dans le menu.
+en: infinite time (no self-destruction of the ship) and a sleeping monster, each one switched on from the menu.
+tr: tiempo infinito (no autodestrucción de la nave) y monstruo congelado, cada uno activable desde el menú.
+
+@ui.110
+fr: Un correctif
+en: A fix
+tr: Una corrección
+
+@ui.111
+fr: qui permet de sauvegarder sa partie avec une Multiface ou un instantané d'émulateur.
+en: that lets you save your game with a Multiface or an emulator snapshot.
+tr: que permite guardar tu partida con un Multiface o captura de emulador.
+
+@ui.112
+fr: La démo et l'épilogue restent accessibles depuis le même menu.
+en: The demo and the epilogue are still available from the same menu.
+tr: La demo y el epílogo están aún disponibles desde el mismo menú.
+
+@ui.113
+fr: Télécharger la disquette (.dsk)
+en: Download the disk (.dsk)
+tr: Descargar el disco (.dsk)
+
+@ui.114
+fr: Plans des 3 ponts (PDF)
+en: Maps of the 3 decks (PDF)
+tr: Mapa de las 3 cubiertas (PDF)
+
+@ui.115
+fr: Fiche du jeu sur CPC-Power ↗
+en: The game on CPC-Power ↗
+tr: Ficha del jueo en CPC-Power ↗
+
+@ui.116
+fr: Versions modernisées
+en: Modernised versions
+tr: Versiones modernizadas
+
+@ui.117
+fr: jaymanu, avec Claude (Anthropic)
+en: jaymanu, with Claude (Anthropic)
+tr: jaymanu, con Claude (Anthropic)
+
+@ui.118
+fr: Version navigateur, traduction anglaise et disquette enrichie
+en: Browser version, English translation and extended disk
+tr: Versión navegador, traducción inglesa y disco mejorado
+
+@ui.119
+fr: Diffusé avec l'accord écrit de l'un des auteurs originaux.
+en: Released with the written consent of one of the original authors.
+tr: Editado con el consentimiento escrito de uno de los autores originales.
+
+@ui.120
+fr: Saisie au clavier
+en: Keyboard input
+tr: Entrada teclado
+
+@ui.121
+fr: Moniteur — S : sortie · Z : adresse · 0-9 A-F : valeur
+en: Monitor — S: exit · Z: address · 0-9 A-F: value
+tr: Monitor — S: salir · Z: dirección · 0-9 A-F: valor
+
+@ui.122
+fr: Fin de partie
+en: Game over
+tr: Fin del juego
+
+@ui.123
+fr: Écran d'origine (Amstrad CPC)
+en: Original screen (Amstrad CPC)
+tr: Pantalla original (Amstrad CPC)
+
+@ui.124
+fr: Hors plan
+en: Off the map
+tr: Desactivar el mapa
+
+@ui.125
+fr: Coursive
+en: Corridor
+tr: Pasillo
+
+@ui.126
+fr: Monstre · {0}
+en: Monster · {0}
+tr: Monstruo · {0}
+
+@ui.127
+fr: Objet {0}
+en: Item {0}
+tr: Objeto {0}
+
+@ui.128
+fr: Salle &{0}
+en: Room &{0}
+tr: Ubicación &{0}
+
+@ui.129
+fr: Impossible de sauvegarder maintenant.
+en: Cannot save right now.
+tr: No se puede guardar.
+
+@ui.130
+fr: Sauvegarde impossible : stockage du navigateur plein ou indisponible.
+en: Cannot save: the browser's storage is full or unavailable.
+tr: Guardado no posible: almacenamiento del navegador lleno o no disponible.
+
+@ui.131
+fr: {0} : partie sauvegardée ({1}).
+en: {0}: game saved ({1}).
+tr: {0}: partida guardada ({1}).
+
+@ui.132
+fr: {0} : vide.
+en: {0}: empty.
+tr: {0}: vacío.
+
+@ui.133
+fr: {0} chargée{1}.
+en: {0} loaded{1}.
+tr: {0} cargada{1}.
+
+@ui.134
+fr: Sauvegarde rapide
+en: Quick save
+tr: Guardado rápido
+
+@ui.135
+fr: Emplacement 1
+en: Slot 1
+tr: Posición 1
+
+@ui.136
+fr: Emplacement 2
+en: Slot 2
+tr: Posición 2
+
+@ui.137
+fr: Emplacement 3
+en: Slot 3
+tr: Posición 3
+
+@ui.138
+fr: Vide
+en: Empty
+tr: Vacía
+
+@ui.139
+fr: Sauver
+en: Save
+tr: Guardar
+
+@ui.140
+fr: Charger
+en: Load
+tr: Cargar
+
+@ui.141
+fr: {0} objet
+en: {0} item
+tr: {0} objeto
+
+@ui.142
+fr: {0} objets
+en: {0} items
+tr: {0} objetos
+
+@ui.143
+fr: Remplacer « {0} » ?
+en: Overwrite "{0}"?
+tr: Sobreescribir «{0}»?
+
+@ui.144
+fr: Lancez une partie avant d'exporter.
+en: Start a game before exporting.
+tr: Empezar partida antes de exportar.
+
+@ui.145
+fr: Partie exportée : {0}
+en: Game exported: {0}
+tr: Partida exportada: {0}
+
+@ui.146
+fr: Export impossible ici : téléchargez la page pour exporter vos parties.
+en: Export is not possible here: download the page to export your games.
+tr: Exportación no posible: descarga la página para exportar tus partidas.
+
+@ui.147
+fr: Partie importée{0}.
+en: Game imported{0}.
+tr: Partida importada{0}.
+
+@ui.148
+fr: Ce fichier n'est pas une sauvegarde de Relief Action.
+en: This file is not a Relief Action save.
+tr: Este archivo no es una partida de Relief Action
+
+@ui.149
+fr: Continuer · {0}
+en: Continue · {0}
+tr: Continuar · {0}
+
+@ui.150
+fr: Nouvelle partie.
+en: New game.
+tr: Nueva partida.
+
+@ui.151
+fr: Moniteur : appuyez sur S pour sortir (ou sur la croix).
+en: Monitor: press S to leave (or the cross).
+tr: Monitor: pulsa S para salir (o la equis)
+
+@ui.152
+fr: Vous sortez d'hibernation…
+en: You come out of hibernation…
+tr: Sales de hibernación…
+
+@ui.153
+fr: Bravo ! Vous emportez une ration intacte : vous aurez de quoi manger en attendant les secours (lettre 2 du code : N).
+en: Well done! You are taking an untouched ration: you will have something to eat while waiting for help (code letter 2: N).
+tr: Bien hecho! Has cogido una ración intacta: tendrás algo que comer mientras esperas ayuda (letra 2 del código: N).
+
+@ui.154
+fr: La ration n'est plus avec vous : vous n'auriez rien à manger (lettre 2 : E).
+en: The ration is no longer with you: you would have nothing to eat (letter 2: E).
+tr: La ración no va contigo; no tendrás nada que comer (letra 2: E).
+
+@ui.155
+fr: Bravo ! Vous avez la carte du commandant : son journal de bord prouvera votre innocence (lettre 3 : C).
+en: Well done! You have the commander's card: his logbook will prove your innocence (code letter 3: C).
+tr: Bien hecho! Tienes la tarjeta del comandante: su cuaderno de bitácora probará tu inocencia (letra 3: C).
+
+@ui.156
+fr: La carte du commandant n'est plus avec vous (lettre 3 : M).
+en: The commander's card is no longer with you (letter 3: M).
+tr: La tarjeta del comandante no va contigo (letra 3: M).
+
+@ui.157
+fr: Bravo ! Message de détresse émis par l'ERTP (lettre 4 : C).
+en: Well done! Distress message sent with the TPT (code letter 4: C).
+tr: Bien hecho! Mensaje de auxilio enviado con el TPT (letra 4: C).
+
+@ui.158
+fr: Bravo ! Le message porte l'indicatif du vaisseau, NMI : cette fois les secours viendront (lettre 6 : J).
+en: Well done! The message carries the ship's call sign, NMI: this time help will come (code letter 6: J).
+tr: Bien hecho! El mensaje lleva el indicativo de la nave. NMI: esta vez la ayuda acudirá (letra 6: J).
+
+@ui.159
+fr: R · assez d'oxygène dans la navette
+en: R · enough oxygen in the shuttle
+tr: R · suficiente oxígeno en la lanzadera
+
+@ui.160
+fr: K · l'oxygène va manquer
+en: K · oxygen will run out
+tr: K · el oxígeno se agotará
+
+@ui.161
+fr: N · une ration à bord
+en: N · a ration on board
+tr: N · una ración a bordo
+
+@ui.162
+fr: E · pas de provisions
+en: E · no food
+tr: E · sin provisiones
+
+@ui.163
+fr: C · la carte du commandant (journal de bord)
+en: C · the commander's card (logbook)
+tr: C · la tarjeta del comandante (cuaderno de bitácora)
+
+@ui.164
+fr: M · aucune preuve de votre innocence
+en: M · no proof of your innocence
+tr: M · ninguna prueba de tu inocencia
+
+@ui.165
+fr: C · message de détresse envoyé
+en: C · distress message sent
+tr: C · mensaje de auxilio enviado
+
+@ui.166
+fr: B · personne n'a été prévenu
+en: B · nobody was told
+tr: B · nadie avisado
+
+@ui.167
+fr: · {0} · destinataire du message (sans effet sur la fin)
+en: · {0} · message recipient (no effect on the ending)
+tr: · {0} · destinatario del mensaje (sin efecto en el final)
+
+@ui.168
+fr: J · indicatif du vaisseau NMI
+en: J · the ship's call sign NMI
+tr: J · indicativo de la nave NMI
+
+@ui.169
+fr: {0} · indicatif standard : personne ne viendra
+en: {0} · standard call sign: nobody will come
+tr: {0} · indicativo estándar: nadie acudirá
+
+@ui.170
+fr: {0} · pas de message
+en: {0} · no message
+tr: {0} · sin mensaje
+
+@ui.171
+fr: Le code de votre partie est {CODE}. Vous pouvez charger le programme Épilogue.
+en: Your game code is {CODE}. You can now load the Epilogue program.
+tr: El código de tu partida es {CODE}. Puedes cargar el programa Epílogo.
+
+@ui.172
+fr: Entrez le code donné par le jeu à la fin de votre partie. Six lettres : elles racontent ce que vous avez emporté et fait avant de partir.
+en: Enter the code the game gave you at the end of your game. Six letters: they tell what you took with you and did before leaving.
+tr: Introduce el código obtenido al terminar la partida. Seis letras: indican que trajiste contigo e hiciste antes de partir.
+
+@ui.173
+fr: Lire l'épilogue
+en: Read the epilogue
+tr: Leer el epílogo
+
+@ui.174
+fr: Le code fait six lettres.
+en: The code has six letters.
+tr: El código tiene seis letras.
+
+@ui.175
+fr: Ce code n'est pas valide : le programme d'origine le refuserait aussi.
+en: This code is not valid: the original program would refuse it too.
+tr: Este código no es válido: el programa original lo rechazará también.
+
+@ui.176
+fr: Fin {0} sur 6
+en: Ending {0} of 6
+tr: Final {0} de 6
+
+@ui.177
+fr: Nouvelle partie
+en: New game
+tr: Nueva partida
+
+@ui.178
+fr: Relire
+en: Read again
+tr: Leer otra vez
+
+@ui.179
+fr: Autre code
+en: Another code
+tr: Otro código
+
+@ui.180
+fr: Noir
+en: Black
+tr: Negro
+
+@ui.181
+fr: Code de fin de partie
+en: End-of-game code
+tr: Código de fin de partida
+
+@ui.182
+fr: Passer en fil de fer (V)
+en: Switch to wireframe (V)
+tr: Cambiar a vectorial (V)
+
+@ui.183
+fr: Passer en faces pleines (V)
+en: Switch to solid faces (V)
+tr: Cambiar a superficies sólidas (V)
+
+@ui.184
+fr: Monstre désactivé
+en: Monster off
+tr: Monstruo desactivado
+
+@ui.185
+fr: Monstre activé.
+en: Monster on.
+tr: Monstruo activado.
+
+@ui.186
+fr: Monstre désactivé : il ne bouge plus et ne tue plus.
+en: Monster off: it no longer moves or kills.
+tr: Monstruo desactivado: no se mueve ni te mata.
+
+@ui.187
+fr: Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n'est pas sauvegardée.
+en: Start a new game? The current game will be lost if it is not saved.
+tr: Iniciar una nueva partida? La partida en curso se perderá si no ha sido grabada.
+
+@ui.188
+fr: émulation lente
+en: slow emulation
+tr: emulación lenta
+
+@ui.189
+fr: [ ] ou Tab
+en: [ ] or Tab
+tr: [ ] o Tab
+
+@ui.190
+fr: Espace · O
+en: Space · O
+tr: Espacio · O
+
+@ui.191
+fr: Action
+en: Action
+tr: Acción
+
+@ui.192
+fr: Choisissez un objet de la pièce
+en: Choose an item in the room
+tr: Elige un objeto de la ubicación
+
+@ui.193
+fr: Jouer
+en: Play
+tr: 
+
+@ui.194
+fr:  — cliquer ou glisser vers l'inventaire pour prendre
+en:  — click or drag to the inventory to take
+tr: 
+
+@ui.195
+fr:  — glisser vers la pièce pour poser
+en:  — drag to the room to drop
+tr: 
+
+@ui.196
+fr: Glisser un objet
+en: Drag an item
+tr: 
+
+@ui.197
+fr: De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.
+en: From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.
+tr: 

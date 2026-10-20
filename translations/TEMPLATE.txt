@@ -2467,11 +2467,6 @@ fr: Décochez pour explorer le vaisseau sans danger.
 en: Untick to explore the ship safely.
 tr: 
 
-@ui.089
-fr: Jouer
-en: Play
-tr: 
-
 @ui.090
 fr: Continuer
 en: Continue
@@ -2527,482 +2522,482 @@ fr: Emplacement vide
 en: Empty slot
 tr: 
 
-@ui.101
-fr:  — cliquer pour prendre
-en:  — click to take
-tr: 
-
 @ui.102
-fr:  — cliquer ou glisser vers l'inventaire pour prendre
-en:  — click or drag to the inventory to take
-tr: 
-
-@ui.103
-fr:  — glisser vers la pièce pour poser
-en:  — drag to the room to drop
-tr: 
-
-@ui.104
 fr: Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)
 en: Also in the room: {0} (take an item to reveal the next ones)
 tr: 
 
-@ui.105
+@ui.103
 fr: Utiliser à nouveau pour tourner la page.
 en: Use it again to turn the page.
 tr: 
 
-@ui.106
+@ui.104
 fr: Sur un vrai Amstrad CPC
 en: On a real Amstrad CPC
 tr: 
 
-@ui.107
+@ui.105
 fr: La disquette du jeu a aussi été enrichie. Son menu de lancement ajoute :
 en: The game disk has been extended too. Its launch menu adds:
 tr: 
 
-@ui.108
+@ui.106
 fr: Une traduction anglaise complète :
 en: A complete English translation:
 tr: 
 
-@ui.109
+@ui.107
 fr: messages du jeu, verbes, épilogue et démo. La langue se choisit au lancement (touche L), le français reste la version d'origine.
 en: game messages, verbs, epilogue and demo. The language is chosen at launch (L key); French remains the original version.
 tr: 
 
-@ui.110
+@ui.108
 fr: Un trainer :
 en: A trainer:
 tr: 
 
-@ui.111
+@ui.109
 fr: temps infini (pas d'autodestruction du vaisseau) et monstre endormi, chacun activable dans le menu.
 en: infinite time (no self-destruction of the ship) and a sleeping monster, each one switched on from the menu.
 tr: 
 
-@ui.112
+@ui.110
 fr: Un correctif
 en: A fix
 tr: 
 
-@ui.113
+@ui.111
 fr: qui permet de sauvegarder sa partie avec une Multiface ou un instantané d'émulateur.
 en: that lets you save your game with a Multiface or an emulator snapshot.
 tr: 
 
-@ui.114
+@ui.112
 fr: La démo et l'épilogue restent accessibles depuis le même menu.
 en: The demo and the epilogue are still available from the same menu.
 tr: 
 
-@ui.115
+@ui.113
 fr: Télécharger la disquette (.dsk)
 en: Download the disk (.dsk)
 tr: 
 
-@ui.116
+@ui.114
 fr: Plans des 3 ponts (PDF)
 en: Maps of the 3 decks (PDF)
 tr: 
 
-@ui.117
+@ui.115
 fr: Fiche du jeu sur CPC-Power ↗
 en: The game on CPC-Power ↗
 tr: 
 
-@ui.118
+@ui.116
 fr: Versions modernisées
 en: Modernised versions
 tr: 
 
-@ui.119
+@ui.117
 fr: jaymanu, avec Claude (Anthropic)
 en: jaymanu, with Claude (Anthropic)
 tr: 
 
-@ui.120
+@ui.118
 fr: Version navigateur, traduction anglaise et disquette enrichie
 en: Browser version, English translation and extended disk
 tr: 
 
-@ui.121
+@ui.119
 fr: Diffusé avec l'accord écrit de l'un des auteurs originaux.
 en: Released with the written consent of one of the original authors.
 tr: 
 
-@ui.122
+@ui.120
 fr: Saisie au clavier
 en: Keyboard input
 tr: 
 
-@ui.123
+@ui.121
 fr: Moniteur — S : sortie · Z : adresse · 0-9 A-F : valeur
 en: Monitor — S: exit · Z: address · 0-9 A-F: value
 tr: 
 
-@ui.124
+@ui.122
 fr: Fin de partie
 en: Game over
 tr: 
 
-@ui.125
+@ui.123
 fr: Écran d'origine (Amstrad CPC)
 en: Original screen (Amstrad CPC)
 tr: 
 
-@ui.126
+@ui.124
 fr: Hors plan
 en: Off the map
 tr: 
 
-@ui.127
+@ui.125
 fr: Coursive
 en: Corridor
 tr: 
 
-@ui.128
+@ui.126
 fr: Monstre · {0}
 en: Monster · {0}
 tr: 
 
-@ui.129
+@ui.127
 fr: Objet {0}
 en: Item {0}
 tr: 
 
-@ui.130
+@ui.128
 fr: Salle &{0}
 en: Room &{0}
 tr: 
 
-@ui.131
+@ui.129
 fr: Impossible de sauvegarder maintenant.
 en: Cannot save right now.
 tr: 
 
-@ui.132
+@ui.130
 fr: Sauvegarde impossible : stockage du navigateur plein ou indisponible.
 en: Cannot save: the browser's storage is full or unavailable.
 tr: 
 
-@ui.133
+@ui.131
 fr: {0} : partie sauvegardée ({1}).
 en: {0}: game saved ({1}).
 tr: 
 
-@ui.134
+@ui.132
 fr: {0} : vide.
 en: {0}: empty.
 tr: 
 
-@ui.135
+@ui.133
 fr: {0} chargée{1}.
 en: {0} loaded{1}.
 tr: 
 
-@ui.136
+@ui.134
 fr: Sauvegarde rapide
 en: Quick save
 tr: 
 
-@ui.137
+@ui.135
 fr: Emplacement 1
 en: Slot 1
 tr: 
 
-@ui.138
+@ui.136
 fr: Emplacement 2
 en: Slot 2
 tr: 
 
-@ui.139
+@ui.137
 fr: Emplacement 3
 en: Slot 3
 tr: 
 
-@ui.140
+@ui.138
 fr: Vide
 en: Empty
 tr: 
 
-@ui.141
+@ui.139
 fr: Sauver
 en: Save
 tr: 
 
-@ui.142
+@ui.140
 fr: Charger
 en: Load
 tr: 
 
-@ui.143
+@ui.141
 fr: {0} objet
 en: {0} item
 tr: 
 
-@ui.144
+@ui.142
 fr: {0} objets
 en: {0} items
 tr: 
 
-@ui.145
+@ui.143
 fr: Remplacer « {0} » ?
 en: Overwrite "{0}"?
 tr: 
 
-@ui.146
+@ui.144
 fr: Lancez une partie avant d'exporter.
 en: Start a game before exporting.
 tr: 
 
-@ui.147
+@ui.145
 fr: Partie exportée : {0}
 en: Game exported: {0}
 tr: 
 
-@ui.148
+@ui.146
 fr: Export impossible ici : téléchargez la page pour exporter vos parties.
 en: Export is not possible here: download the page to export your games.
 tr: 
 
-@ui.149
+@ui.147
 fr: Partie importée{0}.
 en: Game imported{0}.
 tr: 
 
-@ui.150
+@ui.148
 fr: Ce fichier n'est pas une sauvegarde de Relief Action.
 en: This file is not a Relief Action save.
 tr: 
 
-@ui.151
+@ui.149
 fr: Continuer · {0}
 en: Continue · {0}
 tr: 
 
-@ui.152
+@ui.150
 fr: Nouvelle partie.
 en: New game.
 tr: 
 
-@ui.153
+@ui.151
 fr: Moniteur : appuyez sur S pour sortir (ou sur la croix).
 en: Monitor: press S to leave (or the cross).
 tr: 
 
-@ui.154
+@ui.152
 fr: Vous sortez d'hibernation…
 en: You come out of hibernation…
 tr: 
 
-@ui.155
+@ui.153
 fr: Bravo ! Vous emportez une ration intacte : vous aurez de quoi manger en attendant les secours (lettre 2 du code : N).
 en: Well done! You are taking an untouched ration: you will have something to eat while waiting for help (code letter 2: N).
 tr: 
 
-@ui.156
+@ui.154
 fr: La ration n'est plus avec vous : vous n'auriez rien à manger (lettre 2 : E).
 en: The ration is no longer with you: you would have nothing to eat (letter 2: E).
 tr: 
 
-@ui.157
+@ui.155
 fr: Bravo ! Vous avez la carte du commandant : son journal de bord prouvera votre innocence (lettre 3 : C).
 en: Well done! You have the commander's card: his logbook will prove your innocence (code letter 3: C).
 tr: 
 
-@ui.158
+@ui.156
 fr: La carte du commandant n'est plus avec vous (lettre 3 : M).
 en: The commander's card is no longer with you (letter 3: M).
 tr: 
 
-@ui.159
+@ui.157
 fr: Bravo ! Message de détresse émis par l'ERTP (lettre 4 : C).
 en: Well done! Distress message sent with the TPT (code letter 4: C).
 tr: 
 
-@ui.160
+@ui.158
 fr: Bravo ! Le message porte l'indicatif du vaisseau, NMI : cette fois les secours viendront (lettre 6 : J).
 en: Well done! The message carries the ship's call sign, NMI: this time help will come (code letter 6: J).
 tr: 
 
-@ui.161
+@ui.159
 fr: R · assez d'oxygène dans la navette
 en: R · enough oxygen in the shuttle
 tr: 
 
-@ui.162
+@ui.160
 fr: K · l'oxygène va manquer
 en: K · oxygen will run out
 tr: 
 
-@ui.163
+@ui.161
 fr: N · une ration à bord
 en: N · a ration on board
 tr: 
 
-@ui.164
+@ui.162
 fr: E · pas de provisions
 en: E · no food
 tr: 
 
-@ui.165
+@ui.163
 fr: C · la carte du commandant (journal de bord)
 en: C · the commander's card (logbook)
 tr: 
 
-@ui.166
+@ui.164
 fr: M · aucune preuve de votre innocence
 en: M · no proof of your innocence
 tr: 
 
-@ui.167
+@ui.165
 fr: C · message de détresse envoyé
 en: C · distress message sent
 tr: 
 
-@ui.168
+@ui.166
 fr: B · personne n'a été prévenu
 en: B · nobody was told
 tr: 
 
-@ui.169
+@ui.167
 fr: · {0} · destinataire du message (sans effet sur la fin)
 en: · {0} · message recipient (no effect on the ending)
 tr: 
 
-@ui.170
+@ui.168
 fr: J · indicatif du vaisseau NMI
 en: J · the ship's call sign NMI
 tr: 
 
-@ui.171
+@ui.169
 fr: {0} · indicatif standard : personne ne viendra
 en: {0} · standard call sign: nobody will come
 tr: 
 
-@ui.172
+@ui.170
 fr: {0} · pas de message
 en: {0} · no message
 tr: 
 
-@ui.173
+@ui.171
 fr: Le code de votre partie est {CODE}. Vous pouvez charger le programme Épilogue.
 en: Your game code is {CODE}. You can now load the Epilogue program.
 tr: 
 
-@ui.174
+@ui.172
 fr: Entrez le code donné par le jeu à la fin de votre partie. Six lettres : elles racontent ce que vous avez emporté et fait avant de partir.
 en: Enter the code the game gave you at the end of your game. Six letters: they tell what you took with you and did before leaving.
 tr: 
 
-@ui.175
+@ui.173
 fr: Lire l'épilogue
 en: Read the epilogue
 tr: 
 
-@ui.176
+@ui.174
 fr: Le code fait six lettres.
 en: The code has six letters.
 tr: 
 
-@ui.177
+@ui.175
 fr: Ce code n'est pas valide : le programme d'origine le refuserait aussi.
 en: This code is not valid: the original program would refuse it too.
 tr: 
 
-@ui.178
+@ui.176
 fr: Fin {0} sur 6
 en: Ending {0} of 6
 tr: 
 
-@ui.179
+@ui.177
 fr: Nouvelle partie
 en: New game
 tr: 
 
-@ui.180
+@ui.178
 fr: Relire
 en: Read again
 tr: 
 
-@ui.181
+@ui.179
 fr: Autre code
 en: Another code
 tr: 
 
-@ui.182
+@ui.180
 fr: Noir
 en: Black
 tr: 
 
-@ui.183
+@ui.181
 fr: Code de fin de partie
 en: End-of-game code
 tr: 
 
-@ui.184
+@ui.182
 fr: Passer en fil de fer (V)
 en: Switch to wireframe (V)
 tr: 
 
-@ui.185
+@ui.183
 fr: Passer en faces pleines (V)
 en: Switch to solid faces (V)
 tr: 
 
-@ui.186
+@ui.184
 fr: Monstre désactivé
 en: Monster off
 tr: 
 
-@ui.187
+@ui.185
 fr: Monstre activé.
 en: Monster on.
 tr: 
 
-@ui.188
+@ui.186
 fr: Monstre désactivé : il ne bouge plus et ne tue plus.
 en: Monster off: it no longer moves or kills.
 tr: 
 
-@ui.189
+@ui.187
 fr: Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n'est pas sauvegardée.
 en: Start a new game? The current game will be lost if it is not saved.
 tr: 
 
-@ui.190
+@ui.188
 fr: émulation lente
 en: slow emulation
 tr: 
 
-@ui.191
+@ui.189
 fr: [ ] ou Tab
 en: [ ] or Tab
 tr: 
 
-@ui.192
-fr: Glisser un objet
-en: Drag an item
-tr: 
-
-@ui.193
-fr: De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.
-en: From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.
-tr: 
-
-@ui.194
+@ui.190
 fr: Espace · O
 en: Space · O
 tr: 
 
-@ui.195
+@ui.191
 fr: Action
 en: Action
 tr: 
 
-@ui.196
+@ui.192
 fr: Choisissez un objet de la pièce
 en: Choose an item in the room
+tr: 
+
+@ui.193
+fr: Jouer
+en: Play
+tr: 
+
+@ui.194
+fr:  — cliquer ou glisser vers l'inventaire pour prendre
+en:  — click or drag to the inventory to take
+tr: 
+
+@ui.195
+fr:  — glisser vers la pièce pour poser
+en:  — drag to the room to drop
+tr: 
+
+@ui.196
+fr: Glisser un objet
+en: Drag an item
+tr: 
+
+@ui.197
+fr: De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.
+en: From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.
 tr: 
