@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+build/web/gen/
+build/cpc/out/
+translations/tools/src.json

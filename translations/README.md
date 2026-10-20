@@ -18,14 +18,14 @@ Thank you for translating the game! One text file holds every text of the game: 
    The check lists what is missing or too long, and how much room is left on the CPC.
 4. Open a pull request with your file. You can send a partial file: any empty `tr:` line falls back to English.
 
-We then build your language into the CPC disk and the web page.
+We then build your language into the CPC disk and the web page (`sh build/build.sh`, see [build/](../build/README.md)).
 
 ### The CPC limits
 
 - **Font.** The CPC game only has capitals A–Z, digits and `' - , ? ! :`. No accents, no lowercase letters, no full stop. You write normal text with accents; the CPC version is made automatically (capitals, `É → E`, `ß → SS`, `Ä → AE`…, `…` kept as the game's ellipsis). If the automatic version is not right, add a `tr.cpc:` line under `tr:` with the exact CPC text.
 - **Space.** All game messages share a 3,940-byte zone, where frequent words are stored only once. English uses 3,532 bytes. If your language is longer, the check tells you how many bytes to save: shorten a few CPC messages with `tr.cpc:` lines. The web version keeps your full text.
 - **Epilogue.** Each part of the epilogue must fit in a fixed number of 38-character lines (given in the notes), with a font that has no `!` and no `0`.
-- **Short fields.** Verbs are limited to 8 letters, the demo titles to 27 characters, and the menu entries to the length given in their notes.
+- **Short fields.** Verbs are limited to 8 letters, each demo title to the length of the French one, and the menu entries to the length given in their notes.
 
 ### Keep as they are
 

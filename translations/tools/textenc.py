@@ -125,7 +125,7 @@ def build(phrases, budget, code_offset=133, max_words=127):
         L = lit_len(t); save = f * (L - 1) - len(word_bytes(t))
         if save > 0: cand.append((save, t))
     cand.sort(reverse=True)
-    words = [w for w in forced if w in toks or w == CODEWORD]
+    words = [w for w in sorted(forced) if w in toks or w == CODEWORD]   # sorted: reproducible builds
     for s, t in cand:
         if len(words) >= max_words: break
         words.append(t)

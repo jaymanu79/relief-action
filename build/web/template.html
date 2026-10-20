@@ -1,0 +1,436 @@
+<title>Relief Action</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap">
+<style>
+/* Layout: full-bleed 3D viewport, a console column on the right (bottom drawer on phones), subtitles over the view. */
+:root {
+  --void: #05070c;          /* space behind the hull */
+  --hull: #0d121c;          /* panel ground */
+  --plate: #151c2a;         /* raised plates */
+  --line: #26324a;          /* hairlines */
+  --ice: #e6eefb;           /* main text */
+  --mist: #8d9ab3;          /* secondary text */
+  --cpc: #3a52ff;           /* Amstrad blue, the original frame colour */
+  --amber: #ffc760;         /* console highlight */
+  --alert: #ff5d5d;
+  --f-display: "Chakra Petch", "Bahnschrift", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --panel-w: 300px;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--void); color: var(--ice); font: 15px/1.45 var(--f-body); overflow: hidden; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+#app { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr var(--panel-w); }
+body.panel-hidden #app { grid-template-columns: 1fr 0; }
+#stage { position: relative; min-width: 0; overflow: hidden; }
+#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#view:active { cursor: grabbing; }
+
+/* top bar over the view */
+#topbar { position: absolute; left: 0; right: 0; top: 0; padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px; display: flex; gap: 10px; align-items: flex-start; pointer-events: none; }
+#loc { pointer-events: auto; padding: 8px 14px 9px; background: color-mix(in srgb, var(--hull) 78%, transparent); border-left: 3px solid var(--cpc); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); min-width: 0; }
+#loc-deck { font: 600 11px/1.2 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+#loc-name { font: 700 20px/1.15 var(--f-display); letter-spacing: .02em; text-wrap: balance; }
+#loc.flash #loc-name { animation: locin .9s ease-out; }
+@keyframes locin { from { opacity: 0; transform: translateY(-6px); letter-spacing: .25em; } to { opacity: 1; transform: none; } }
+#tools { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; pointer-events: auto; }
+.tool { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 11px; border: 1px solid var(--line); background: color-mix(in srgb, var(--hull) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); cursor: pointer; font: 600 12px/1 var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: var(--mist); }
+.tool:hover { color: var(--ice); border-color: var(--mist); }
+.tool.on { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 60%, var(--line)); }
+.tool.off { color: var(--alert); border-color: color-mix(in srgb, var(--alert) 50%, var(--line)); }
+.tool svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+/* map */
+#mapbox { position: absolute; left: 14px; top: calc(78px + env(safe-area-inset-top, 0px)); width: min(250px, 40vw); aspect-ratio: 1 / 1; max-width: 100%; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); display: flex; flex-direction: column; }
+#detbox { position: absolute; right: 14px; top: calc(56px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; background: color-mix(in srgb, var(--hull) 80%, transparent); border: 1px solid var(--line); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; }
+#detbox img { width: 72px; height: 72px; image-rendering: pixelated; }
+#detbox span { font: 600 10px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+#detbox.ping { border-color: #ff6a6a; box-shadow: 0 0 18px rgba(255, 80, 80, .55); }
+#detbox.ping span { color: #ff8a8a; }
+.slot.ping { box-shadow: 0 0 0 2px #ff6a6a inset, 0 0 12px rgba(255, 80, 80, .6); }
+#smoke { position: absolute; inset: -10%; pointer-events: none; opacity: .7;
+  background: radial-gradient(40% 35% at 30% 40%, rgba(70,72,78,.55), transparent 70%), radial-gradient(45% 40% at 70% 55%, rgba(60,62,68,.5), transparent 70%), radial-gradient(35% 30% at 50% 75%, rgba(80,82,88,.45), transparent 70%), rgba(8,8,10,.45);
+  animation: smoke 9s ease-in-out infinite alternate; }
+@keyframes smoke { from { transform: translate(-3%, 1%) scale(1.02); } to { transform: translate(3%, -2%) scale(1.08); } }
+#vec { position: absolute; inset: 0; width: 100%; height: 100%; background: #000; }
+#cpcwrap.modal.over-only { top: auto; bottom: calc(90px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); width: auto; box-shadow: none; background: rgba(0,0,0,.7); }
+#cpcwrap.over-only canvas#cpc { display: none; }
+#map-mon { position: absolute; left: 10px; bottom: 8px; font: 700 11px/1 var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: #ff6a6a; }
+#map-title { font: 600 11px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); padding: 8px 10px 0; }
+#mapc { flex: 1; width: 100%; min-height: 0; }
+
+/* subtitles */
+#subs { position: absolute; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); width: min(760px, calc(100% - 32px)); display: flex; flex-direction: column; gap: 6px; align-items: center; pointer-events: none; }
+.sub { max-width: 100%; padding: 7px 14px 8px; background: rgba(4, 6, 10, .78); font: 500 17px/1.38 var(--f-body); text-align: center; text-wrap: balance; opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; text-shadow: 0 1px 2px #000; }
+.sub.in { opacity: 1; transform: none; }
+.sub.out { opacity: 0; transform: translateY(-8px); transition: opacity .8s ease, transform .8s ease; }
+.sub.radio { color: var(--amber); font-family: var(--f-display); letter-spacing: .04em; }
+.sub.sys { color: var(--mist); font-size: 14px; }
+#mode { position: absolute; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); font: 600 11px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); pointer-events: none; }
+#perf { position: absolute; left: 14px; bottom: 12px; font: 11px var(--f-display); color: var(--alert); }
+
+/* console panel */
+#panel { background: var(--hull); border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 16px; padding: calc(14px + env(safe-area-inset-top, 0px)) 16px calc(14px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; min-width: 0; }
+body.panel-hidden #panel { display: none; }
+.sect h2 { margin: 0 0 8px; display: flex; justify-content: space-between; align-items: baseline; font: 600 11px/1 var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--mist); }
+.sect h2 b { font-weight: 600; color: var(--ice); letter-spacing: .04em; text-transform: none; font-family: var(--f-body); font-size: 12px; max-width: 60%; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.grid { display: grid; gap: 6px; }
+#here { grid-template-columns: repeat(4, 1fr); }
+#inv { grid-template-columns: repeat(5, 1fr); }
+.slot { position: relative; aspect-ratio: 1 / 1; max-width: 100%; border: 1px solid var(--line); background: var(--plate); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.slot img { width: 72%; image-rendering: pixelated; }
+.slot .more { position: absolute; right: -6px; top: -6px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--amber); color: #111; font: 700 11px/18px var(--f-display); text-align: center; box-shadow: 0 0 0 2px var(--hull); pointer-events: none; }
+.slot .k { position: absolute; left: 3px; top: 2px; font: 600 9px/1 var(--f-display); color: var(--mist); opacity: .7; }
+.slot:hover { border-color: var(--mist); }
+.slot.full { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.slot img { -webkit-user-drag: none; pointer-events: none; }
+.dragghost { position: fixed; left: 0; top: 0; width: 56px; height: 56px; z-index: 50; pointer-events: none; display: grid; place-items: center; background: color-mix(in srgb, var(--plate) 85%, transparent); border: 1px solid var(--amber); box-shadow: 0 6px 18px rgba(0, 0, 0, .5); opacity: .92; }
+.dragghost img { width: 72%; image-rendering: pixelated; }
+body.dragging { cursor: grabbing; }
+body.drag-from-inv #here, body.drag-from-here #inv { outline: 1px dashed color-mix(in srgb, var(--amber) 60%, transparent); outline-offset: 4px; }
+body.drag-from-inv.drop-ok #here, body.drag-from-here.drop-ok #inv { outline: 2px solid var(--amber); }
+.slot.cur { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber); }
+.slot.box.full::after { content: ""; position: absolute; inset: auto 4px 4px auto; width: 6px; height: 6px; border-right: 1.5px solid var(--mist); border-bottom: 1.5px solid var(--mist); }
+#panel.choosing #here .slot { border-color: color-mix(in srgb, var(--amber) 55%, var(--line)); animation: pick 1.2s ease-in-out infinite; }
+#panel.choosing #here .slot.cur { border-color: var(--amber); }
+@keyframes pick { 50% { background: color-mix(in srgb, var(--amber) 12%, var(--plate)); } }
+#here-more { font: 600 11px var(--f-display); color: var(--mist); }
+#verbs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.verb { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 10px; border: 1px solid var(--line); background: var(--plate); cursor: pointer; font: 600 14px/1 var(--f-display); letter-spacing: .06em; text-transform: uppercase; text-align: left; }
+.verb .k { font-size: 10px; color: var(--mist); width: 10px; }
+.verb:hover { border-color: var(--mist); }
+.verb.cur { border-color: var(--cpc); background: color-mix(in srgb, var(--cpc) 22%, var(--plate)); }
+.verb:active { transform: translateY(1px); }
+.hint { color: var(--mist); font-size: 12.5px; line-height: 1.45; margin: 0; }
+.hint kbd { font: 600 11px var(--f-display); border: 1px solid var(--line); padding: 0 4px; color: var(--ice); }
+#panel-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 26px; height: 54px; border: 1px solid var(--line); background: color-mix(in srgb, var(--hull) 82%, transparent); color: var(--mist); cursor: pointer; display: none; }
+
+/* original screen */
+#cpcwrap { position: absolute; right: 14px; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); width: min(420px, 60%); background: #000; border: 2px solid var(--cpc); padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+#cpcwrap.modal { left: 50%; top: 50%; right: auto; bottom: auto; transform: translate(-50%, -50%); width: min(720px, calc(100% - 32px), calc((100vh - 120px) * 1.6)); max-height: calc(100% - 24px); overflow-y: auto; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .55); z-index: 5; }
+#cpc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+#cpc-close { width: 30px; height: 30px; border: 1px solid var(--line); background: var(--plate); color: var(--ice); font: 600 20px/1 var(--f-display); cursor: pointer; }
+#cpc-close:hover { border-color: var(--amber); color: var(--amber); }
+#cpc-title { font: 600 11px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+#cpc { width: 100%; aspect-ratio: 640 / 400; max-width: 100%; image-rendering: pixelated; display: block; }
+#keys { display: flex; flex-direction: column; gap: 4px; }
+.krow { display: flex; gap: 4px; justify-content: center; }
+.krow button { flex: 1; max-width: 44px; height: 38px; border: 1px solid var(--line); background: var(--plate); font: 600 14px var(--f-display); cursor: pointer; }
+.krow button.wide { max-width: 120px; flex: 3; font-size: 12px; }
+#epi-cta { position: absolute; left: 50%; top: calc(64px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 4; }
+#code-card { position: absolute; left: 50%; top: calc(112px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); width: min(460px, calc(100% - 32px)); background: color-mix(in srgb, var(--hull) 92%, transparent); border: 1px solid var(--line); border-top: 3px solid var(--amber); padding: 12px 14px; z-index: 4; }
+#code-card .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font: 600 15px/1.2 var(--f-display); letter-spacing: .06em; }
+#code-card .btn { height: 30px; padding: 0 10px; }
+#code-card ul { margin: 8px 0 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.55; }
+#code-card li.ok { color: #9fe3a8; } #code-card li.ko { color: #ff9a8a; }
+.sub.bravo { border-left: 3px solid var(--amber); color: #ffe7a8; }
+#epi-btns { display: flex; justify-content: center; }
+#over-btns { display: flex; gap: 8px; justify-content: center; }
+
+/* overlays */
+.overlay { position: fixed; inset: 0; background: rgba(2, 3, 6, .72); display: grid; place-items: center; padding: 16px; z-index: 20; }
+.card { width: min(560px, 100%); max-height: calc(100% - 32px); overflow-y: auto; background: var(--hull); border: 1px solid var(--line); border-top: 3px solid var(--cpc); padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+.card h3 { margin: 0; font: 700 22px/1.1 var(--f-display); letter-spacing: .03em; }
+.card h4 { margin: 0; font: 600 12px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+.card p { margin: 0; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+label.opt { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+label.opt input { margin-top: 3px; accent-color: var(--amber); width: 16px; height: 16px; flex: none; }
+label.opt small { display: block; color: var(--mist); }
+#b-remote { width: 100%; margin-top: 8px; display: flex; gap: 10px; align-items: center; justify-content: center; }
+#b-remote[hidden] { display: none; }
+#b-remote .k { opacity: .6; font-size: 11px; }
+.slot-row { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.slot-row .meta b { display: block; font: 600 14px/1.2 var(--f-display); letter-spacing: .04em; }
+.slot-row .meta small { color: var(--mist); font-size: 12.5px; }
+.slot-row .btn:disabled { opacity: .4; cursor: default; }
+.btn { height: 40px; padding: 0 16px; border: 1px solid var(--line); background: var(--plate); cursor: pointer; font: 600 13px/1 var(--f-display); letter-spacing: .08em; text-transform: uppercase; }
+.btn.primary { background: var(--amber); color: #1a1205; border-color: var(--amber); }
+.btn:hover { border-color: var(--mist); }
+.close { margin-left: auto; }
+table.keys { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+table.keys td { padding: 4px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.keys td:first-child { white-space: nowrap; color: var(--amber); font-family: var(--f-display); font-weight: 600; }
+
+/* start screen */
+#start { position: fixed; inset: 0; z-index: 30; display: flex; overflow-y: auto; padding: 16px; background: radial-gradient(120% 90% at 70% 20%, #121a2e 0%, var(--void) 60%); }
+#start .inner { width: min(620px, 100%); margin: auto; display: flex; flex-direction: column; gap: 18px; }
+#start .eyebrow { font: 600 12px/1 var(--f-display); letter-spacing: .3em; text-transform: uppercase; color: var(--mist); }
+#start h1 { margin: 0; font: 700 clamp(40px, min(11vw, 13vh), 92px)/.9 var(--f-display); letter-spacing: -.01em; text-transform: uppercase; }
+#start h1 .r { color: transparent; -webkit-text-stroke: 1.5px var(--ice); position: relative; }
+#start h1 .r::after { content: "Relief"; position: absolute; left: 4px; top: 0; -webkit-text-stroke: 1.5px var(--cpc); opacity: .9; }
+#start h1 .a { color: var(--amber); display: block; opacity: 0; transition: opacity .8s ease .1s; }
+#start h1.done .a { opacity: 1; }
+#start h1 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+#intro { display: block; width: min(560px, 100%); aspect-ratio: 4 / 1; cursor: pointer; }
+#start .credits { border-top: 1px solid rgba(255,255,255,.08); padding-top: 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px 24px; font-size: 13px; color: var(--mist); }
+#start .credits h2 { margin: 0 0 6px; font: 600 11px/1 var(--f-display); letter-spacing: .25em; text-transform: uppercase; color: var(--amber); }
+#start .credits ul { margin: 0; padding: 0; list-style: none; }
+#start .credits li { line-height: 1.55; }
+#start .credits .modern { grid-column: 1 / -1; }
+#start .credits .modern .ok { font-style: italic; opacity: .85; }
+#start .credits .quote { grid-column: 1 / -1; font-style: italic; opacity: .85; }
+#start .cpcver { border-top: 1px solid rgba(255,255,255,.08); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--mist); }
+#start .cpcver h2 { margin: 0; font: 600 11px/1 var(--f-display); letter-spacing: .25em; text-transform: uppercase; color: var(--amber); }
+#start .cpcver ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 4px; line-height: 1.5; }
+#start .cpcver b { color: #e8ecf4; font-weight: 600; }
+#start .cpcver .links { display: flex; flex-wrap: wrap; gap: 8px; }
+#start .cpcver a.btn { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: inherit; }
+#start p { margin: 0; color: var(--mist); max-width: 56ch; }
+#start .row { gap: 14px; }
+
+/* touch controls */
+#joy { position: absolute; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); width: 132px; height: 132px; border-radius: 50%; border: 1px solid rgba(230, 238, 251, .25); background: rgba(13, 18, 28, .35); display: none; touch-action: none; }
+#knob { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px; border-radius: 50%; background: rgba(230, 238, 251, .18); border: 1px solid rgba(230, 238, 251, .45); }
+body.touch #joy { display: block; }
+body.touch #subs { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
+#nogl { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; text-align: center; color: var(--mist); }
+#nogl .box { max-width: 46ch; position: relative; z-index: 6; padding: 16px 18px; background: color-mix(in srgb, var(--hull) 92%, transparent); border: 1px solid var(--line); } #nogl b { display: block; color: var(--ice); font: 600 18px/1.3 var(--f-display); margin-bottom: 8px; } #nogl p { margin: 0 0 10px; } #nogl .small { font-size: 13px; opacity: .8; }
+
+@media (max-width: 1360px) {
+  #b-cpc .lbl, #b-set .lbl, #b-help .lbl { display: none; }
+  #b-cpc, #b-set, #b-help { padding: 0 9px; }
+}
+.slot-row .btn.primary:disabled { background: var(--plate); color: var(--mist); border-color: var(--line); }
+@media (max-width: 860px) {
+  :root { --panel-w: 240px; }
+  #verbs { grid-template-columns: 1fr; }
+  .verb { height: 32px; font-size: 12.5px; }
+  #loc-name { font-size: 16px; }
+  .tool .lbl { display: none; }
+  .tool { padding: 0 9px; }
+}
+@media (max-width: 600px), (max-height: 480px) and (orientation: portrait) {
+  #app { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  body.panel-hidden #app { grid-template-columns: 1fr; }
+  #panel { border-left: 0; border-top: 1px solid var(--line); max-height: 44vh; padding-top: 10px; gap: 10px; }
+  #verbs { grid-template-columns: repeat(5, 1fr); }
+  .verb { justify-content: center; padding: 0 2px; font-size: 11px; letter-spacing: .02em; height: 34px; }
+  .verb .k { display: none; }
+  #inv { grid-template-columns: repeat(9, 1fr); }
+  #here { grid-template-columns: repeat(4, 1fr); width: 50%; }
+  .hint { display: none; }
+  #mapbox { width: 40vw; top: calc(100px + env(safe-area-inset-top, 0px)); }
+  #loc { max-width: calc(100% - 190px); }
+  #loc-deck { display: none; }
+  .sub { font-size: 15px; }
+  #cpcwrap:not(.modal) { width: 55%; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  :root { --panel-w: 230px; }
+  #panel { gap: 8px; padding-top: 8px; }
+  #verbs { grid-template-columns: 1fr 1fr; }
+  .verb { height: 28px; font-size: 11px; }
+  .hint { display: none; }
+  #mapbox { width: 30vh; }
+  body.touch #subs { bottom: 12px; left: 58%; width: 60%; }
+}
+@media (prefers-reduced-motion: reduce) { .sub, .sub.out { transition: none; } #loc.flash #loc-name { animation: none; } #panel.choosing #here .slot { animation: none; } }
+
+
+.lang-btn .flag { width: 22px; height: 15px; border-radius: 2px; overflow: hidden; display: inline-block; box-shadow: 0 0 0 1px rgba(255,255,255,.25); background-size: cover; }
+.lang-btn[data-cur="en"] .flag, .lang-opt[data-cur="en"] .flag { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3CclipPath id='t'%3E%3Cpath d='M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z'/%3E%3C/clipPath%3E%3Cpath d='M0,0 v30 h60 v-30 z' fill='%23012169'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' clip-path='url(%23t)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath d='M30,0 v30 M0,15 h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30,0 v30 M0,15 h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E"); }
+.lang-btn[data-cur="fr"] .flag, .lang-opt[data-cur="fr"] .flag { background: linear-gradient(90deg, #0055A4 33.3%, #fff 33.3% 66.6%, #EF4135 66.6%); }
+.lang-btn[data-cur="es"] .flag, .lang-opt[data-cur="es"] .flag { background: linear-gradient(180deg, #AA151B 25%, #F1BF00 25% 75%, #AA151B 75%); }
+.lang-opt .flag { width: 22px; height: 15px; border-radius: 2px; display: inline-block; box-shadow: 0 0 0 1px rgba(255,255,255,.25); background-size: cover; }
+#langmenu { position: fixed; z-index: 60; display: flex; flex-direction: column; gap: 2px; padding: 6px; background: var(--hull); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+#langmenu .lang-opt { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: none; border: 0; color: var(--ice); font: 500 14px var(--f-body); cursor: pointer; text-align: left; }
+#langmenu .lang-opt:hover, #langmenu .lang-opt.cur { background: var(--plate); }
+#langmenu .lang-opt.cur { box-shadow: inset 2px 0 0 var(--amber); }
+#start > .lang-btn { position: absolute; top: 14px; right: 16px; z-index: 2; }
+/* ---------- modern epilogue ---------- */
+#epi2 { position: fixed; inset: 0; z-index: 40; background: #020308; overflow: hidden; --tint: 230, 238, 251; }
+#epi2[hidden] { display: none; }
+#epi2 canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#epi2 .veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 80% at 50% 110%, rgba(var(--tint), .10), transparent 60%); transition: background 2s ease; }
+#epi2 .flash { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 60% at 50% 45%, #fff 0%, #ffd9a0 30%, transparent 70%); opacity: 0; }
+#epi2 .flash.go { animation: epiflash 3.2s ease-out; }
+@keyframes epiflash { 0% { opacity: 0 } 6% { opacity: 1 } 100% { opacity: 0 } }
+#epi2 .black { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity 2.6s ease; }
+#epi2 .black.on { opacity: 1; }
+#epi2 .bars { position: absolute; inset: 0; pointer-events: none; display: flex; justify-content: space-evenly; transform: translateY(-100%); transition: transform 3.5s cubic-bezier(.2,.7,.2,1); }
+#epi2 .bars.on { transform: none; }
+#epi2 .bars i { width: clamp(6px, 1.2vw, 14px); background: linear-gradient(90deg, #1b1f27, #4a5161 45%, #20242c); box-shadow: 0 0 18px #000; }
+#epi2 .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 72px 16px 110px; overflow-y: auto; }
+#epi2 .col { width: min(680px, 100%); }
+#epi2 .chap { font: 600 12px/1 var(--f-display); letter-spacing: .35em; text-transform: uppercase; color: rgb(var(--tint)); opacity: 0; transform: translateY(6px); transition: opacity 1.2s ease, transform 1.2s ease; margin-bottom: 22px; }
+#epi2 .chap.in { opacity: .75; transform: none; }
+#epi2 .txt { font: 300 clamp(19px, 2.3vw, 26px)/1.6 "Spectral", Georgia, "Times New Roman", serif; color: #e9edf6; text-wrap: pretty; }
+#epi2 .txt p { margin: 0 0 .9em; }
+#epi2 .txt .w { opacity: 0; filter: blur(6px); transition: opacity .9s ease, filter .9s ease; }
+#epi2 .txt .w.in { opacity: 1; filter: none; }
+#epi2 .txt em { font-style: italic; color: #fff; }
+#epi2 .noir { font: 700 clamp(46px, 9vw, 110px)/1 var(--f-display); text-transform: uppercase; letter-spacing: .5em; text-indent: .5em; color: #fff; text-align: center; opacity: 0; transition: opacity 2s ease 1.2s; }
+#epi2 .noir.in { opacity: .9; }
+#epi2 .end { text-align: center; }
+#epi2 .end .kicker { font: 600 12px/1 var(--f-display); letter-spacing: .35em; text-transform: uppercase; color: var(--mist); }
+#epi2 .end h2 { margin: 14px 0 6px; font: 700 clamp(40px, 7vw, 76px)/1 var(--f-display); text-transform: uppercase; color: rgb(var(--tint)); }
+#epi2 .end .sub2 { font: 300 italic 20px/1.5 "Spectral", Georgia, serif; color: #cfd6e4; margin: 0 auto 26px; max-width: 46ch; }
+#epi2 .end ul { list-style: none; padding: 0; margin: 0 auto 28px; display: inline-grid; gap: 6px; text-align: left; font-size: 14px; color: var(--mist); }
+#epi2 .end li.ok { color: #9fe3b0; } #epi2 .end li.ko { color: #f0a3a3; }
+#epi2 .end .code { font: 600 22px/1 var(--f-display); letter-spacing: .4em; color: var(--amber); }
+#epi2 .end .row { justify-content: center; flex-wrap: wrap; gap: 12px; }
+#epi2 .bar { position: absolute; z-index: 2; pointer-events: none; left: 0; right: 0; bottom: 0; padding: 14px 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: linear-gradient(transparent, rgba(0,0,0,.7)); font-size: 13px; color: var(--mist); }
+#epi2 .bar .dots { display: flex; gap: 6px; } #epi2 .bar .dots i { width: 22px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.15); } #epi2 .bar .dots i.on { background: rgb(var(--tint)); }
+#epi2 .top { position: absolute; z-index: 3; top: 0; left: 0; right: 0; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#epi2 .top .ttl { font: 600 12px/1 var(--f-display); letter-spacing: .3em; text-transform: uppercase; color: var(--mist); }
+#epi2 .entry { text-align: center; }
+#epi2 .entry h2 { font: 700 clamp(34px, 6vw, 60px)/1 var(--f-display); text-transform: uppercase; margin: 0 0 10px; }
+#epi2 .entry p { color: var(--mist); margin: 0 auto 22px; max-width: 46ch; }
+#epi2 .entry input { font: 600 32px/1 var(--f-display); letter-spacing: .45em; text-indent: .45em; text-transform: uppercase; text-align: center; width: min(360px, 100%); padding: 14px 8px; background: rgba(255,255,255,.04); color: var(--amber); border: 1px solid rgba(255,255,255,.18); border-radius: 10px; }
+#epi2 .entry .err { color: #f0a3a3; min-height: 1.4em; margin: 12px 0; font-size: 14px; }
+#epi2 .entry .row { justify-content: center; gap: 12px; }
+@media (prefers-reduced-motion: reduce) { #epi2 .txt .w, #epi2 .chap, #epi2 .noir { transition: none; } #epi2 .flash.go { animation: none; } }
+.sub .pg{margin-left:.35em;opacity:.75;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sub .pg .more{display:inline-block;color:#ffb347;animation:pgblink 1s steps(2,start) infinite}
+.sub .pg .end{color:#ffb347;font-size:.8em}
+@keyframes pgblink{to{visibility:hidden}}
+</style>
+
+<div id="app">
+  <div id="stage">
+    <canvas id="view" aria-label="Vue 3D"></canvas>
+    <canvas id="vec" hidden aria-label="Animation vectorielle"></canvas>
+    <div id="smoke" hidden></div>
+    <div id="nogl" hidden><div class="box"><b>Vue 3D indisponible dans ce navigateur</b><p>Ce navigateur n'a pas pu démarrer WebGL, nécessaire à la vue 3D. Ouvrez cette page dans un autre navigateur : Chrome ou Firefox (ordinateur, Android), Safari (iPhone, iPad, Mac).</p><p class="nogl-who" hidden></p><p class="small">En attendant, le jeu reste jouable sur l'écran d'origine (bouton CPC).</p></div></div>
+    <div id="topbar">
+      <div id="loc"><div id="loc-deck"></div><div id="loc-name">Relief Action</div></div>
+      <div id="tools">
+        <button class="tool" id="b-map" title="Plan de l'étage (M)"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z M9 4v14 M15 6v14"/></svg><span class="lbl">Plan</span></button>
+        <button class="tool" id="b-mode" title="Fil de fer ou faces pleines (V)"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 12l8-4.5 M12 12v9 M12 12L4 7.5"/></svg><span class="lbl">Vue</span></button>
+        <button class="tool" id="b-monster" title="Activer ou désactiver le monstre"><svg viewBox="0 0 24 24"><path d="M5 20c0-6 3-9 7-9s7 3 7 9 M8 9a4 4 0 118 0 M9 15l1.5 1.5L12 15l1.5 1.5L15 15"/></svg><span class="lbl">Monstre</span></button>
+        <button class="tool" id="b-cpc" title="Écran d'origine du CPC (C)"><svg viewBox="0 0 24 24"><path d="M3 5h18v11H3z M8 20h8 M12 16v4"/></svg><span class="lbl">CPC</span></button>
+        <button class="tool" id="b-saves" title="Sauvegarder ou charger (F5 / F9)"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6"/></svg><span class="lbl">Partie</span></button>
+        <button class="tool" id="b-set" title="Options"><svg viewBox="0 0 24 24"><path d="M4 7h10 M18 7h2 M4 17h4 M12 17h8 M14 4v6 M8 14v6"/></svg><span class="lbl">Options</span></button>
+        <button class="tool" id="b-help" title="Commandes (H)"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 110-18 9 9 0 010 18z M9.5 9.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5 M12 17h.01"/></svg><span class="lbl">Aide</span></button>
+        <button class="tool lang-btn" id="b-lang" title="Langue / Language"><span class="flag" aria-hidden="true"></span><span class="lbl lang-lbl">EN</span></button>
+        <button class="tool" id="b-full" title="Plein écran"><svg viewBox="0 0 24 24"><path d="M4 9V4h5 M20 9V4h-5 M4 15v5h5 M20 15v5h-5"/></svg></button>
+      </div>
+    </div>
+    <div id="detbox" hidden><img id="det-img" alt="Détecteur"><span>Détecteur</span></div>
+    <div id="mapbox" hidden><div id="map-title"></div><div id="map-mon" hidden></div><canvas id="mapc"></canvas></div>
+    <div id="subs" aria-live="polite"></div>
+    <div id="mode"></div>
+    <div id="perf"></div>
+    <button class="btn primary" id="epi-cta" hidden>Lancer l'épilogue</button>
+    <div id="code-card" hidden><div class="row"><b>Code de fin · <span id="code-word"></span></b><button class="btn" id="code-close">×</button></div><ul id="code-lines"></ul></div>
+    <div id="joy" aria-label="Déplacement"><div id="knob"></div></div>
+    <div id="cpcwrap" hidden>
+      <div id="cpc-head"><div id="cpc-title">Écran d'origine</div><button id="cpc-close" hidden title="Quitter le moniteur (S)">×</button></div>
+      <canvas id="cpc" width="640" height="200"></canvas>
+      <div id="keys" hidden></div>
+      <div id="over-btns" hidden><button class="btn primary" id="over-yes">Oui, rejouer</button></div>
+      <div id="epi-btns" hidden><button class="btn" id="epi-quit">Quitter l'épilogue · nouvelle partie</button></div>
+    </div>
+    <button id="panel-toggle" title="Afficher ou masquer la console">⋮</button>
+  </div>
+  <aside id="panel">
+    <section class="sect">
+      <h2>Dans la pièce <span id="here-more"></span></h2>
+      <div class="grid" id="here"></div>
+    </section>
+    <section class="sect">
+      <h2>Inventaire <b id="sel">—</b></h2>
+      <div class="grid" id="inv"></div>
+    </section>
+    <section class="sect">
+      <h2>Actions</h2>
+      <div id="verbs"></div>
+      <button class="btn" id="b-remote" hidden><span class="k">Espace</span> Télécommande des portes</button>
+    </section>
+    <p class="hint">L'action porte sur l'objet sélectionné de l'inventaire. Pour prendre, cliquez l'objet dans la pièce. Déplacement <span class="mvkeys"><kbd>Z</kbd><kbd>Q</kbd><kbd>S</kbd><kbd>D</kbd></span> ou flèches, regard à la souris. Télécommande des portes : <kbd>Espace</kbd>. Sauvegarde rapide <kbd>F5</kbd>, chargement <kbd>F9</kbd>.</p>
+  </aside>
+</div>
+
+<div class="overlay" id="settings" hidden>
+  <div class="card" role="dialog" aria-label="Options">
+    <div class="row"><h3>Options</h3><button class="btn close">Fermer</button></div>
+    <label class="opt"><input type="checkbox" id="o-monster" data-pref="monster"><span>Monstre actif<small>Décoché, le monstre reste où il est et ne peut plus vous tuer.</small></span></label>
+    <label class="opt"><input type="checkbox" id="o-time" data-pref="infTime"><span>Temps infini<small>Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).</small></span></label>
+    <label class="opt"><input type="checkbox" id="o-turbo" data-pref="turbo"><span>Accélérer les attentes du jeu<small>Calcul 3D, défilement des menus et des messages instantanés. Le rythme du monstre ne change pas.</small></span></label>
+    <label class="opt"><input type="checkbox" id="o-hot" data-pref="hotspots"><span>Montrer les points d'interaction<small>Boutons, serrures et curseurs de la pièce, en orange quand ils sont à portée.</small></span></label>
+    <label class="opt"><input type="checkbox" id="o-mmap" data-pref="monsterBlink"><span>Montrer le monstre sur le plan<small>Sa salle clignote en rouge ; s'il est à un autre étage, le plan l'indique.</small></span></label>
+    <label class="opt"><input type="checkbox" id="o-inv" data-pref="invertY"><span>Inverser le regard vertical</span></label>
+    <h4>Partie</h4>
+    <div class="row"><button class="btn" id="b-open-saves">Sauvegardes…</button><button class="btn" id="b-restart">Recommencer</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="saves" hidden>
+  <div class="card" role="dialog" aria-label="Sauvegardes">
+    <div class="row"><h3>Sauvegardes</h3><button class="btn close">Fermer</button></div>
+    <div id="slots"></div>
+    <div class="row"><button class="btn" id="b-restart2">Recommencer la partie</button></div>
+    <h4>Fichier</h4>
+    <div class="row"><button class="btn" id="b-export">Exporter la partie</button><button class="btn" id="b-import">Importer un fichier</button><input type="file" id="f-import" accept=".json,.relief,application/json" hidden></div>
+    <p class="hint">F5 : sauvegarde rapide · F9 : chargement rapide. Les emplacements restent dans ce navigateur ; exportez un fichier pour changer d'appareil ou garder une copie.</p>
+  </div>
+</div>
+
+<div class="overlay" id="help" hidden>
+  <div class="card" role="dialog" aria-label="Commandes">
+    <div class="row"><h3>Commandes</h3><button class="btn close">Fermer</button></div>
+    <table class="keys">
+      <tr><td>Z Q S D / flèches</td><td>Avancer, pas de côté, reculer. Les flèches gauche/droite tournent.</td></tr>
+      <tr><td>Souris (glisser)</td><td>Tourner et lever ou baisser les yeux. Molette : regard vertical.</td></tr>
+      <tr><td>1 … 0</td><td>Actions : Poser, Prendre, Utiliser, Appuyer, Régler, Verser, Relief, Dormir, Manger, Boire.</td></tr>
+      <tr><td>[ ] ou Tab</td><td>Changer l'objet sélectionné dans l'inventaire.</td></tr>
+      <tr><td>T / U</td><td>Prendre / Utiliser.</td></tr>
+      <tr><td>Glisser un objet</td><td>De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.</td></tr>
+      <tr><td>Espace · O</td><td>Télécommande : ouvre les portes télécommandées en vue (il faut l'avoir dans l'inventaire). Manette : LB.</td></tr>
+      <tr><td>Entrée</td><td>Refaire l'action en surbrillance.</td></tr>
+      <tr><td>Épilogue</td><td>En fin de partie le jeu donne un code : le bouton « Lancer l'épilogue » le tape pour vous. Depuis l'accueil, le bouton Épilogue permet de saisir un code à la main.</td></tr>
+      <tr><td>F5 · F9</td><td>Sauvegarde rapide · chargement rapide. Bouton Partie : 4 emplacements, export et import de fichier.</td></tr>
+      <tr><td>M · V · C</td><td>Plan · fil de fer ou faces · écran d'origine.</td></tr>
+      <tr><td>Échap</td><td>Annuler un choix d'objet, fermer.</td></tr>
+      <tr><td>Tactile</td><td>Joystick à gauche pour marcher, glisser ailleurs sur la vue pour regarder.</td></tr>
+      <tr><td>Manette</td><td>Stick gauche : marcher. Stick droit : regarder. Croix + A : menus d'origine. X : prendre. LB : télécommande. Y : plan. Select : vue. B : annuler.</td></tr>
+    </table>
+    <p class="hint">Pour appuyer sur un bouton ou utiliser une serrure, approchez-vous et regardez-la avant de choisir l'action, comme dans le jeu d'origine. Les codes et terminaux affichent l'écran du CPC : tapez au clavier ou sur les touches à l'écran.</p>
+  </div>
+</div>
+
+<div id="epi2" hidden>
+  <canvas id="epi2-sky"></canvas><div class="veil"></div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="flash"></div><div class="black"></div>
+  <div class="top"><span class="ttl">Relief Action · Épilogue</span><span><button class="btn" id="epi2-cpc" title="Lancer le programme Épilogue d'origine sur l'Amstrad émulé">Écran CPC d'origine</button> <button class="btn" id="epi2-close" title="Fermer (Échap)">×</button></span></div>
+  <div class="stage"><div class="col" id="epi2-col"></div></div>
+  <div class="bar"><div class="dots" id="epi2-dots"></div><span id="epi2-hint">Clic, Espace ou Entrée pour continuer</span></div>
+</div>
+<div id="start">
+  <button class="tool lang-btn" id="b-lang2" title="Langue / Language"><span class="flag" aria-hidden="true"></span><span class="lbl lang-lbl">EN</span></button>
+  <div class="inner">
+    <div class="eyebrow">Loriciels · Amstrad CPC · 1987</div>
+    <h1><canvas id="intro" aria-label="Relief"></canvas><span class="r sr">Relief</span><span class="a">Action</span></h1>
+    <p>Vous vous réveillez seul dans la chambre d'hibernation d'un vaisseau à la dérive. Quelque chose rôde dans les coursives. Le jeu d'origine tourne ici tel quel, sur un Amstrad émulé ; seuls l'image, les messages et les commandes ont été modernisés.</p>
+    <label class="opt"><input type="checkbox" id="start-time"><span>Temps infini<small>Pas d'autodestruction du vaisseau au bout du temps imparti.</small></span></label>
+    <label class="opt"><input type="checkbox" id="start-monster"><span>Monstre actif<small>Décochez pour explorer le vaisseau sans danger.</small></span></label>
+    <div class="row"><button class="btn primary" id="b-start">Jouer</button><button class="btn" id="b-continue" hidden>Continuer</button><button class="btn" id="b-epi">Épilogue</button><span class="hint">Entrée pour commencer · H pour l'aide</span></div>
+    <section class="credits" aria-label="Le jeu original">
+      <div><h2>Réalisé par</h2><ul><li>Christophe Courrier</li><li>Gilles Debever</li><li>Bertrand Debever</li><li>Christophe Grosjean</li></ul></div>
+      <div><h2>Le jeu original</h2><ul><li>Relief Action, Loriciels</li><li>Copyright mars 1987</li><li>Amstrad CPC</li><li>Disquette : jeu, démo et Épilogue (qui demande le code obtenu en jouant)</li></ul></div>
+      <div class="modern"><h2>Versions modernisées</h2><ul><li>jaymanu, avec Claude (Anthropic)</li><li>Version navigateur, traductions et disquette enrichie</li><li>Traduction espagnole : MiguelSky</li><li class="ok">Diffusé avec l'accord écrit de l'un des auteurs originaux.</li></ul></div>
+      <p class="quote">« Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels</p>
+    </section>
+    <section class="cpcver" aria-label="Sur un vrai Amstrad CPC">
+      <h2>Sur un vrai Amstrad CPC</h2>
+      <p>La disquette du jeu a aussi été enrichie. Son menu de lancement ajoute :</p>
+      <ul>
+        <li><b>Des traductions complètes, en anglais et en espagnol :</b> messages du jeu, verbes, épilogue et démo. La langue se choisit au lancement (touche L), le français reste la version d'origine.</li>
+        <li><b>Un trainer :</b> temps infini (pas d'autodestruction du vaisseau) et monstre endormi, chacun activable dans le menu.</li>
+        <li><b>Un correctif</b> qui permet de sauvegarder sa partie avec une Multiface ou un instantané d'émulateur.</li>
+        <li>La démo et l'épilogue restent accessibles depuis le même menu.</li>
+      </ul>
+      <div class="links">
+        <a class="btn" href="relief-action.dsk" download data-goatcounter-click="telechargement-dsk" data-goatcounter-title="Téléchargement disquette">Télécharger la disquette (.dsk)</a>
+        <a class="btn" href="relief-action-plans.pdf" target="_blank" rel="noopener" data-goatcounter-click="plans-pdf" data-goatcounter-title="Plans PDF">Plans des 3 ponts (PDF)</a>
+        <a class="btn" href="https://www.cpc-power.com/index.php?page=detail&amp;num=1783" target="_blank" rel="noopener">Fiche du jeu sur CPC-Power ↗</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script data-goatcounter="https://jaymanu.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!--SCRIPTS-->

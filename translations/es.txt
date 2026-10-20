@@ -225,7 +225,7 @@ tr: Cocina
 @msg.020
 fr: Office
 en: Pantry
-tr: Despacho
+tr: Despensa
 
 @msg.021
 fr: Ascenseur
@@ -1704,7 +1704,7 @@ tr: Cocina
 @room.13
 fr: Office
 en: Pantry
-tr: Despacho
+tr: Despensa
 
 @room.14
 fr: Ascenseur
@@ -2989,7 +2989,7 @@ tr: Jugar
 @ui.194
 fr:  — cliquer ou glisser vers l'inventaire pour prendre
 en:  — click or drag to the inventory to take
-tr: — click or arrastrar al inventario para coger
+tr: — click o arrastrar al inventario para coger
 
 @ui.195
 fr:  — glisser vers la pièce pour poser

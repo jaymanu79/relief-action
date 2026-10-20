@@ -19,6 +19,10 @@ Fiche du jeu sur CPC-Power : **https://www.cpc-power.com/index.php?page=detail&n
 
 Vous voulez traduire le jeu dans votre langue ? Tout est expliqué dans [translations/](translations/README.md) : un seul fichier texte à remplir, puis une pull request.
 
+## Compiler
+
+Tout se reconstruit depuis les sources avec `sh build/build.sh` (Python 3) : voir [build/](build/README.md).
+
 ## Crédits
 
 - Jeu original : Loriciels, 1987 — voir la [fiche CPC-Power](https://www.cpc-power.com/index.php?page=detail&num=1783).
@@ -42,5 +46,7 @@ The game on CPC-Power: **https://www.cpc-power.com/index.php?page=detail&num=178
 - `relief-action-plans.pdf` — vector maps of the ship's three decks.
 
 Want to translate the game into your language? See [translations/](translations/README.md): one text file to fill in, then a pull request.
+
+Everything is rebuilt from the sources with `sh build/build.sh` (Python 3): see [build/](build/README.md).
 
 Credits: original game by Loriciels (1987); modernised versions by jaymanu, with Claude (Anthropic); Spanish translation by MiguelSky; distributed with the written permission of one of the original authors.
