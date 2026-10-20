@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>[hidden]{display:none!important}body{margin:0}</style></head><body><title>Relief Action</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Relief Action (Loriciels, 1987) — jouer en ligne / play online</title><meta name="description" content="Relief Action (Loriciels, 1987): the Amstrad CPC 3D adventure, playable free in your browser with modernised 3D. Français / English."><meta property="og:type" content="website"><meta property="og:url" content="https://jaymanu79.github.io/relief-action/"><meta property="og:title" content="Relief Action (1987) — play it in your browser"><meta property="og:description" content="The Amstrad CPC 3D adventure by Loriciels, reverse-engineered and playable free online in modernised 3D. Français / English."><meta property="og:image" content="https://jaymanu79.github.io/relief-action/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%2305070c%22/%3E%3Cpath d=%22M14 50V14h18a10 10 0 0 1 0 20H14m16 0 16 16%22 fill=%22none%22 stroke=%22%236fa8ff%22 stroke-width=%225%22/%3E%3C/svg%3E"><style>[hidden]{display:none!important}body{margin:0}</style></head><body><title>Relief Action</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap">
 <style>
@@ -2014,7 +2014,7 @@ function Renderer(canvas) {
       for (const b of buffers) {
         if (!b.nf) continue;
         if (b.room) gl.polygonOffset(1.5, 2); else gl.polygonOffset(-1, -4);
-        gl.uniform1f(pf.loc.uClip, b.room ? 0 : 1);
+        gl.uniform1f(pf.loc.uClip, b.room && !this.clipRoom ? 0 : 1);
         gl.uniform3fv(pf.loc.uBase, b.room || b.frame ? th.face : th.door);
         gl.bindBuffer(gl.ARRAY_BUFFER, b.fb);
         gl.enableVertexAttribArray(pf.loc.aPos); gl.vertexAttribPointer(pf.loc.aPos, 3, gl.FLOAT, false, 28, 0);
@@ -2153,7 +2153,7 @@ function Renderer(canvas) {
     gl.uniform3fv(pl.loc.uFogCol, th.fog);
     for (const b of buffers) {
       if (!b.nl) continue;
-      gl.uniform1f(pl.loc.uClip, b.room ? 0 : 1);
+      gl.uniform1f(pl.loc.uClip, b.room && !this.clipRoom ? 0 : 1);
       const c = solid ? (b.room || b.frame ? th.line : [1, 0.85, 0.6]) : (b.room || b.frame ? th.wire : [1, 0.85, 0.55]);
       gl.uniform3fv(pl.loc.uCol, this.dark ? c.map(x => x * 0.55) : solid ? c.map(x => Math.min(1, x * 1.05)) : c);
       gl.bindBuffer(gl.ARRAY_BUFFER, b.lb);
@@ -3038,8 +3038,9 @@ const WINDOWS = {
   0x1B: [{ pts: [[0,25,148],[104,25,148],[104,52,148],[0,52,148]], stars: true }],
   0x1C: [{ pts: [[0,25,148],[104,25,148],[104,52,148],[0,52,148]], stars: true }],
   // commander's room: the two slanted faces of the bow point, above the desk, are a bay window (frame and centre post stay)
-  0x17: [{ pts: [[4,24,162.7],[56,24,197.3],[56,56,197.3],[4,56,162.7]], stars: true },
-         { pts: [[64,24,197.3],[116,24,162.7],[116,56,162.7],[64,56,197.3]], stars: true }],
+  // (the panes sit 1.5 units inside the room: the wall behind them is slightly warped and would poke through)
+  0x17: [{ pts: [[4.83,24,161.45],[56.83,24,196.05],[56.83,56,196.05],[4.83,56,161.45]], stars: true },
+         { pts: [[63.17,24,196.05],[115.17,24,161.45],[115.17,56,161.45],[63.17,56,196.05]], stars: true }],
   // trans-photonic transceiver: the three upper rings of the dome are glass (bottom ring and cap stay opaque)
   0x0C: [{ pts: [[224,41,163],[205,77,155],[205,77,85],[224,41,77]], stars: true }, { pts: [[163,41,224],[155,77,205],[205,77,155],[224,41,163]], stars: true }, { pts: [[155,77,35],[140,77,30],[140,41,9],[163,41,16]], stars: true }, { pts: [[143,104,65],[140,77,30],[155,77,35]], stars: true }, { pts: [[175,104,97],[175,104,143],[139,118,128],[139,118,112]], stars: true }, { pts: [[77,41,224],[85,77,205],[155,77,205],[163,41,224]], stars: true }, { pts: [[175,104,143],[143,104,175],[128,118,139],[139,118,128]], stars: true }, { pts: [[101,118,112],[101,118,128],[65,104,143],[65,104,97]], stars: true }, { pts: [[16,41,163],[35,77,155],[85,77,205],[77,41,224]], stars: true }, { pts: [[143,104,175],[97,104,175],[112,118,139],[128,118,139]], stars: true }, { pts: [[100,41,9],[100,77,30],[85,77,35],[77,41,16]], stars: true }, { pts: [[224,41,77],[205,77,85],[155,77,35],[163,41,16]], stars: true }, { pts: [[205,77,155],[175,104,143],[175,104,97],[205,77,85]], stars: true }, { pts: [[155,77,205],[143,104,175],[175,104,143],[205,77,155]], stars: true }, { pts: [[85,77,35],[35,77,85],[16,41,77],[77,41,16]], stars: true }, { pts: [[16,41,77],[35,77,85],[35,77,155],[16,41,163]], stars: true }, { pts: [[85,77,205],[97,104,175],[143,104,175],[155,77,205]], stars: true }, { pts: [[100,77,30],[97,104,65],[85,77,35]], stars: true }, { pts: [[85,77,35],[97,104,65],[65,104,97],[35,77,85]], stars: true }, { pts: [[35,77,155],[65,104,143],[97,104,175],[85,77,205]], stars: true }, { pts: [[65,104,143],[101,118,128],[112,118,139],[97,104,175]], stars: true }, { pts: [[205,77,85],[175,104,97],[143,104,65],[155,77,35]], stars: true }, { pts: [[175,104,97],[139,118,112],[143,104,65]], stars: true }, { pts: [[97,104,65],[101,118,112],[65,104,97]], stars: true }, { pts: [[35,77,85],[65,104,97],[65,104,143],[35,77,155]], stars: true }],
   // transmission and astrogation rooms: slanted glass roof above the consoles
