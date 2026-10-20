@@ -1589,11 +1589,18 @@ uniform mat4 uMVP;
 varying vec3 vPos; varying vec3 vNrm; varying float vTone;
 void main(){ vPos = aPos; vNrm = aNrm; vTone = aTone; gl_Position = uMVP * vec4(aPos, 1.0); }`;
 const FS_FACE = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
 precision mediump float;
+#endif
 varying vec3 vPos; varying vec3 vNrm; varying float vTone;
-uniform vec3 uEye; uniform vec3 uBase; uniform vec3 uLamp; uniform float uFog; uniform vec3 uFogCol; uniform float uAmb;
+uniform vec3 uEye; uniform vec3 uBase; uniform vec3 uLamp; uniform float uFog; uniform vec3 uFogCol; uniform float uAmb; uniform vec4 uPlane; uniform float uClip;
 void main(){
   vec3 n = normalize(vNrm);
+  // objects are drawn from the player's plane on, as in the game; the room itself also between the eye and the player,
+  // so a wall you brush against does not leave a black band at the edge of the view
+  if (uClip > 0.5 && dot(uPlane.xyz, vPos) < uPlane.w) discard;
   vec3 L = uEye - vPos; float d = length(L); L /= d;
   float diff = abs(dot(n, L));
   float att = 1.0 / (1.0 + d * d * 0.00045);
@@ -1604,14 +1611,20 @@ void main(){
   gl_FragColor = vec4(mix(uFogCol, col, f), 1.0);
 }`;
 const VS_LINE = `
-attribute vec3 aPos; attribute float aTone; uniform mat4 uMVP; uniform vec3 uEye; uniform float uPull; varying float vD; varying float vTone;
-void main(){ vec3 d = uEye - aPos; float l = length(d); vD = l; vTone = aTone;
+attribute vec3 aPos; attribute float aTone; uniform mat4 uMVP; uniform vec3 uEye; uniform float uPull; varying float vD; varying float vTone; varying vec3 vW;
+void main(){ vec3 d = uEye - aPos; float l = length(d); vD = l; vTone = aTone; vW = aPos;
   // pull lines slightly towards the eye so details lying just behind a reconstructed face stay visible
   vec3 p = aPos + d / max(l, 0.001) * min(uPull * (1.0 + 0.03 * l), l * 0.5);
   gl_Position = uMVP * vec4(p, 1.0); }`;
 const FS_LINE = `
-precision mediump float; uniform vec3 uCol; uniform float uFog; uniform vec3 uFogCol; uniform float uDots; varying float vD; varying float vTone;
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform vec3 uCol; uniform float uFog; uniform vec3 uFogCol; uniform float uDots; uniform vec4 uPlane; uniform float uClip; varying float vD; varying float vTone; varying vec3 vW;
 void main(){
+  if (uClip > 0.5 && dot(uPlane.xyz, vW) < uPlane.w) discard;
   if (uDots > 0.0) { vec2 c = floor(gl_FragCoord.xy / 2.0); if (fract(sin(dot(c, vec2(12.9898, 78.233))) * 43758.5453) > uDots) discard; }
   float f = clamp(exp(-vD * uFog), 0.0, 1.0); gl_FragColor = vec4(mix(uFogCol, uCol * vTone, f), 1.0); }`;
 
@@ -1753,6 +1766,7 @@ function Renderer(canvas) {
   this.theme = { face: [0.40, 0.43, 0.50], line: [0.85, 0.92, 1.0], wire: [0.92, 0.96, 1.0], door: [0.62, 0.42, 0.22], fog: [0.02, 0.026, 0.04], clear: [0.0, 0.0, 0.0] };
   let buffers = [];            // [{faceBuf, faceCount, lineBuf, lineCount, kind}]
   let portalBuf = null, portalN = 0;   // open doorways, drawn as dark openings
+  let roomTris = null;                 // room faces (x y z nx ny nz tone per vertex), for the eye clamp
   let recessBuf = null, recessN = 0; const RECESS = 18;   // depth of the doorway recess
   this.portalStyle = 'recess';         // 'recess' or 'black' (flat dark opening, as before)
   const roomBBox = scene => { const r = scene.models.find(m => m.kind === 'room'); return r ? bbox(r.verts.filter(Boolean)) : null; };
@@ -1845,7 +1859,7 @@ function Renderer(canvas) {
 
   this.setScene = function (scene) {
     for (const b of buffers) { gl.deleteBuffer(b.fb); gl.deleteBuffer(b.lb); if (b.wb) gl.deleteBuffer(b.wb); }
-    buffers = [];
+    buffers = []; roomTris = null;
     if (portalBuf) { gl.deleteBuffer(portalBuf); portalBuf = null; portalN = 0; }
     if (!scene) return;
     const pv = [];
@@ -1884,6 +1898,7 @@ function Renderer(canvas) {
       const fb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, fb); gl.bufferData(gl.ARRAY_BUFFER, g.faces, gl.STATIC_DRAW);
       const lb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, lb); gl.bufferData(gl.ARRAY_BUFFER, g.lines, gl.STATIC_DRAW);
       let wb = null; if (g.wins.length) { wb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, wb); gl.bufferData(gl.ARRAY_BUFFER, g.wins, gl.STATIC_DRAW); }
+      if (isRoom) roomTris = g.faces;
       buffers.push({ fb, nf: g.faces.length / 7, lb, nl: g.lines.length / 4, wb, nw: g.wins.length / 4, room: isRoom, frame: m.kind === 'frame', bbox: g.bbox });
     });
     const rb = buffers.find(b => b.room); this.roomBox = rb ? rb.bbox : null;
@@ -1915,6 +1930,23 @@ function Renderer(canvas) {
   }
   this.prepare = function (scene) { scene.models.forEach((m, i) => buildModel(m, m.kind === 'room')); };
 
+  // distance from (x, y, z) along d to the nearest room face (Moller-Trumbore), Infinity if none
+  function rayBack(x, y, z, dx, dy, dz) {
+    const T = roomTris; if (!T) return Infinity;
+    let best = Infinity;
+    for (let i = 0; i + 20 < T.length; i += 21) {
+      const ax = T[i], ay = T[i + 1], az = T[i + 2];
+      const e1x = T[i + 7] - ax, e1y = T[i + 8] - ay, e1z = T[i + 9] - az, e2x = T[i + 14] - ax, e2y = T[i + 15] - ay, e2z = T[i + 16] - az;
+      const px = dy * e2z - dz * e2y, py = dz * e2x - dx * e2z, pz = dx * e2y - dy * e2x;
+      const det = e1x * px + e1y * py + e1z * pz; if (Math.abs(det) < 1e-9) continue;
+      const inv = 1 / det, tx = x - ax, ty = y - ay, tz = z - az;
+      const u = (tx * px + ty * py + tz * pz) * inv; if (u < 0 || u > 1) continue;
+      const qx = ty * e1z - tz * e1y, qy = tz * e1x - tx * e1z, qz = tx * e1y - ty * e1x;
+      const v = (dx * qx + dy * qy + dz * qz) * inv; if (v < 0 || u + v > 1) continue;
+      const t = (e2x * qx + e2y * qy + e2z * qz) * inv; if (t > 0.01 && t < best) best = t;
+    }
+    return best;
+  }
   function viewProj(cam, aspect, eyeShift) {
     const th = cam.yaw, ph = cam.pitch;
     const ct = Math.cos(th), st = Math.sin(th), cp = Math.cos(ph), sp = Math.sin(ph);
@@ -1926,7 +1958,10 @@ function Renderer(canvas) {
     // the game projects with x' = x*F/(depth+F) (depth in 1/16 units, F = &C7DB): the true centre of projection sits
     // F/16 behind the player and everything in front of the player's plane is drawn; the visor (F=70) gives a
     // strong fish-eye, the glasses (F=200) a flatter, zoomed view.
-    const F = cam.focal || 150, back = F / 16;
+    const F = cam.focal || 150;
+    // the centre of projection sits F/16 behind the player; keep it inside the room (in front of the wall behind you),
+    // otherwise the strip of view between that wall and the player shows nothing
+    const back = Math.max(0.4, Math.min(F / 16, rayBack(cam.x, cam.y, cam.z, -f[0], -f[1], -f[2]) - 0.8));
     const ex = cam.x + r[0] * eyeShift - f[0] * back, ey = cam.y - f[1] * back, ez = cam.z + r[2] * eyeShift - f[2] * back;
     const V = new Float32Array([
       r[0], u[0], -f[0], 0,
@@ -1935,10 +1970,11 @@ function Renderer(canvas) {
       -(r[0] * ex + r[1] * ey + r[2] * ez), -(u[0] * ex + u[1] * ey + u[2] * ez), (f[0] * ex + f[1] * ey + f[2] * ez), 1]);
     const tanH = 157.6 / F, k = tanH / 1.0503;   // 157.6/150 = tan(1.62/2): the field of view tuned on the CPC screen
     const ty = Math.max(Math.tan(0.375) * k, Math.min(Math.tan(0.875) * k, tanH / aspect));
-    const near = back + 0.6, far = 2000;
+    const near = 0.3, far = 2000;                 // clipping at the player's plane is done per fragment (uPlane)
     const t = 1 / ty;
     const P = new Float32Array([t / aspect, 0, 0, 0, 0, t, 0, 0, 0, 0, (far + near) / (near - far), -1, 0, 0, 2 * far * near / (near - far), 0]);
-    return { mvp: mat4mul(P, V), eye: [ex, ey, ez] };
+    const pc = cam.x * f[0] + cam.y * f[1] + cam.z * f[2] + 0.6;
+    return { mvp: mat4mul(P, V), eye: [ex, ey, ez], plane: new Float32Array([f[0], f[1], f[2], pc]) };
   }
 
   this.render = function () {
@@ -1968,7 +2004,7 @@ function Renderer(canvas) {
     gl.enable(gl.DEPTH_TEST); gl.disable(gl.CULL_FACE);
     if (solid) {
       gl.useProgram(pf.p);
-      gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp);
+      gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform4fv(pf.loc.uPlane, vp.plane); gl.uniform1f(pf.loc.uClip, 0);
       gl.uniform3fv(pf.loc.uEye, vp.eye);
       gl.uniform3fv(pf.loc.uLamp, [1.05, 1.0, 0.92]);
       gl.uniform1f(pf.loc.uAmb, 0.30);
@@ -1978,6 +2014,7 @@ function Renderer(canvas) {
       for (const b of buffers) {
         if (!b.nf) continue;
         if (b.room) gl.polygonOffset(1.5, 2); else gl.polygonOffset(-1, -4);
+        gl.uniform1f(pf.loc.uClip, b.room ? 0 : 1);
         gl.uniform3fv(pf.loc.uBase, b.room || b.frame ? th.face : th.door);
         gl.bindBuffer(gl.ARRAY_BUFFER, b.fb);
         gl.enableVertexAttribArray(pf.loc.aPos); gl.vertexAttribPointer(pf.loc.aPos, 3, gl.FLOAT, false, 28, 0);
@@ -1989,7 +2026,7 @@ function Renderer(canvas) {
       if (portalN && this.portalStyle === 'recess' && recessN) {
         // mark the visible part of each opening, reset the depth there, then draw the recess inside the mark only
         gl.useProgram(pl.p);
-        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye); gl.uniform1f(pl.loc.uPull, 0);
+        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye); gl.uniform1f(pl.loc.uPull, 0);
         gl.clearStencil(0); gl.clear(gl.STENCIL_BUFFER_BIT); gl.enable(gl.STENCIL_TEST);
         gl.stencilFunc(gl.ALWAYS, 1, 0xFF); gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
         gl.colorMask(false, false, false, false); gl.depthMask(false); gl.polygonOffset(-2, -10);
@@ -2002,7 +2039,7 @@ function Renderer(canvas) {
         gl.drawArrays(gl.TRIANGLES, 0, portalN); gl.disableVertexAttribArray(pl.loc.aTone);
         gl.depthRange(0, 1); gl.depthFunc(gl.LESS); gl.colorMask(this._mask[0], this._mask[1], this._mask[2], true);
         gl.useProgram(pf.p); gl.polygonOffset(0, 0);
-        gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform3fv(pf.loc.uEye, vp.eye); gl.uniform3fv(pf.loc.uBase, th.face);
+        gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform4fv(pf.loc.uPlane, vp.plane); gl.uniform1f(pf.loc.uClip, 0); gl.uniform3fv(pf.loc.uEye, vp.eye); gl.uniform3fv(pf.loc.uBase, th.face);
         gl.bindBuffer(gl.ARRAY_BUFFER, recessBuf);
         gl.enableVertexAttribArray(pf.loc.aPos); gl.vertexAttribPointer(pf.loc.aPos, 3, gl.FLOAT, false, 28, 0);
         gl.enableVertexAttribArray(pf.loc.aNrm); gl.vertexAttribPointer(pf.loc.aNrm, 3, gl.FLOAT, false, 28, 12);
@@ -2012,7 +2049,7 @@ function Renderer(canvas) {
         gl.disable(gl.STENCIL_TEST);
       } else if (portalN) {
         gl.useProgram(pl.p);
-        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp);
+        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0);
         gl.uniform3fv(pl.loc.uEye, vp.eye);
         gl.uniform1f(pl.loc.uFog, 0);
         gl.uniform1f(pl.loc.uPull, 0);
@@ -2029,7 +2066,7 @@ function Renderer(canvas) {
       if (extraWin) wins.push({ wb: extraWin, nw: extraWinN, extra: true });
       if (wins.length) {
         gl.useProgram(pl.p);
-        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye);
+        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye);
         gl.uniform1f(pl.loc.uFog, 0); gl.uniform1f(pl.loc.uPull, 0); gl.uniform3fv(pl.loc.uCol, [0, 0, 0]);
         gl.clearStencil(0); gl.clear(gl.STENCIL_BUFFER_BIT);
         gl.enable(gl.STENCIL_TEST); gl.stencilFunc(gl.ALWAYS, 1, 0xFF); gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
@@ -2054,7 +2091,7 @@ function Renderer(canvas) {
         if (view && extraView) {
           gl.stencilFunc(gl.EQUAL, 1, 0xFF); gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP); gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
           // reset the depth to the far plane where the window is visible, so the room beyond can be drawn through the wall
-          gl.useProgram(pl.p); gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye); gl.uniform1f(pl.loc.uPull, 0);
+          gl.useProgram(pl.p); gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye); gl.uniform1f(pl.loc.uPull, 0);
           gl.colorMask(false, false, false, false); gl.depthFunc(gl.ALWAYS); gl.depthRange(1, 1);
           gl.bindBuffer(gl.ARRAY_BUFFER, extraWin);
           gl.enableVertexAttribArray(pl.loc.aPos); gl.vertexAttribPointer(pl.loc.aPos, 3, gl.FLOAT, false, 16, 0);
@@ -2063,7 +2100,7 @@ function Renderer(canvas) {
           gl.depthRange(0, 1); gl.depthFunc(gl.LESS); gl.colorMask(this._mask[0], this._mask[1], this._mask[2], true);
           if (view.fb) {
             gl.useProgram(pf.p);
-            gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform3fv(pf.loc.uEye, vp.eye);
+            gl.uniformMatrix4fv(pf.loc.uMVP, false, vp.mvp); gl.uniform4fv(pf.loc.uPlane, vp.plane); gl.uniform1f(pf.loc.uClip, 0); gl.uniform3fv(pf.loc.uEye, vp.eye);
             gl.uniform3fv(pf.loc.uLamp, [0.85, 0.85, 0.8]); gl.uniform1f(pf.loc.uAmb, 0.22); gl.uniform1f(pf.loc.uFog, 0.006); gl.uniform3fv(pf.loc.uFogCol, th.fog);
             gl.uniform3fv(pf.loc.uBase, th.face); gl.polygonOffset(1.5, 2);
             gl.bindBuffer(gl.ARRAY_BUFFER, view.fb);
@@ -2074,7 +2111,7 @@ function Renderer(canvas) {
             gl.disableVertexAttribArray(pf.loc.aNrm); gl.disableVertexAttribArray(pf.loc.aTone);
           }
           gl.useProgram(pl.p);
-          gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye);
+          gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye);
           gl.uniform1f(pl.loc.uFog, 0); if (pl.loc.uDots) gl.uniform1f(pl.loc.uDots, 0); gl.uniform3fv(pl.loc.uFogCol, th.fog);
           const drawPl = (buf, n, mode) => { gl.bindBuffer(gl.ARRAY_BUFFER, buf);
             gl.enableVertexAttribArray(pl.loc.aPos); gl.vertexAttribPointer(pl.loc.aPos, 3, gl.FLOAT, false, 16, 0);
@@ -2096,7 +2133,7 @@ function Renderer(canvas) {
       }
       if (fillBuf) {                                    // openings the reconstruction leaves that are really walls: plain panels
         gl.useProgram(pl.p);
-        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye);
+        gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye);
         gl.uniform1f(pl.loc.uFog, 0); gl.uniform1f(pl.loc.uPull, 0); if (pl.loc.uDots) gl.uniform1f(pl.loc.uDots, 0); gl.uniform3fv(pl.loc.uCol, th.face.map(c => c * 0.55));
         gl.polygonOffset(-4, -20);
         gl.bindBuffer(gl.ARRAY_BUFFER, fillBuf);
@@ -2108,7 +2145,7 @@ function Renderer(canvas) {
       gl.disable(gl.POLYGON_OFFSET_FILL);
     }
     gl.useProgram(pl.p);
-    gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp);
+    gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0);
     gl.uniform3fv(pl.loc.uEye, vp.eye);
     gl.uniform1f(pl.loc.uFog, 0.0);
     gl.uniform1f(pl.loc.uPull, solid ? 0.9 : 0.0);
@@ -2116,6 +2153,7 @@ function Renderer(canvas) {
     gl.uniform3fv(pl.loc.uFogCol, th.fog);
     for (const b of buffers) {
       if (!b.nl) continue;
+      gl.uniform1f(pl.loc.uClip, b.room ? 0 : 1);
       const c = solid ? (b.room || b.frame ? th.line : [1, 0.85, 0.6]) : (b.room || b.frame ? th.wire : [1, 0.85, 0.55]);
       gl.uniform3fv(pl.loc.uCol, this.dark ? c.map(x => x * 0.55) : solid ? c.map(x => Math.min(1, x * 1.05)) : c);
       gl.bindBuffer(gl.ARRAY_BUFFER, b.lb);
@@ -2123,9 +2161,10 @@ function Renderer(canvas) {
       gl.enableVertexAttribArray(pl.loc.aTone); gl.vertexAttribPointer(pl.loc.aTone, 1, gl.FLOAT, false, 16, 12);
       gl.drawArrays(gl.LINES, 0, b.nl);
     }
+    gl.uniform1f(pl.loc.uClip, 0);
     gl.disableVertexAttribArray(pl.loc.aTone);
     if (lightBuf) {
-      gl.useProgram(pl.p); gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform3fv(pl.loc.uEye, vp.eye);
+      gl.useProgram(pl.p); gl.uniformMatrix4fv(pl.loc.uMVP, false, vp.mvp); gl.uniform4fv(pl.loc.uPlane, vp.plane); gl.uniform1f(pl.loc.uClip, 0); gl.uniform3fv(pl.loc.uEye, vp.eye);
       gl.uniform1f(pl.loc.uFog, 0); gl.uniform1f(pl.loc.uPull, 0.6); gl.uniform1f(pl.loc.uDots, 0);
       gl.uniform3fv(pl.loc.uCol, lights[0].col || [1, 0.75, 0.3]);
       gl.bindBuffer(gl.ARRAY_BUFFER, lightBuf);
