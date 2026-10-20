@@ -85,6 +85,13 @@ body.panel-hidden #panel { display: none; }
 .slot .more { position: absolute; right: -6px; top: -6px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--amber); color: #111; font: 700 11px/18px var(--f-display); text-align: center; box-shadow: 0 0 0 2px var(--hull); pointer-events: none; }
 .slot .k { position: absolute; left: 3px; top: 2px; font: 600 9px/1 var(--f-display); color: var(--mist); opacity: .7; }
 .slot:hover { border-color: var(--mist); }
+.slot.full { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.slot img { -webkit-user-drag: none; pointer-events: none; }
+.dragghost { position: fixed; left: 0; top: 0; width: 56px; height: 56px; z-index: 50; pointer-events: none; display: grid; place-items: center; background: color-mix(in srgb, var(--plate) 85%, transparent); border: 1px solid var(--amber); box-shadow: 0 6px 18px rgba(0, 0, 0, .5); opacity: .92; }
+.dragghost img { width: 72%; image-rendering: pixelated; }
+body.dragging { cursor: grabbing; }
+body.drag-from-inv #here, body.drag-from-here #inv { outline: 1px dashed color-mix(in srgb, var(--amber) 60%, transparent); outline-offset: 4px; }
+body.drag-from-inv.drop-ok #here, body.drag-from-here.drop-ok #inv { outline: 2px solid var(--amber); }
 .slot.cur { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber); }
 .slot.box.full::after { content: ""; position: absolute; inset: auto 4px 4px auto; width: 6px; height: 6px; border-right: 1.5px solid var(--mist); border-bottom: 1.5px solid var(--mist); }
 #panel.choosing #here .slot { border-color: color-mix(in srgb, var(--amber) 55%, var(--line)); animation: pick 1.2s ease-in-out infinite; }
@@ -366,6 +373,7 @@ body.touch #subs { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
       <tr><td>1 … 0</td><td>Actions : Poser, Prendre, Utiliser, Appuyer, Régler, Verser, Relief, Dormir, Manger, Boire.</td></tr>
       <tr><td>[ ] ou Tab</td><td>Changer l'objet sélectionné dans l'inventaire.</td></tr>
       <tr><td>T / U</td><td>Prendre / Utiliser.</td></tr>
+      <tr><td>Glisser un objet</td><td>De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.</td></tr>
       <tr><td>Espace · O</td><td>Télécommande : ouvre les portes télécommandées en vue (il faut l'avoir dans l'inventaire). Manette : LB.</td></tr>
       <tr><td>Entrée</td><td>Refaire l'action en surbrillance.</td></tr>
       <tr><td>Épilogue</td><td>En fin de partie le jeu donne un code : le bouton « Lancer l'épilogue » le tape pour vous. Depuis l'accueil, le bouton Épilogue permet de saisir un code à la main.</td></tr>
@@ -2227,7 +2235,7 @@ const ui = {
   "« Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels": '"A great adventure game: real-time 3D animation, over 50 rooms, playable with a joystick, 3D option with glasses." — Loriciels demo text (translated)',
   'Langue : français': 'Language: French', 'Language: English': 'Language: English',
   // ---- dynamic strings (app.js) ----
-  "Vous n'avez pas la télécommande.": "You don't have the remote control.", 'Emplacement vide': 'Empty slot', ' — cliquer pour prendre': ' — click to take',
+  "Vous n'avez pas la télécommande.": "You don't have the remote control.", 'Emplacement vide': 'Empty slot', ' — cliquer pour prendre': ' — click to take', " — cliquer ou glisser vers l'inventaire pour prendre": ' — click or drag to the inventory to take', ' — glisser vers la pièce pour poser': ' — drag to the room to drop',
   'Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)': 'Also in the room: {0} (take an item to reveal the next ones)',
   'Utiliser à nouveau pour tourner la page.': 'Use it again to turn the page.',
   'Sur un vrai Amstrad CPC': 'On a real Amstrad CPC',
@@ -2277,7 +2285,7 @@ const ui = {
   'Code de fin de partie': 'End-of-game code',
   'Passer en fil de fer (V)': 'Switch to wireframe (V)', 'Passer en faces pleines (V)': 'Switch to solid faces (V)', 'Monstre désactivé': 'Monster off', 'Monstre activé.': 'Monster on.', 'Monstre désactivé : il ne bouge plus et ne tue plus.': 'Monster off: it no longer moves or kills.',
   "Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n'est pas sauvegardée.": 'Start a new game? The current game will be lost if it is not saved.', 'émulation lente': 'slow emulation',
-  '[ ] ou Tab': '[ ] or Tab', 'Espace · O': 'Space · O', 'Action': 'Action', 'Choisissez un objet de la pièce': 'Choose an item in the room', '': '',
+  '[ ] ou Tab': '[ ] or Tab', 'Glisser un objet': 'Drag an item', "De l'inventaire vers la pièce (ou la vue 3D) : le poser. De la pièce vers l'inventaire : le prendre. À la souris comme au doigt.": 'From the inventory to the room (or the 3D view): drop it. From the room to the inventory: take it. With the mouse or a finger.', 'Espace · O': 'Space · O', 'Action': 'Action', 'Choisissez un objet de la pièce': 'Choose an item in the room', '': '',
 };
 const rooms = {
   0x00: 'Hibernation chamber', 0x01: 'Laboratory', 0x02: 'Compressor', 0x03: 'Workshop', 0x04: 'Hangar control', 0x05: 'Rotating airlock', 0x06: 'Duct (lower)',
@@ -2600,6 +2608,60 @@ for (const [v, name] of VERBS) {
   b.addEventListener('click', () => doVerb(v));
   elVerbs.appendChild(b);
 }
+// drag and drop between the inventory and the room (mouse and touch): an object dragged from the inventory onto the
+// room panel or the 3D view is dropped (slot + Poser), an object dragged from the room onto the inventory is taken
+// (Prendre + its box). A short tap keeps its usual meaning.
+const dnd = { on: false, from: null, k: 0, x0: 0, y0: 0, id: -1, ghost: null, target: null, justDropped: 0 };
+const dropZone = (x, y) => {
+  const el = document.elementFromPoint(x, y); if (!el) return null;
+  if (el.closest('#inv') || el.closest('.sect') === elInv.closest('.sect')) return 'inv';
+  if (el.closest('#here') || el.closest('.sect') === elHere.closest('.sect') || el.closest('#view') || el.id === 'stage') return 'here';
+  return null;
+};
+function dragStart(e, from, k) {
+  if (e.button > 0) return;
+  const st = g.state(), o = from === 'inv' ? st.inv[k] : st.here[k];
+  if (o == null) return;
+  Object.assign(dnd, { on: false, from, k, x0: e.clientX, y0: e.clientY, id: e.pointerId, obj: o, target: null });
+}
+window.addEventListener('pointermove', e => {
+  if (dnd.id !== e.pointerId || dnd.from === null) return;
+  if (!dnd.on) {
+    if (Math.hypot(e.clientX - dnd.x0, e.clientY - dnd.y0) < 10) return;
+    dnd.on = true;
+    const gh = dnd.ghost = document.createElement('div'); gh.className = 'dragghost';
+    gh.innerHTML = '<img alt="">'; gh.querySelector('img').src = iconURL(g.objType(dnd.obj)) || '';
+    document.body.appendChild(gh); document.body.classList.add('dragging', 'drag-from-' + dnd.from);
+  }
+  const lift = e.pointerType === 'touch' ? 64 : 28;             // above the finger, so it stays visible
+  dnd.ghost.style.transform = 'translate(' + (e.clientX - 28) + 'px,' + (e.clientY - lift) + 'px)';
+  const z = dropZone(e.clientX, e.clientY), t = z && z !== dnd.from ? z : null;
+  if (t !== dnd.target) { dnd.target = t; document.body.classList.toggle('drop-ok', !!t); }
+  e.preventDefault();
+}, { passive: false });
+function dragEnd(e) {
+  if (dnd.id !== e.pointerId) return;
+  if (dnd.on) {
+    dnd.ghost.remove(); document.body.classList.remove('dragging', 'drag-from-inv', 'drag-from-here', 'drop-ok');
+    dnd.justDropped = performance.now();          // swallow the click that follows the release
+    const z = e.type === 'pointerup' ? dropZone(e.clientX, e.clientY) : null;
+    if (z === 'here' && dnd.from === 'inv') {
+      if (g.ctx === 'box') cancelBox();
+      g.push({ type: 'slot', s: dnd.k + 1, tries: 0 }); g.push({ type: 'verb', v: 1, tries: 0 });
+    } else if (z === 'inv' && dnd.from === 'here') {
+      // released on an empty inventory square: select it first, the game puts what it takes in the selected slot
+      const el = document.elementFromPoint(e.clientX, e.clientY), sq = el && el.closest('#inv .slot');
+      if (sq && g.state().inv[+sq.dataset.slot - 1] == null && g.ctx !== 'box') g.push({ type: 'slot', s: +sq.dataset.slot, tries: 0 });
+      if (g.ctx === 'box') g.push({ type: 'box', b: dnd.k, tries: 0 });
+      else { g.push({ type: 'verb', v: 2, tries: 0 }); g.push({ type: 'box', b: dnd.k, tries: 0 }); }
+    }
+  }
+  dnd.from = null; dnd.on = false; dnd.id = -1;
+}
+window.addEventListener('pointerup', dragEnd); window.addEventListener('pointercancel', dragEnd);
+$$('#inv .slot').forEach((b, i) => b.addEventListener('pointerdown', e => dragStart(e, 'inv', i)));
+$$('#here .slot').forEach((b, i) => b.addEventListener('pointerdown', e => dragStart(e, 'here', i)));
+document.addEventListener('click', e => { if (performance.now() - dnd.justDropped < 400 && e.target.closest && e.target.closest('.slot')) { e.stopPropagation(); e.preventDefault(); } }, true);
 // door remote (object type 9, "boîtier à antenne"): select it and Use it; the game opens the remote doors in view
 function useRemote() {
   const st = g.state();
@@ -2635,13 +2697,13 @@ function updateHUD() {
     hudKey = key;
     $$('#inv .slot').forEach((b, i) => {
       const o = st.inv[i]; const img = b.querySelector('img');
-      if (o != null) { img.src = iconURL(g.objType(o)) || ''; img.hidden = false; b.title = objName(o); b.classList.add('full'); }
+      if (o != null) { img.src = iconURL(g.objType(o)) || ''; img.hidden = false; b.title = objName(o) + T(' — glisser vers la pièce pour poser'); b.classList.add('full'); }
       else { img.hidden = true; b.title = T('Emplacement vide'); b.classList.remove('full'); }
       b.classList.toggle('cur', st.slot === i + 1);
     });
     $$('#here .slot').forEach((b, i) => {
       const o = st.here[i]; const img = b.querySelector('img');
-      if (o !== undefined) { img.src = iconURL(g.objType(o)) || ''; img.hidden = false; b.title = objName(o) + T(' — cliquer pour prendre'); b.classList.add('full'); }
+      if (o !== undefined) { img.src = iconURL(g.objType(o)) || ''; img.hidden = false; b.title = objName(o) + T(' — cliquer ou glisser vers l\'inventaire pour prendre'); b.classList.add('full'); }
       else { img.hidden = true; b.title = ''; b.classList.remove('full'); }
       b.classList.toggle('cur', st.ctx === 'box' && (st.box & 3) === i);
     });
