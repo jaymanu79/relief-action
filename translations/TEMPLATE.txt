@@ -2468,8 +2468,8 @@ en: Untick to explore the ship safely.
 tr: 
 
 @ui.089
-fr: Sortir d'hibernation
-en: Leave hibernation
+fr: Jouer
+en: Play
 tr: 
 
 @ui.090

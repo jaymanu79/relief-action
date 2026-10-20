@@ -401,7 +401,7 @@ body.touch #subs { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
     <p>Vous vous réveillez seul dans la chambre d'hibernation d'un vaisseau à la dérive. Quelque chose rôde dans les coursives. Le jeu d'origine tourne ici tel quel, sur un Amstrad émulé ; seuls l'image, les messages et les commandes ont été modernisés.</p>
     <label class="opt"><input type="checkbox" id="start-time"><span>Temps infini<small>Pas d'autodestruction du vaisseau au bout du temps imparti.</small></span></label>
     <label class="opt"><input type="checkbox" id="start-monster"><span>Monstre actif<small>Décochez pour explorer le vaisseau sans danger.</small></span></label>
-    <div class="row"><button class="btn primary" id="b-start">Sortir d'hibernation</button><button class="btn" id="b-continue" hidden>Continuer</button><button class="btn" id="b-epi">Épilogue</button><span class="hint">Entrée pour commencer · H pour l'aide</span></div>
+    <div class="row"><button class="btn primary" id="b-start">Jouer</button><button class="btn" id="b-continue" hidden>Continuer</button><button class="btn" id="b-epi">Épilogue</button><span class="hint">Entrée pour commencer · H pour l'aide</span></div>
     <section class="credits" aria-label="Le jeu original">
       <div><h2>Réalisé par</h2><ul><li>Christophe Courrier</li><li>Gilles Debever</li><li>Bertrand Debever</li><li>Christophe Grosjean</li></ul></div>
       <div><h2>Le jeu original</h2><ul><li>Relief Action, Loriciels</li><li>Copyright mars 1987</li><li>Amstrad CPC</li><li>Disquette : jeu, démo et Épilogue (qui demande le code obtenu en jouant)</li></ul></div>
@@ -2229,7 +2229,7 @@ const ui = {
   'Écran CPC d\'origine': 'Original CPC screen', 'Fermer (Échap)': 'Close (Esc)', 'Clic, Espace ou Entrée pour continuer': 'Click, Space or Enter to continue',
   "Vous vous réveillez seul dans la chambre d'hibernation d'un vaisseau à la dérive. Quelque chose rôde dans les coursives. Le jeu d'origine tourne ici tel quel, sur un Amstrad émulé ; seuls l'image, les messages et les commandes ont été modernisés.": "You wake up alone in the hibernation chamber of a drifting ship. Something prowls the corridors. The original game runs here as it was, on an emulated Amstrad; only the picture, the messages and the controls have been modernised.",
   "Pas d'autodestruction du vaisseau au bout du temps imparti.": 'No self-destruction of the ship when time runs out.', 'Décochez pour explorer le vaisseau sans danger.': 'Untick to explore the ship safely.',
-  "Sortir d'hibernation": 'Leave hibernation', 'Continuer': 'Continue', "Entrée pour commencer · H pour l'aide": 'Enter to start · H for help',
+  'Jouer': 'Play', 'Continuer': 'Continue', "Entrée pour commencer · H pour l'aide": 'Enter to start · H for help',
   'Le jeu original': 'The original game', 'Réalisé par': 'Made by', 'Copyright mars 1987': 'Copyright March 1987',
   'Disquette : jeu, démo et Épilogue (qui demande le code obtenu en jouant)': 'Disk: game, demo and Epilogue (which asks for the code you earn by playing)',
   "« Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels": '"A great adventure game: real-time 3D animation, over 50 rooms, playable with a joystick, 3D option with glasses." — Loriciels demo text (translated)',
@@ -3358,7 +3358,9 @@ $('#f-import').onchange = e => {
 };
 // start screen: continue the most recent save
 function latestSlot() { let best = -1, t = 0; for (let n = 0; n < 4; n++) { const s = readSlot(n); if (s && s.t > t) { t = s.t; best = n; } } return best; }
-{ const n = latestSlot(); const b = $('#b-continue'); if (n >= 0) { b.hidden = false; b.textContent = T('Continuer · {0}', (readSlot(n).meta || {}).room || T(SLOT_NAMES[n])); b.onclick = () => { track('partie-reprise', 'Partie reprise'); loadSlot(latestSlot()); }; } }
+function refreshContinue() { const n = latestSlot(); const b = $('#b-continue'); if (n >= 0) { b.hidden = false; b.textContent = T('Continuer · {0}', (readSlot(n).meta || {}).room || T(SLOT_NAMES[n])); b.onclick = () => { track('partie-reprise', 'Partie reprise'); loadSlot(latestSlot()); }; } }
+if (latestSlot() >= 0) $('#b-start').textContent = 'Nouvelle partie';     // French source text, translated with the page
+refreshContinue();
 $('#b-restart2').onclick = () => { if (confirm(T('Recommencer une nouvelle partie ? La partie en cours sera perdue si elle n\'est pas sauvegardée.'))) $('#b-restart').onclick(); };
 $('#b-restart').onclick = () => { g.reset(); g.setMonster(prefs.monster); sceneSig = ''; sceneRoom = -1; camInit = false; shownRoom = -1; closeOverlays(); say(T('Nouvelle partie.'), 'sys'); };
 
@@ -3519,6 +3521,7 @@ function setLang(l) {
   $$('.mvkeys').forEach(e => { e.innerHTML = (LANG === 'en' ? 'WASD' : 'ZQSD').split('').map(c => '<kbd>' + c + '</kbd>').join(''); });
   if (typeof applyPrefs === 'function') applyPrefs();
   applyCpcVerbs();
+  if (typeof refreshContinue === 'function') refreshContinue();
   hudKey = ''; mapKey = ''; shownRoom = -1;
   if (running && !g.epilogue) showLocation();
   { const p = $('#nogl .nogl-who'); if (p && p.dataset.who) p.textContent = T('Vous utilisez {0} : sur téléphone, installez ou ouvrez plutôt Chrome ou Firefox.', p.dataset.who); }
