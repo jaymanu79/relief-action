@@ -250,7 +250,7 @@ tr: Dormitorio del comandante
 @msg.025
 fr: Contrôle du carré
 en: Wardroom control
-tr: Control de sala de oficiales
+tr: Control de la sala de oficiales
 
 @msg.026
 fr: Carré des officiers
@@ -603,12 +603,12 @@ tr: HLP — nave averiada
 @msg.095
 fr: Le coffre s'ouvre.
 en: The safe opens.
-tr: La caja se abre
+tr: La caja se abre.
 
 @msg.096
 fr: Indicatif non répertorié.
 en: Unknown call sign.
-tr: Indicativo desconocido
+tr: Indicativo desconocido.
 
 @msg.097
 fr: La porte ne peut pas s'ouvrir quand la cage est ouverte.
@@ -988,7 +988,7 @@ tr: … en la colección «Obras Maestras Olvidadas» — Memorias de un Aliení
 @msg.171
 fr: Index alphabétique des services galactiques
 en: Alphabetical index of galactic services
-tr: Indice alfabético de servicios galácticos
+tr: Índice alfabético de servicios galácticos
 
 @msg.172
 fr: Vous vous attardez sur les fréquences et codes d'urgence :
@@ -1270,8 +1270,8 @@ tr: -CON GAFAS-
 # max 24 characters (the length of the French title)
 fr: UN GRAND JEU D'AVENTURE:
 en: A GREAT ADVENTURE GAME:
-tr: UN GRAN JUEGO DE AVENTURA:
-tr.cpc: GRAN JUEGO DE AVENTURA:
+tr: UNA GRAN AVENTURA:
+tr.cpc: UNA GRAN AVENTURA:
 
 ##############################################################################
 ## EPILOGUE / ÉPILOGUE
@@ -1321,12 +1321,12 @@ tr: El peligro ha terminado. Está muerto. La nave, también destruida: estalló
 @epi.escape.p2
 fr: Étrange, cette explosion. Une lueur vous a ébloui, puis vous avez été frappé de plein fouet par une forte bouffée de chaleur. Tout cela dans le silence le plus absolu. Une scène un peu irréelle.
 en: A strange explosion. A glare dazzled you, then you were struck full on by a strong blast of heat. All of it in the most absolute silence. A slightly unreal scene.
-tr: Extraña explosión. Un destello cegador y te ves envuelto en una bestial oleada de calor. Todo queda en el más absoluto silencio. Una escena algo surrealista.
+tr: Extraña explosión. Un destello cegador y te viste envuelto en una bestial oleada de calor. Todo quedó en el más absoluto silencio. Una escena algo surrealista.
 
 @epi.escape.p3
 fr: Puis vous vous êtes endormi d'un sommeil agité…
 en: Then you fell into a restless sleep…
-tr: Entonces te duermes en un sueño agitado…
+tr: Entonces te dormiste en un sueño agitado…
 
 @epi.hunger.chapter
 # web only
@@ -1343,7 +1343,7 @@ tr: Te despiertas. Estás hambriento… No tienes comida. Si nadie te encuentra 
 @epi.hunger.p2
 fr: Vous vous rappelez subitement une phrase du commandant : <em>le plus proche vaisseau est à Éridan !</em> S'il vient vous chercher, ce ne sera pas avant au moins un mois.
 en: Suddenly you remember something the commander said: <em>the nearest ship is at Eridanus!</em> If it comes for you, it will not be for at least a month.
-tr: De repente, recuerdas algo que dijo el comandante: <em>¡la nave más cercana está en Éridan!</em> Si se acerca, no será menos de un mes.
+tr: De repente, recuerdas algo que dijo el comandante: <em>¡la nave más cercana está en Éridan!</em> Si se acercara, no será antes de un mes.
 
 @epi.hunger.p3
 fr: Vous n'avez aucune chance. Vous préférez mourir vite… Vous ouvrez le diaphragme sur le vide !!!
@@ -1365,7 +1365,7 @@ tr: Cuando te despiertas, ¡te comes un tercio de una ración! ¡La comida tiene
 @epi.alone.p2
 fr: Un doute horrible vous envahit. Quels secours attendiez-vous ? Qui savait que vous étiez perdu dans cette navette ? Qui savait même que votre vaisseau avait explosé ?
 en: A horrible doubt comes over you. What help were you waiting for? Who knew you were lost in this shuttle? Who even knew your ship had exploded?
-tr: Una horrible duda te embarga. ¿Qué ayuda estás esperando? ¿Quién sabe que estás perdido en esta lanzadera? Incluso, ¿quién sabe que tu nave ha explotado?
+tr: Una horrible duda te embarga. ¿Qué ayuda estás esperando? ¿Quién sabe que estás perdido en esta lanzadera? Incluso, ¿quién sabe que tu nave explotó?
 
 @epi.alone.p3
 fr: L'espoir qui restait encore en vous s'amenuisait d'heure en heure. Peut-être le commandant avait-il envoyé un SOS par l'ERTP avant de vous réveiller. Vous n'arriviez pas à vous en convaincre. Non, il ne l'avait sûrement pas fait !!!
@@ -1409,7 +1409,7 @@ tr: Treinta días después
 # CPC: the 4 paragraphs of this part must fit together in 14 lines of 38 characters (about 476 characters)
 fr: Trente jours se sont écoulés. Aucun vaisseau n'est venu vous secourir. L'inquiétude vous gagne peu à peu.
 en: Thirty days have gone by. No ship has come to rescue you. Worry slowly takes hold of you.
-tr: Han pasado treinta días. Ninguna nave ha venido en tu ayuda. La preocupación crece poco a poco
+tr: Han pasado treinta días. Ninguna nave ha venido en tu ayuda. Tu preocupación crece por momentos.
 
 @epi.silence.p2
 fr: Vous vous souvenez d'une phrase que vous avez lue quelque part : <em>« … aucun secours ne sera envoyé, sauf si la demande est confirmée par l'indicatif du vaisseau. »</em>
@@ -1453,7 +1453,7 @@ tr: En La Tierra
 # CPC: the 5 paragraphs of this part must fit together in 18 lines of 38 characters (about 612 characters)
 fr: En arrivant sur Terre, vous êtes accueilli par un tribunal militaire. On vous accuse de mutinerie. Votre histoire est déclarée ridicule.
 en: When you reach Earth, a court martial is waiting for you. You are accused of mutiny. Your story is called ridiculous.
-tr: Cuando llegas a La Tierra, eres recibido por un tribunal militar. Te acusan de insubordinación. Tu historia se declara ridícula.
+tr: Cuando llegas a La Tierra, eres recibido por un tribunal militar. Te acusan de insubordinación. Tu historia es declarada inverosímil.
 
 @epi.prison.p2
 fr: Tout le monde semble penser que vous n'êtes qu'un tueur sanguinaire qui a détruit le vaisseau pour cacher ses crimes.
@@ -1468,7 +1468,7 @@ tr: La acusación no puede probar sus afirmaciones por falta de pruebas material
 @epi.prison.p4
 fr: Vous vous demandez encore comment vous auriez pu prouver votre innocence. Peut-être en ramenant le carnet de bord… Qui sait ?
 en: You still wonder how you could have proved your innocence. Perhaps by bringing back the logbook… Who knows?
-tr: Te preguntas cómo podrías probar tu inocencia. Quizá trayendo el cuaderno de bitácora. ¿Quién sabe?
+tr: Te preguntas cómo podrías probar tu inocencia. Quizá trayendo el diario de a bordo. ¿Quién sabe?
 
 @epi.prison.p5
 fr: La grille d'une porte de prison se referme sur vous… Des pas s'éloignent… Silence.
@@ -1490,7 +1490,7 @@ tr: Estás al fin de vuelta en La Tierra. Tras tantas peripecias, no esperabas v
 @epi.hero.p2
 fr: D'abord, vous avez eu du mal à convaincre les autorités de la véracité de votre histoire. Mais le journal de bord du capitaine, enregistré en code sur sa carte magnétique, confirme votre version des faits.
 en: At first you struggled to convince the authorities that your story was true. But the captain's logbook, recorded in code on his magnetic card, confirms your account of the facts.
-tr: Al principio, te costó convencer a las autoridades de la veracidad de tu historia. Pero el cuaderno de bitácora del comandante, codificado en su tarjeta magnética, confirma tu relato de los actos.
+tr: Al principio, te costó convencer a las autoridades de la veracidad de tu historia. Pero el diario de a bordo del comandante, codificado en su tarjeta magnética, confirma tu relato de los hechos.
 
 @epi.hero.p3
 fr: Le Conseil militaire galactique décide de prendre des mesures contre les monstres. L'homme n'a pas encore gagné, mais il est prêt à lutter.
@@ -1530,7 +1530,7 @@ tr: El aire de la lanzadera no era suficiente.
 @end.oxy.hint
 fr: Il fallait installer les bouteilles d'oxygène pleines dans la navette.
 en: You had to install the full oxygen bottles in the shuttle.
-tr: Había que instalar las botellas de oxígeno llenas en la lanzadera.
+tr: Tenías que instalar las botellas de oxígeno llenas en la lanzadera.
 
 @end.hunger.title
 fr: Famine
@@ -1540,7 +1540,7 @@ tr: Hambre
 @end.hunger.line
 fr: Rien à manger, et personne pour venir.
 en: Nothing to eat, and nobody coming.
-tr: Nada que comer y nadie vendrá.
+tr: Nada que comer y nadie acudirá.
 
 @end.hunger.hint
 fr: Il fallait emporter une ration intacte.
@@ -1555,7 +1555,7 @@ tr: Olvidado
 @end.alone.line
 fr: Personne ne savait.
 en: Nobody knew.
-tr: Nadie avisado.
+tr: Nadie fue avisado.
 
 @end.alone.hint
 fr: Il fallait émettre un message de détresse avec l'ERTP avant de partir.
@@ -1590,7 +1590,7 @@ tr: A salvo, pero condenado.
 @end.prison.hint
 fr: Il fallait ramener la carte du commandant : elle contient le journal de bord.
 en: You had to bring back the commander's card: it holds the logbook.
-tr: Tenías que traer la tarjeta del comandante: contenía el cuaderno de bitácora.
+tr: Tenías que traer la tarjeta del comandante: contenía el diario de a bordo.
 
 @end.hero.title
 fr: Le temps de la colère
@@ -1644,7 +1644,7 @@ tr: Conducto (inferior)
 @room.07
 fr: Cage d'ascenseur
 en: Lift shaft
-tr: Jaula del ascensor
+tr: Hueco del ascensor
 
 @room.08
 fr: Disjoncteurs (bas)
@@ -1729,7 +1729,7 @@ tr: Dormitorio del comandante
 @room.18
 fr: Contrôle du carré
 en: Wardroom control
-tr: Control de sala de oficiales
+tr: Control de la sala de oficiales
 
 @room.19
 fr: Carré des officiers
@@ -2054,7 +2054,7 @@ tr: Animación vectorial
 @ui.003
 fr: Vue 3D indisponible dans ce navigateur
 en: 3D view unavailable in this browser
-tr: Vista 3d no disponible en este navegador
+tr: Vista 3D no disponible en este navegador
 
 @ui.004
 fr: Ce navigateur n'a pas pu démarrer WebGL, nécessaire à la vue 3D. Ouvrez cette page dans un autre navigateur : Chrome ou Firefox (ordinateur, Android), Safari (iPhone, iPad, Mac).
@@ -2114,7 +2114,7 @@ tr: Guardar o cargar (F5 / F9)
 @ui.015
 fr: Partie
 en: Game
-tr: Partida
+tr: Juego
 
 @ui.016
 fr: Options
@@ -2154,7 +2154,7 @@ tr: Código de Final ·
 @ui.023
 fr: Déplacement
 en: Movement
-tr: Movimiento
+tr: Desplazamiento
 
 @ui.024
 fr: Écran d'origine
@@ -2209,12 +2209,12 @@ tr: Control remoto de puertas
 @ui.034
 fr: L'action porte sur l'objet sélectionné de l'inventaire. Pour prendre, cliquez l'objet dans la pièce. Déplacement
 en: Actions apply to the selected inventory item. To take something, click it in the room. Move with
-tr: La acción se aplica al objeto seleccionado en el inventario. Para coger, haz click sobre el objeto en la ubicación
+tr: La acción se aplica al objeto seleccionado en el inventario. Para coger, haz click sobre el objeto en la ubicación.
 
 @ui.035
 fr: ou flèches, regard à la souris. Télécommande des portes :
 en: or the arrows, look with the mouse. Door remote:
-tr: Desplazamiento con las flechas del cursor, mirar con el ratón. Control de puertas:
+tr: Desplazamiento con las flechas del cursor, mirar alrededor con el ratón. Control de puertas:
 
 @ui.036
 fr: . Sauvegarde rapide
@@ -2249,7 +2249,7 @@ tr: Tiempo infinito
 @ui.042
 fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).
 en: Turns off the ship's self-destruct countdown ("The exploration ship NMI has just exploded").
-tr: Desactiva la cuenta atrás de autodestrucción de la nave (« Le vaisseau NMI vient d'exploser »).
+tr: Desactiva la cuenta atrás de autodestrucción de la nave («La nave NMI acaba de estallar»).
 
 @ui.043
 fr: Accélérer les attentes du jeu
@@ -2259,7 +2259,7 @@ tr: Acelerar las pausas del juego
 @ui.044
 fr: Calcul 3D, défilement des menus et des messages instantanés. Le rythme du monstre ne change pas.
 en: Instant 3D drawing, menu and message scrolling. The monster's pace does not change.
-tr: Cálculos 3D, despliegue de menús y de mensajes instantáneos. La velocidad del monstruo no cambia.
+tr: Cálculos 3D, despliegue de menús y mensajes instantáneos. La velocidad del monstruo no cambia.
 
 @ui.045
 fr: Montrer les points d'interaction
@@ -2269,7 +2269,7 @@ tr: Mostrar los puntos de interacción
 @ui.046
 fr: Boutons, serrures et curseurs de la pièce, en orange quand ils sont à portée.
 en: The room's buttons, locks and sliders, in orange when within reach.
-tr: Botones, cerraduras y mandos naranjas cuando estén al alcance.
+tr: Botones, cerraduras y mandos en naranja cuando estén al alcance.
 
 @ui.047
 fr: Montrer le monstre sur le plan
@@ -2354,7 +2354,7 @@ tr: Girar y mirar arriba o abajo. Rueda: vista vertical.
 @ui.063
 fr: Actions : Poser, Prendre, Utiliser, Appuyer, Régler, Verser, Relief, Dormir, Manger, Boire.
 en: Actions: Drop, Take, Use, Push, Set, Pour, Relief, Sleep, Eat, Drink.
-tr: Actiones: Dejar, Coger, Usar, Pulsar, Activar, Verter, Relief, Dormir, Comer, Beber
+tr: Acciones: Dejar, Coger, Usar, Pulsar, Ajustar, Verter, Relief, Dormir, Comer, Beber
 
 @ui.064
 fr: ou Tab
@@ -2399,7 +2399,7 @@ tr: Al final del juego conseguirás un código: el botón «Reproducir Epílogo�
 @ui.072
 fr: Sauvegarde rapide · chargement rapide. Bouton Partie : 4 emplacements, export et import de fichier.
 en: Quick save · quick load. Game button: 4 slots, file export and import.
-tr: Guardado rápido · carga rápida. Botón partida: 4 posiciones, exportar e importar archivos.
+tr: Guardado rápido · carga rápida. Botón Juego: 4 posiciones, exportar e importar archivos.
 
 @ui.073
 fr: Plan · fil de fer ou faces · écran d'origine.
@@ -2469,7 +2469,7 @@ tr: Click, Espacio o Enter para continuar
 @ui.086
 fr: Vous vous réveillez seul dans la chambre d'hibernation d'un vaisseau à la dérive. Quelque chose rôde dans les coursives. Le jeu d'origine tourne ici tel quel, sur un Amstrad émulé ; seuls l'image, les messages et les commandes ont été modernisés.
 en: You wake up alone in the hibernation chamber of a drifting ship. Something prowls the corridors. The original game runs here as it was, on an emulated Amstrad; only the picture, the messages and the controls have been modernised.
-tr: Despiertas solo en la cápsula de hibernación de una nave a la deriva. Algo ronda los pasillos. El juego original se ejecuta como tal, en un Amstrad emulado; solamente los gráficos, los mensajes y los controles han sido modernizados.
+tr: Despiertas solo en la cápsula de hibernación de una nave a la deriva. Algo ronda por los pasillos. El juego original se ejecuta como tal, en un Amstrad emulado; solamente los gráficos, los mensajes y los controles han sido modernizados.
 
 @ui.087
 fr: Pas d'autodestruction du vaisseau au bout du temps imparti.
@@ -2514,7 +2514,7 @@ tr: Disco: juego, demo y Epílogo (que pedirá el código obtenido jugando)
 @ui.096
 fr: « Un grand jeu d'aventure : animation 3D temps réel, plus de 50 salles, jouable au joystick, option relief avec lunettes. » — texte de la démo Loriciels
 en: "A great adventure game: real-time 3D animation, over 50 rooms, playable with a joystick, 3D option with glasses." — Loriciels demo text (translated)
-tr: «Un gran juego de aventura: animación 3D en tiempo real, más de 50 ubicaciones, admite joystick, opción 3d con gafas.» — texto de la demo de Loriciels
+tr: «Una gran aventura: animación 3D en tiempo real, más de 50 ubicaciones, admite joystick, opción 3D con gafas.» — texto de la demo de Loriciels
 
 @ui.097
 fr: Langue : français
@@ -2534,7 +2534,7 @@ tr: No tienes el control remoto.
 @ui.100
 fr: Emplacement vide
 en: Empty slot
-tr: Espacio vacío
+tr: Posición vacía
 
 @ui.102
 fr: Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)
@@ -2584,7 +2584,7 @@ tr: que permite guardar tu partida con un Multiface o captura de emulador.
 @ui.112
 fr: La démo et l'épilogue restent accessibles depuis le même menu.
 en: The demo and the epilogue are still available from the same menu.
-tr: La demo y el epílogo están aún disponibles desde el mismo menú.
+tr: La demo y el epílogo están disponibles en el mismo menú.
 
 @ui.113
 fr: Télécharger la disquette (.dsk)
@@ -2599,7 +2599,7 @@ tr: Mapa de las 3 cubiertas (PDF)
 @ui.115
 fr: Fiche du jeu sur CPC-Power ↗
 en: The game on CPC-Power ↗
-tr: Ficha del jueo en CPC-Power ↗
+tr: Ficha del juego en CPC-Power ↗
 
 @ui.116
 fr: Versions modernisées
@@ -2679,7 +2679,7 @@ tr: {0}: partida guardada ({1}).
 @ui.132
 fr: {0} : vide.
 en: {0}: empty.
-tr: {0}: vacío.
+tr: {0}: vacía.
 
 @ui.133
 fr: {0} chargée{1}.
@@ -2739,7 +2739,7 @@ tr: Sobreescribir «{0}»?
 @ui.144
 fr: Lancez une partie avant d'exporter.
 en: Start a game before exporting.
-tr: Empezar partida antes de exportar.
+tr: Empezar una partida antes de exportar.
 
 @ui.145
 fr: Partie exportée : {0}
@@ -2779,7 +2779,7 @@ tr: Monitor: pulsa S para salir (o la equis)
 @ui.152
 fr: Vous sortez d'hibernation…
 en: You come out of hibernation…
-tr: Sales de hibernación…
+tr: Sales de la hibernación…
 
 @ui.153
 fr: Bravo ! Vous emportez une ration intacte : vous aurez de quoi manger en attendant les secours (lettre 2 du code : N).
@@ -2789,17 +2789,17 @@ tr: ¡Bien hecho! Has cogido una ración intacta: tendrás algo que comer mientr
 @ui.154
 fr: La ration n'est plus avec vous : vous n'auriez rien à manger (lettre 2 : E).
 en: The ration is no longer with you: you would have nothing to eat (letter 2: E).
-tr: La ración no va contigo; no tendrás nada que comer (letra 2: E).
+tr: No llevas la ración; no tendrás nada que comer (letra 2: E).
 
 @ui.155
 fr: Bravo ! Vous avez la carte du commandant : son journal de bord prouvera votre innocence (lettre 3 : C).
 en: Well done! You have the commander's card: his logbook will prove your innocence (code letter 3: C).
-tr: ¡Bien hecho! Tienes la tarjeta del comandante: su cuaderno de bitácora probará tu inocencia (letra 3: C).
+tr: ¡Bien hecho! Tienes la tarjeta del comandante: su diario de a bordo probará tu inocencia (letra 3: C).
 
 @ui.156
 fr: La carte du commandant n'est plus avec vous (lettre 3 : M).
 en: The commander's card is no longer with you (letter 3: M).
-tr: La tarjeta del comandante no va contigo (letra 3: M).
+tr: No llevas la tarjeta del comandante (letra 3: M).
 
 @ui.157
 fr: Bravo ! Message de détresse émis par l'ERTP (lettre 4 : C).
@@ -2809,7 +2809,7 @@ tr: ¡Bien hecho! Mensaje de auxilio enviado con el TPT (letra 4: C).
 @ui.158
 fr: Bravo ! Le message porte l'indicatif du vaisseau, NMI : cette fois les secours viendront (lettre 6 : J).
 en: Well done! The message carries the ship's call sign, NMI: this time help will come (code letter 6: J).
-tr: ¡Bien hecho! El mensaje lleva el indicativo de la nave. NMI: esta vez la ayuda acudirá (letra 6: J).
+tr: ¡Bien hecho! El mensaje lleva el indicativo de la nave, NMI: esta vez la ayuda acudirá (letra 6: J).
 
 @ui.159
 fr: R · assez d'oxygène dans la navette
@@ -2834,7 +2834,7 @@ tr: E · sin provisiones
 @ui.163
 fr: C · la carte du commandant (journal de bord)
 en: C · the commander's card (logbook)
-tr: C · la tarjeta del comandante (cuaderno de bitácora)
+tr: C · la tarjeta del comandante (diario de a bordo)
 
 @ui.164
 fr: M · aucune preuve de votre innocence
@@ -2849,7 +2849,7 @@ tr: C · mensaje de auxilio enviado
 @ui.166
 fr: B · personne n'a été prévenu
 en: B · nobody was told
-tr: B · nadie avisado
+tr: B · nadie fue avisado
 
 @ui.167
 fr: · {0} · destinataire du message (sans effet sur la fin)
@@ -2879,7 +2879,7 @@ tr: El código de tu partida es {CODE}. Puedes cargar el programa Epílogo.
 @ui.172
 fr: Entrez le code donné par le jeu à la fin de votre partie. Six lettres : elles racontent ce que vous avez emporté et fait avant de partir.
 en: Enter the code the game gave you at the end of your game. Six letters: they tell what you took with you and did before leaving.
-tr: Introduce el código obtenido al terminar la partida. Seis letras: indican que trajiste contigo e hiciste antes de partir.
+tr: Introduce el código obtenido al terminar la partida. Seis letras: indican qué trajiste contigo e hiciste antes de partir.
 
 @ui.173
 fr: Lire l'épilogue
@@ -2989,12 +2989,12 @@ tr: Jugar
 @ui.194
 fr:  — cliquer ou glisser vers l'inventaire pour prendre
 en:  — click or drag to the inventory to take
-tr: — click o arrastrar al inventario para coger
+tr:  — click o arrastrar al inventario para coger
 
 @ui.195
 fr:  — glisser vers la pièce pour poser
 en:  — drag to the room to drop
-tr: — arrastrar a la ubicación para dejar
+tr:  — arrastrar a la ubicación para dejar
 
 @ui.196
 fr: Glisser un objet
