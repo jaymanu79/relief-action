@@ -17,7 +17,7 @@ const ui = {
   "L'action porte sur l'objet sélectionné de l'inventaire. Pour prendre, cliquez l'objet dans la pièce. Déplacement": 'Actions apply to the selected inventory item. To take something, click it in the room. Move with',
   'ou flèches, regard à la souris. Télécommande des portes :': 'or the arrows, look with the mouse. Door remote:', '. Sauvegarde rapide': '. Quick save', ', chargement': ', load',
   'Fermer': 'Close', 'Monstre actif': 'Monster on', 'Décoché, le monstre reste où il est et ne peut plus vous tuer.': 'Unticked, the monster stays where it is and can no longer kill you.',
-  'Temps infini': 'Unlimited time', "Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).": 'Turns off the ship\'s self-destruct countdown ("The exploration ship NMI has just exploded").',
+  'Temps infini': 'Unlimited time', "Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau d'exploration NMI vient d'exploser »).": 'Turns off the ship\'s self-destruct countdown ("The exploration ship NMI has just exploded").',
   'Accélérer les attentes du jeu': "Speed up the game's waits", 'Calcul 3D, défilement des menus et des messages instantanés. Le rythme du monstre ne change pas.': "Instant 3D drawing, menu and message scrolling. The monster's pace does not change.",
   "Montrer les points d'interaction": 'Show interaction points', 'Boutons, serrures et curseurs de la pièce, en orange quand ils sont à portée.': "The room's buttons, locks and sliders, in orange when within reach.",
   'Montrer le monstre sur le plan': 'Show the monster on the map', "Sa salle clignote en rouge ; s'il est à un autre étage, le plan l'indique.": 'Its room flashes red; if it is on another deck, the map says so.',

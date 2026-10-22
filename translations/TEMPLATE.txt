@@ -2243,7 +2243,7 @@ en: Unlimited time
 tr: 
 
 @ui.042
-fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).
+fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau d'exploration NMI vient d'exploser »).
 en: Turns off the ship's self-destruct countdown ("The exploration ship NMI has just exploded").
 tr: 
 

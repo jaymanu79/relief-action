@@ -2247,9 +2247,9 @@ en: Unlimited time
 tr: Tiempo infinito
 
 @ui.042
-fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau NMI vient d'exploser »).
+fr: Désactive le compte à rebours d'autodestruction du vaisseau (« Le vaisseau d'exploration NMI vient d'exploser »).
 en: Turns off the ship's self-destruct countdown ("The exploration ship NMI has just exploded").
-tr: Desactiva la cuenta atrás de autodestrucción de la nave («La nave NMI acaba de estallar»).
+tr: Desactiva la cuenta atrás de autodestrucción de la nave («La nave de exploración NMI ha explotado»).
 
 @ui.043
 fr: Accélérer les attentes du jeu
