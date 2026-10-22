@@ -1343,7 +1343,7 @@ tr: Te despiertas. Estás hambriento… No tienes comida. Si nadie te encuentra 
 @epi.hunger.p2
 fr: Vous vous rappelez subitement une phrase du commandant : <em>le plus proche vaisseau est à Éridan !</em> S'il vient vous chercher, ce ne sera pas avant au moins un mois.
 en: Suddenly you remember something the commander said: <em>the nearest ship is at Eridanus!</em> If it comes for you, it will not be for at least a month.
-tr: De repente, recuerdas algo que dijo el comandante: <em>¡la nave más cercana está en Éridan!</em> Si se acercara, no será antes de un mes.
+tr: De repente, recuerdas algo que dijo el comandante: <em>¡la nave más cercana está en Éridan!</em> Si se acercara, no sería antes de un mes.
 
 @epi.hunger.p3
 fr: Vous n'avez aucune chance. Vous préférez mourir vite… Vous ouvrez le diaphragme sur le vide !!!
