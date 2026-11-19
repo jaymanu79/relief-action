@@ -3016,3 +3016,13 @@ tr:
 fr: Traduction espagnole : MiguelSky
 en: Spanish translation: MiguelSky
 tr: 
+
+@ui.201
+fr: Mes autres jeux
+en: My other games
+tr: 
+
+@ui.202
+fr: HEROS (Amiga, 1994) : aventure textuelle ↗
+en: HEROS (Amiga, 1994): text adventure ↗
+tr: 

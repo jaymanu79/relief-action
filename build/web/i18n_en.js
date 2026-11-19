@@ -50,6 +50,8 @@ const ui = {
   'Aussi dans la pièce : {0} (prenez un objet pour faire apparaître les suivants)': 'Also in the room: {0} (take an item to reveal the next ones)',
   'Utiliser à nouveau pour tourner la page.': 'Use it again to turn the page.',
   'Sur un vrai Amstrad CPC': 'On a real Amstrad CPC',
+  'Mes autres jeux': 'My other games',
+  'HEROS (Amiga, 1994) : aventure textuelle ↗': 'HEROS (Amiga, 1994): text adventure ↗',
   'La disquette du jeu a aussi été enrichie. Son menu de lancement ajoute :': 'The game disk has been extended too. Its launch menu adds:',
   'Des traductions complètes, en anglais et en espagnol :': 'Complete English and Spanish translations:',
   'messages du jeu, verbes, épilogue et démo. La langue se choisit au lancement (touche L), le français reste la version d\'origine.': 'game messages, verbs, epilogue and demo. The language is chosen at launch (L key); French remains the original version.',

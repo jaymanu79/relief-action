@@ -2989,12 +2989,12 @@ tr: Jugar
 @ui.194
 fr:  — cliquer ou glisser vers l'inventaire pour prendre
 en:  — click or drag to the inventory to take
-tr:  — click o arrastrar al inventario para coger
+tr: — click o arrastrar al inventario para coger
 
 @ui.195
 fr:  — glisser vers la pièce pour poser
 en:  — drag to the room to drop
-tr:  — arrastrar a la ubicación para dejar
+tr: — arrastrar a la ubicación para dejar
 
 @ui.196
 fr: Glisser un objet
@@ -3020,3 +3020,13 @@ tr: Versión para navegador, traducciones y disquete mejorado
 fr: Traduction espagnole : MiguelSky
 en: Spanish translation: MiguelSky
 tr: Traducción al español: MiguelSky
+
+@ui.201
+fr: Mes autres jeux
+en: My other games
+tr: Mis otros juegos
+
+@ui.202
+fr: HEROS (Amiga, 1994) : aventure textuelle ↗
+en: HEROS (Amiga, 1994): text adventure ↗
+tr: HEROS (Amiga, 1994): aventura de texto ↗
